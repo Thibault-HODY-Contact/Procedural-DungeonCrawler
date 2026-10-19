@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fcbc51c777f4de43b36de236a4ad702, type: 3}
+  m_Name: BSPMAPSO 1
+  m_EditorClassIdentifier: Assembly-CSharp::BSPMAPSO
+  MapSize: {x: 500, y: 500}
+  gizmoColor: {r: 0, g: 0.78377736, b: 0.9622642, a: 1}
+  MaxDepth: 150
+  MinNodeSize: 25
+  Padding: 5
+  MinRoomSize: {x: 12, y: 12}
+  RoomStyles:
+  - {fileID: 11400000, guid: 11bf6ebcbc618db4b82e6b7a5dbc8700, type: 2}
+  CorridorStyle: {fileID: 0}
+  CorridorWidth: 5
+  MapBounds:
+    x: -50
+    y: -50
+    width: 100
+    height: 100
