@@ -18,7 +18,7 @@ public class BSPMAPSO : ScriptableObject
     public List<RoomStyleSO> RoomStyles;
 
     [Header("Couloirs")]
-    public RoomStyleSO CorridorStyle;
+    public List<RoomStyleSO> CorridorStyle;
     [Min(1)] public int CorridorWidth = 1;
 
     public RectInt MapBounds ;

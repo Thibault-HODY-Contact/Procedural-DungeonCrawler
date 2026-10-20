@@ -61,9 +61,9 @@ public class DungeonGeneratorBSP : MonoBehaviour
         foreach (BSPNode n in rooms)
         {
 
-            GameObject sol = Instantiate(n.style.roomFloorPrefab, new Vector3(n.roomBound.Value.center.x, n.roomHeight, n.roomBound.Value.center.y), Quaternion.identity);
-            sol.transform.localScale = new Vector3(n.roomBound.Value.size.x/2, 1, n.roomBound.Value.size.y/2);
-
+            GameObject sol = Instantiate(n.style.roomFloorPrefab, new Vector3(n.roomBound.Value.center.x, n.roomHeight, n.roomBound.Value.center.y), Quaternion.identity, transform);
+            sol.transform.localScale = new Vector3(n.roomBound.Value.size.x, 1, n.roomBound.Value.size.y) * sol.transform.localScale.x;
+                
             FloorMeshs.Add(sol);
         }
     }
@@ -209,7 +209,9 @@ public class DungeonGeneratorBSP : MonoBehaviour
         {
             bool horizontal = c.width > c.height;
 
-            GameObject obj = Instantiate(map.CorridorStyle.CorridorFloorPrefab, new Vector3(c.center.x, transform.position.y, c.center.y), Quaternion.identity, transform);
+            GameObject prefab = map.CorridorStyle[Random.Range(0, map.CorridorStyle.Count)].CorridorFloorPrefab;
+
+            GameObject obj = Instantiate(prefab, new Vector3(c.center.x, transform.position.y+ (prefab.transform.localScale.y*2), c.center.y), Quaternion.identity, transform);
 
             Vector3 scale = obj.transform.localScale;
 
@@ -348,10 +350,6 @@ public class DungeonGeneratorBSP : MonoBehaviour
         //DrawRect(MapBounds, map.gizmoColor);
 
         //foreach (RectInt f in Feuilles) DrawRect(f, Color.red);
-
- 
-
-        foreach (RectInt c in corridors) DrawRect(c, Color.yellow);
 
         DrawMarker(startRoom, Color.green);
         DrawMarker(endRoom, Color.magenta);
