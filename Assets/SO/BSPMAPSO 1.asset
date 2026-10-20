@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BSPMAPSO
   MapSize: {x: 200, y: 200}
   gizmoColor: {r: 0, g: 0.78377736, b: 0.9622642, a: 1}
-  MaxDepth: 150
-  MinNodeSize: 25
-  Padding: 5
+  MaxDepth: 200
+  MinNodeSize: 50
+  Padding: 9
   MinRoomSize: {x: 12, y: 12}
   RoomStyles:
   - {fileID: 11400000, guid: 11bf6ebcbc618db4b82e6b7a5dbc8700, type: 2}
-  CorridorStyle: {fileID: 0}
-  CorridorWidth: 5
+  CorridorStyle: {fileID: 11400000, guid: 11bf6ebcbc618db4b82e6b7a5dbc8700, type: 2}
+  CorridorWidth: 1
   MapBounds:
     x: -50
     y: -50

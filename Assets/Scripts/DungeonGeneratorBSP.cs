@@ -16,6 +16,7 @@ public class DungeonGeneratorBSP : MonoBehaviour
     List<RectInt> Feuilles = new List<RectInt>();
     List<BSPNode> rooms = new List<BSPNode>();
     List<RectInt> corridors = new List<RectInt>();
+    List<GameObject> corridorObjects = new List<GameObject>(); 
     public BSPNode rootNode;
     public BSPNode startRoom;
     public BSPNode endRoom;
@@ -27,12 +28,7 @@ public class DungeonGeneratorBSP : MonoBehaviour
     [ContextMenu("Generate")]
     public void Generate()
     {
-        rooms.Clear();
-        corridors.Clear();
-        Feuilles.Clear();
-        startRoom = null;
-        endRoom = null;
-
+        ClearRooms();
         if (RandomSeed) generateRandomSeed();
         var rng = new System.Random(Seed);
 
@@ -43,6 +39,7 @@ public class DungeonGeneratorBSP : MonoBehaviour
         resizeRoom();
 
         ConnectRooms(rootNode, rng);
+        SpawnCorridors();
     }
 
     public void CleanRoom()
@@ -80,7 +77,6 @@ public class DungeonGeneratorBSP : MonoBehaviour
             node.roomHeight = transform.position.y;
         }
     }
-
     void Split(BSPNode node, int depth, System.Random rng)
     {
         var b = node.bounds;
@@ -206,6 +202,34 @@ public class DungeonGeneratorBSP : MonoBehaviour
         }
 
         Debug.LogWarning($"Aucun couloir libre trouvé entre deux zones (seed {Seed}).");
+    }
+    void SpawnCorridors()
+    {
+        foreach (RectInt c in corridors)
+        {
+            bool horizontal = c.width > c.height;
+
+            GameObject obj = Instantiate(map.CorridorStyle.CorridorFloorPrefab, new Vector3(c.center.x, transform.position.y, c.center.y), Quaternion.identity, transform);
+
+            Vector3 scale = obj.transform.localScale;
+
+            if (horizontal)
+            {
+                obj.transform.rotation = Quaternion.Euler(0, 90, 0);
+
+                scale.z = c.width / 4.8f;
+            }
+            else
+            {
+                obj.transform.rotation = Quaternion.identity;
+
+                scale.z = c.height / 4.8f;
+            }
+
+            obj.transform.localScale = scale;
+
+            corridorObjects.Add(obj);
+        }
     }
 
     void CollectRooms(BSPNode node, List<BSPNode> result)
@@ -345,5 +369,27 @@ public class DungeonGeneratorBSP : MonoBehaviour
         Gizmos.color = color;
         Vector2 c = node.roomBound.Value.center;
         Gizmos.DrawSphere(new Vector3(c.x, (int)gameObject.transform.position.y, c.y), 2f);
+    }
+    void ClearRooms()
+    {
+        List<GameObject> childTransforms = new List<GameObject>();
+
+        foreach (Transform t in transform)
+        {
+            childTransforms.Add(t.gameObject);
+        }
+
+        foreach (var child in childTransforms)
+        {
+            DestroyImmediate(child.gameObject);
+        }
+
+        childTransforms.Clear();
+        rooms.Clear();
+        corridors.Clear();
+        Feuilles.Clear();
+        corridorObjects.Clear();
+        startRoom = null;
+        endRoom = null;
     }
 }
