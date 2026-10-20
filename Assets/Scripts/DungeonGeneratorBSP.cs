@@ -22,6 +22,7 @@ public class DungeonGeneratorBSP : MonoBehaviour
     public BSPNode endRoom;
 
     List<GameObject> FloorMeshs = new List<GameObject>();
+    List<GameObject> WallMeshes = new List<GameObject>();
 
     RectInt MapBounds => new RectInt(new Vector2Int((int)gameObject.transform.position.x - map.MapSize.x / 2, (int)gameObject.transform.position.z - map.MapSize.y / 2), map.MapSize);
 
@@ -40,18 +41,33 @@ public class DungeonGeneratorBSP : MonoBehaviour
 
         ConnectRooms(rootNode, rng);
         SpawnCorridors();
+        //buildRoom();
     }
 
     public void CleanRoom()
     {
         if (FloorMeshs.Count != 0)
         {
-            foreach (GameObject objet in FloorMeshs)
+            foreach (GameObject wall in WallMeshes)
             {
-                DestroyImmediate(objet);
+                DestroyImmediate(wall);
             }
+
+            WallMeshes.Clear();
         }
         FloorMeshs.Clear();
+    }
+
+    bool IsCorridor(Vector2Int pos)
+    {
+        foreach (RectInt c in corridors)
+        {
+            if (c.Contains(pos))
+                return true;
+        }
+
+        return false;
+
     }
 
     [ContextMenu("CreateRoom")]
@@ -264,8 +280,11 @@ public class DungeonGeneratorBSP : MonoBehaviour
         RectInt rb = b.roomBound.Value;
         int w = map.CorridorWidth;
 
-        int xMin = Mathf.Max(ra.xMin, rb.xMin);
-        int xMax = Mathf.Min(ra.xMax, rb.xMax);
+        int padding = map.CorridorPadding;
+
+        int xMin = Mathf.Max(ra.xMin + padding, rb.xMin + padding);
+        int xMax = Mathf.Min(ra.xMax - padding, rb.xMax - padding);
+
         if (xMax - xMin >= w)
         {
             bool aBelow = ra.yMax <= rb.yMin;
@@ -279,8 +298,8 @@ public class DungeonGeneratorBSP : MonoBehaviour
             }
         }
 
-        int yMin = Mathf.Max(ra.yMin, rb.yMin);
-        int yMax = Mathf.Min(ra.yMax, rb.yMax);
+        int yMin = Mathf.Max(ra.yMin + padding, rb.yMin + padding);
+        int yMax = Mathf.Min(ra.yMax - padding, rb.yMax - padding);
         if (yMax - yMin >= w)
         {
             bool aLeft = ra.xMax <= rb.xMin;
@@ -303,8 +322,10 @@ public class DungeonGeneratorBSP : MonoBehaviour
         RectInt b = to.roomBound.Value;
         int w = map.CorridorWidth;
 
-        int y = rng.Next(a.yMin, a.yMax - w + 1);
-        int x = rng.Next(b.xMin, b.xMax - w + 1);
+        int padding = map.CorridorPadding;
+
+        int y = rng.Next(a.yMin + padding, a.yMax - w - padding + 1);
+        int x = rng.Next(b.xMin + padding, b.xMax - w - padding + 1);
         RectInt elbow = new RectInt(x, y, w, w);
 
         RectInt horizontal;

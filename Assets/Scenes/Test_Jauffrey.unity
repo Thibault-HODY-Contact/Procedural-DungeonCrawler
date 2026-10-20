@@ -182,7 +182,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GenGenerator
   GeneratorPrefab: {fileID: 1406739387290585380, guid: abd76e2a91e79244ab9b1bf9e9d27e09, type: 3}
-  numberLEveles: 5
+  numberLEveles: 1
+  GenList:
+  - {fileID: 0}
+  Ladder: {fileID: 3103808955717124296, guid: 0dea271580694394a99cdd4faaff0eda, type: 3}
 --- !u!4 &1451166044
 Transform:
   m_ObjectHideFlags: 0
