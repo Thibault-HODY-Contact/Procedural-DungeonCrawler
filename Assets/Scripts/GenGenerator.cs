@@ -20,6 +20,7 @@ public class GenGenerator : MonoBehaviour
         {
             foreach (GameObject objet in GenList)
             {
+                objet.GetComponent<DungeonGeneratorBSP>().CleanRoom();
                 DestroyImmediate(objet);
             }
         }
@@ -62,6 +63,8 @@ public class GenGenerator : MonoBehaviour
 
             }
             LadderGenList.Add(Instantiate(Ladder, new Vector3(level.endRoom.roomBound.Value.center.x, level.transform.position.y, level.endRoom.roomBound.Value.center.y),level.transform.rotation));
+
+            level.buildRoom();
         }
 
     }

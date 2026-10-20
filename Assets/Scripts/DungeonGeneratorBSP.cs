@@ -44,21 +44,30 @@ public class DungeonGeneratorBSP : MonoBehaviour
 
         ConnectRooms(rootNode, rng);
     }
+
+    public void CleanRoom()
+    {
+        if (FloorMeshs.Count != 0)
+        {
+            foreach (GameObject objet in FloorMeshs)
+            {
+                DestroyImmediate(objet);
+            }
+        }
+        FloorMeshs.Clear();
+    }
+
     [ContextMenu("CreateRoom")]
     public void buildRoom()
     {
-
+        CleanRoom();
         foreach (BSPNode n in rooms)
         {
-            for (int x = 0; x < n.roomBound.Value.xMax - n.roomBound.Value.xMin; x++)
-            {
-                for (int z = 0; z < n.roomBound.Value.yMax - n.roomBound.Value.yMin; z++)
-                {
-                    Instantiate(n.style.roomFloorPrefab, new Vector3(n.roomBound.Value.xMin+x, n.roomHeight, n.roomBound.Value.yMin+ z), Quaternion.identity).GetComponent<MeshFilter>();
 
-                }
-            }
+            GameObject sol = Instantiate(n.style.roomFloorPrefab, new Vector3(n.roomBound.Value.center.x, n.roomHeight, n.roomBound.Value.center.y), Quaternion.identity);
+            sol.transform.localScale = new Vector3(n.roomBound.Value.size.x/2, 1, n.roomBound.Value.size.y/2);
 
+            FloorMeshs.Add(sol);
         }
     }
 
