@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fcbc51c777f4de43b36de236a4ad702, type: 3}
   m_Name: BSPMAPSO 1
   m_EditorClassIdentifier: Assembly-CSharp::BSPMAPSO
-  MapSize: {x: 500, y: 500}
+  MapSize: {x: 200, y: 200}
   gizmoColor: {r: 0, g: 0.78377736, b: 0.9622642, a: 1}
   MaxDepth: 150
   MinNodeSize: 25

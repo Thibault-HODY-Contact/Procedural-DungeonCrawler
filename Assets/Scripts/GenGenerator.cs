@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GenGenerator : MonoBehaviour
@@ -8,7 +9,10 @@ public class GenGenerator : MonoBehaviour
 
     [SerializeField] int numberLEveles;
 
-    List<GameObject> GenList = new List<GameObject>() ;
+    [SerializeField] List<GameObject> GenList = new List<GameObject>() ;
+    List<GameObject> LadderGenList = new List<GameObject>();
+
+    [SerializeField] GameObject Ladder;
 
     [ContextMenu("Generate")]
     void Generate() {
@@ -19,8 +23,17 @@ public class GenGenerator : MonoBehaviour
                 DestroyImmediate(objet);
             }
         }
+        if (LadderGenList.Count != 0)
+        {
+            foreach (GameObject objet in LadderGenList)
+            {
+                DestroyImmediate(objet);
+            }
+        }
+
 
         GenList.Clear();
+        LadderGenList.Clear();
 
         for (int i = 0; i < numberLEveles; i++)
         {
@@ -34,20 +47,21 @@ public class GenGenerator : MonoBehaviour
         }
         for (int i = 0; i < numberLEveles; i++)
         {
-            if(i == 0)
-            {
-                continue;
-            }
-            else
-            {
+            DungeonGeneratorBSP level = GenList[i].GetComponent<DungeonGeneratorBSP>();
 
-                Vector2 distance = GenList[i].GetComponent<DungeonGeneratorBSP>().startRoom.room.Value.center - GenList[i-1].GetComponent<DungeonGeneratorBSP>().endRoom.room.Value.center;
+
+            if(i>0)
+            {
+                DungeonGeneratorBSP Prevlevel = GenList[i - 1].GetComponent<DungeonGeneratorBSP>();
+
+                Vector2 distance = level.startRoom.roomBound.Value.center - Prevlevel.endRoom.roomBound.Value.center;
 
                 GenList[i].transform.position -= new Vector3(distance.x, 0, distance.y);
-                GenList[i].transform.position += new Vector3(0, GenList[i-1].transform.position.y+25, 0);
+                GenList[i].transform.position += new Vector3(0, GenList[i-1].transform.position.y+15, 0);
                 GenList[i].GetComponent<DungeonGeneratorBSP>().Generate();
 
             }
+            LadderGenList.Add(Instantiate(Ladder, new Vector3(level.endRoom.roomBound.Value.center.x, level.transform.position.y, level.endRoom.roomBound.Value.center.y),level.transform.rotation));
         }
 
     }

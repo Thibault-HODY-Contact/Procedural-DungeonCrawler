@@ -1,14 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using NUnit.Framework;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI.MessageBox;
 
-public class BSPNode
-{
-    public RectInt bounds;
-    public BSPNode left, right;
-    public RectInt? room;
-    public RoomStyleSO style;
-    public bool IsLeaf => left == null && right == null;
-}
 
 public class DungeonGeneratorBSP : MonoBehaviour
 {
@@ -24,6 +19,8 @@ public class DungeonGeneratorBSP : MonoBehaviour
     public BSPNode rootNode;
     public BSPNode startRoom;
     public BSPNode endRoom;
+
+    List<GameObject> FloorMeshs = new List<GameObject>();
 
     RectInt MapBounds => new RectInt(new Vector2Int((int)gameObject.transform.position.x - map.MapSize.x / 2, (int)gameObject.transform.position.z - map.MapSize.y / 2), map.MapSize);
 
@@ -47,12 +44,31 @@ public class DungeonGeneratorBSP : MonoBehaviour
 
         ConnectRooms(rootNode, rng);
     }
+    [ContextMenu("CreateRoom")]
+    public void buildRoom()
+    {
+
+        foreach (BSPNode n in rooms)
+        {
+            for (int x = 0; x < n.roomBound.Value.xMax - n.roomBound.Value.xMin; x++)
+            {
+                for (int z = 0; z < n.roomBound.Value.yMax - n.roomBound.Value.yMin; z++)
+                {
+                    Instantiate(n.style.roomFloorPrefab, new Vector3(n.roomBound.Value.xMin+x, n.roomHeight, n.roomBound.Value.yMin+ z), Quaternion.identity).GetComponent<MeshFilter>();
+
+                }
+            }
+
+        }
+    }
+
     void resizeRoom()
     {
         Vector2Int padding = Vector2Int.one * map.Padding;
         foreach (BSPNode node in rooms)
         { 
-            node.room = new RectInt(node.bounds.position + padding, node.bounds.size - padding * 2);
+            node.roomBound = new RectInt(node.bounds.position + padding, node.bounds.size - padding * 2);
+            node.roomHeight = transform.position.y;
         }
     }
 
@@ -94,7 +110,7 @@ public class DungeonGeneratorBSP : MonoBehaviour
         int x = node.bounds.x + map.Padding + rng.Next(0, maxW - w + 1);
         int y = node.bounds.y + map.Padding + rng.Next(0, maxH - h + 1);
 
-        node.room = new RectInt(x, y, w, h);
+        node.roomBound = new RectInt(x, y, w, h);
         node.style = PickWeightedStyle(rng);
 
         Feuilles.Add(node.bounds);
@@ -140,7 +156,7 @@ public class DungeonGeneratorBSP : MonoBehaviour
         foreach (BSPNode n in rooms)
         {
             Vector2Int mappos = new Vector2Int((int)gameObject.transform.position.x, (int)gameObject.transform.position.z);
-            float d = Vector2.Distance(n.room.Value.center, mappos);
+            float d = Vector2.Distance(n.roomBound.Value.center, mappos);
             if (d < best) { best = d; startRoom = n; }
         }
 
@@ -209,8 +225,8 @@ public class DungeonGeneratorBSP : MonoBehaviour
 
     List<RectInt> TryStraight(BSPNode a, BSPNode b, System.Random rng)
     {
-        RectInt ra = a.room.Value;
-        RectInt rb = b.room.Value;
+        RectInt ra = a.roomBound.Value;
+        RectInt rb = b.roomBound.Value;
         int w = map.CorridorWidth;
 
         int xMin = Mathf.Max(ra.xMin, rb.xMin);
@@ -248,8 +264,8 @@ public class DungeonGeneratorBSP : MonoBehaviour
 
     List<RectInt> TryElbow(BSPNode from, BSPNode to, System.Random rng)
     {
-        RectInt a = from.room.Value;
-        RectInt b = to.room.Value;
+        RectInt a = from.roomBound.Value;
+        RectInt b = to.roomBound.Value;
         int w = map.CorridorWidth;
 
         int y = rng.Next(a.yMin, a.yMax - w + 1);
@@ -276,7 +292,7 @@ public class DungeonGeneratorBSP : MonoBehaviour
 
         foreach (BSPNode n in rooms)
         {
-            RectInt room = n.room.Value;
+            RectInt room = n.roomBound.Value;
             if (n != a && n != b)
                 room = new RectInt(room.x - 1, room.y - 1, room.width + 2, room.height + 2);
             if (r.Overlaps(room)) return false;
@@ -284,7 +300,7 @@ public class DungeonGeneratorBSP : MonoBehaviour
         return true;
     }
 
-    float Distance(BSPNode a, BSPNode b) => Vector2.Distance(a.room.Value.center, b.room.Value.center);
+    float Distance(BSPNode a, BSPNode b) => Vector2.Distance(a.roomBound.Value.center, b.roomBound.Value.center);
 
     int generateRandomSeed()
     {
@@ -296,12 +312,11 @@ public class DungeonGeneratorBSP : MonoBehaviour
     {
         if (map == null) return;
 
-        DrawRect(MapBounds, map.gizmoColor);
+        //DrawRect(MapBounds, map.gizmoColor);
 
-        foreach (RectInt f in Feuilles) DrawRect(f, Color.red);
+        //foreach (RectInt f in Feuilles) DrawRect(f, Color.red);
 
-        foreach (BSPNode n in rooms)
-            DrawRect(n.room.Value, n.style != null ? n.style.gizmoColor : Color.white);
+ 
 
         foreach (RectInt c in corridors) DrawRect(c, Color.yellow);
 
@@ -319,7 +334,7 @@ public class DungeonGeneratorBSP : MonoBehaviour
     {
         if (node == null) return;
         Gizmos.color = color;
-        Vector2 c = node.room.Value.center;
+        Vector2 c = node.roomBound.Value.center;
         Gizmos.DrawSphere(new Vector3(c.x, (int)gameObject.transform.position.y, c.y), 2f);
     }
 }

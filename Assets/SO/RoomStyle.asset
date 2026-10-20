@@ -22,7 +22,7 @@ MonoBehaviour:
   Weight: 10
   AllowAsStartRoom: 1
   AllowAsEndRoom: 1
-  roomFloorPrefab: {fileID: 0}
+  roomFloorPrefab: {fileID: 6644410685189140245, guid: 109845b2f9372fa4595fcfb23069f441, type: 3}
   CorridorFloorPrefab: {fileID: 0}
   WallPrefab: {fileID: 0}
   FloorProps: []
