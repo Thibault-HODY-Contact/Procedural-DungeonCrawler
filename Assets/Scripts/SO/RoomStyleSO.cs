@@ -24,7 +24,7 @@ public class RoomStyleSO : ScriptableObject
     [Header("Prefabs")]
     public GameObject roomFloorPrefab;
     public GameObject CorridorFloorPrefab;
-    public GameObject WallPrefab;
+    public List<RoomWalls> WallsPrefabsList;
 
     [Header("Props")]
     public List<GameObject> FloorProps;

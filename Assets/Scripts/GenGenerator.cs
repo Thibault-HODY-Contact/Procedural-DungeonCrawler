@@ -19,16 +19,21 @@ public class GenGenerator : MonoBehaviour
         if(GenList.Count != 0)
         {
             foreach (GameObject objet in GenList)
-            {
-                objet.GetComponent<DungeonGeneratorBSP>().CleanRoom();
-                DestroyImmediate(objet);
+            {if (objet != null)
+                {
+                    objet.GetComponent<DungeonGeneratorBSP>().CleanRoom();
+                    DestroyImmediate(objet);
+                }
             }
         }
         if (LadderGenList.Count != 0)
         {
             foreach (GameObject objet in LadderGenList)
             {
-                DestroyImmediate(objet);
+                if (objet != null)
+                {
+                    DestroyImmediate(objet);
+                }
             }
         }
 

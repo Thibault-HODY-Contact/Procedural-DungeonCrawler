@@ -48,14 +48,23 @@ public class DungeonGeneratorBSP : MonoBehaviour
     {
         if (FloorMeshs.Count != 0)
         {
+         
+
+            foreach (GameObject floor in FloorMeshs)
+            {
+                DestroyImmediate(floor);
+            }
+
+            FloorMeshs.Clear();
+        }
+        if (WallMeshes.Count != 0)
+        {
             foreach (GameObject wall in WallMeshes)
             {
                 DestroyImmediate(wall);
             }
-
             WallMeshes.Clear();
         }
-        FloorMeshs.Clear();
     }
 
     bool IsCorridor(Vector2Int pos)
@@ -81,6 +90,83 @@ public class DungeonGeneratorBSP : MonoBehaviour
             sol.transform.localScale = new Vector3(n.roomBound.Value.size.x, 1, n.roomBound.Value.size.y) * sol.transform.localScale.x;
                 
             FloorMeshs.Add(sol);
+
+        }
+        BuildWalls();
+    }
+
+    public void BuildWalls()
+    {
+        foreach (BSPNode n in rooms)
+        {
+            RectInt r = n.roomBound.Value;
+            float left = r.center.x - r.size.x / 2+0.2f, right = r.center.x + r.size.x / 2- 0.2f;
+            float bottom = r.center.y - r.size.y / 2 + 0.2f, top = r.center.y + r.size.y / 2 - 0.2f;
+
+            BuildWallLine(n, r.size.x, new Vector3(left, transform.position.y, top), Vector3.right, 0);
+            BuildWallLine(n, r.size.y, new Vector3(right, transform.position.y, top), Vector3.back, 90);
+            BuildWallLine(n, r.size.x, new Vector3(right, transform.position.y, bottom), Vector3.left, 180);
+            BuildWallLine(n, r.size.y, new Vector3(left, transform.position.y, bottom), Vector3.forward, 270);
+        }
+    }
+
+    void BuildWallLine(BSPNode n, float length, Vector3 start, Vector3 dir, float yRotation)
+    {
+        const float epsilon = 0.01f;
+
+        RoomWalls smallest = null;
+        foreach (RoomWalls wall in n.style.WallsPrefabsList)
+            if (wall.scale > 0 && (smallest == null || wall.scale < smallest.scale))
+                smallest = wall;
+        if (smallest == null) return;
+
+        float covered = 0;
+
+        while (length - covered >= smallest.scale - epsilon)
+        {
+            float remaining = length - covered;
+            float better = 0;
+            RoomWalls chosenWall = null;
+            foreach (RoomWalls wall in n.style.WallsPrefabsList)
+            {
+                if (wall.scale > better && wall.scale <= remaining + epsilon)
+                {
+                    better = wall.scale;
+                    chosenWall = wall;
+                }
+                if (wall.scale == better && wall.scale <= remaining + epsilon && Random.Range(0, 2) == 1)
+                    chosenWall = wall;
+            }
+            if (chosenWall == null) break;
+
+            Vector3 pos = start + dir * (covered + better / 2) + Vector3.up * (better / 2);
+            WallMeshes.Add(Instantiate(chosenWall.WallsPrefabs, pos, Quaternion.Euler(0, yRotation, 0)));
+            covered += better;
+        }
+
+        float gap = length - covered;
+        if (gap > epsilon)
+        {
+            Vector3 pos;
+            GameObject go;
+
+            if (gap > smallest.scale / 2)
+            {
+                pos = start + dir * (covered + gap / 2) + Vector3.up * (smallest.scale / 2);
+                go = Instantiate(smallest.WallsPrefabs, pos, Quaternion.Euler(0, yRotation, 0));
+
+                Vector3 s = go.transform.localScale;
+                s.x *= gap / smallest.scale;   
+                go.transform.localScale = s;
+            }
+            else
+            {
+                // Trou très petit
+                pos = start + dir * (length - smallest.scale / 2) + Vector3.up * (smallest.scale / 2);
+                go = Instantiate(smallest.WallsPrefabs, pos, Quaternion.Euler(0, yRotation, 0));
+            }
+
+            WallMeshes.Add(go);
         }
     }
 
@@ -371,6 +457,9 @@ public class DungeonGeneratorBSP : MonoBehaviour
         //DrawRect(MapBounds, map.gizmoColor);
 
         //foreach (RectInt f in Feuilles) DrawRect(f, Color.red);
+
+        //foreach (RectInt f in corridors) DrawRect(f, Color.yellow);
+
 
         DrawMarker(startRoom, Color.green);
         DrawMarker(endRoom, Color.magenta);

@@ -23,7 +23,7 @@ MonoBehaviour:
   CorridorStyle:
   - {fileID: 11400000, guid: 828b5d19fec22144abd1db330c2ed707, type: 2}
   CorridorPadding: 2
-  CorridorWidth: 1
+  CorridorWidth: 5
   MapBounds:
     x: -50
     y: -50
