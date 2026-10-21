@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 using static UnityEngine.Rendering.DebugUI.MessageBox;
 
 
@@ -305,34 +306,81 @@ public class DungeonGeneratorBSP : MonoBehaviour
 
         Debug.LogWarning($"Aucun couloir libre trouvé entre deux zones (seed {Seed}).");
     }
+
+
     void SpawnCorridors()
     {
         foreach (RectInt c in corridors)
         {
             bool horizontal = c.width > c.height;
 
-            GameObject prefab = map.CorridorStyle[Random.Range(0, map.CorridorStyle.Count)].CorridorFloorPrefab;
+            int index = Random.Range(0, map.CorridorStyle.Count);
 
-            GameObject obj = Instantiate(prefab, new Vector3(c.center.x, transform.position.y+ (prefab.transform.localScale.y*2), c.center.y), Quaternion.identity, transform);
+            GameObject prefab = map.CorridorStyle[index].CorridorPrefab;
+            GameObject floorPrefab = map.CorridorStyle[index].CorridorFloorPrefab;
 
-            Vector3 scale = obj.transform.localScale;
+            if (prefab == null || floorPrefab == null)
+                continue;
 
-            if (horizontal)
+            Quaternion rotation = horizontal
+                ? Quaternion.Euler(0f, 90f, 0f)
+                : Quaternion.identity;
+
+            // Création du corridor
+            GameObject corridor = Instantiate(
+                prefab,
+                new Vector3(
+                    c.center.x,
+                    transform.position.y + prefab.transform.localScale.y * 2f - 0.212f,
+                    c.center.y
+                ),
+                rotation,
+                transform
+            );
+
+            // Scale du corridor
+            Vector3 corridorScale = corridor.transform.localScale;
+
+            float lengthFactor = (horizontal ? c.width : c.height) / 4.8f;
+            corridorScale.z *= lengthFactor;
+
+            corridor.transform.localScale = corridorScale;
+
+            // Création du sol
+            GameObject floor = Instantiate(
+                floorPrefab,
+                new Vector3(
+                    corridor.transform.position.x,
+                    transform.position.y,
+                    corridor.transform.position.z
+                ),
+                rotation,
+                transform
+            );
+
+            // Scales de base des deux prefabs
+            Vector3 corridorBaseScale =
+                prefab.transform.localScale;
+
+            Vector3 floorBaseScale =
+                floorPrefab.transform.localScale;
+
+            // Évite les divisions par zéro
+            if (Mathf.Abs(corridorBaseScale.x) > 0.0001f &&
+                Mathf.Abs(corridorBaseScale.z) > 0.0001f)
             {
-                obj.transform.rotation = Quaternion.Euler(0, 90, 0);
+                Vector3 floorScale = floorBaseScale;
 
-                scale.z = c.width / 4.8f;
+                // Même facteur d'allongement que le corridor
+                float lengthFactors = (horizontal ? c.width : c.height) / 4.8f;
+
+                floorScale.x *= corridorBaseScale.x;
+                floorScale.z *= corridorBaseScale.z * lengthFactors + 0.2f;
+
+                floor.transform.localScale = floorScale;
             }
-            else
-            {
-                obj.transform.rotation = Quaternion.identity;
 
-                scale.z = c.height / 4.8f;
-            }
-
-            obj.transform.localScale = scale;
-
-            corridorObjects.Add(obj);
+            corridorObjects.Add(corridor);
         }
     }
 

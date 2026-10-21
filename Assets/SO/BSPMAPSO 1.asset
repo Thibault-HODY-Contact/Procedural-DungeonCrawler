@@ -16,8 +16,8 @@ MonoBehaviour:
   gizmoColor: {r: 0, g: 0.78377736, b: 0.9622642, a: 1}
   MaxDepth: 200
   MinNodeSize: 30
-  Padding: 9
-  MinRoomSize: {x: 12, y: 12}
+  Padding: 12
+  MinRoomSize: {x: 5, y: 5}
   RoomStyles:
   - {fileID: 11400000, guid: 11bf6ebcbc618db4b82e6b7a5dbc8700, type: 2}
   CorridorStyle:

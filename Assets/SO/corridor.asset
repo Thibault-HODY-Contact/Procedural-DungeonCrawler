@@ -23,6 +23,9 @@ MonoBehaviour:
   AllowAsStartRoom: 0
   AllowAsEndRoom: 0
   roomFloorPrefab: {fileID: 0}
-  CorridorFloorPrefab: {fileID: 3125119747023335, guid: 83068f57a2449a34a97620ec855e5c50, type: 3}
+  CorridorFloorPrefab: {fileID: 6487248804287716864, guid: 0943bcadc36d32242a7e38f9241bf085, type: 3}
+  CorridorPrefab: {fileID: 3125119747023335, guid: 83068f57a2449a34a97620ec855e5c50, type: 3}
   WallPrefab: {fileID: 6487248804287716864, guid: aefd8d2a3a2301142937dfcb4ee48371, type: 3}
+  CorridorCornerRightPrefab: {fileID: 3125119747023335, guid: 96abcfa357162cf48b8b78e260897a29, type: 3}
+  CorridorCornerLeftPrefab: {fileID: 3125119747023335, guid: 10184769c7287ee47952dbb0bfcf5b96, type: 3}
   FloorProps: []
