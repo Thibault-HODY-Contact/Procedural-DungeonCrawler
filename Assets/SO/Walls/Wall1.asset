@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Wall1
   m_EditorClassIdentifier: Assembly-CSharp::RoomWalls
   gizmoColor: {r: 0, g: 0, b: 1, a: 1}
-  scale: 4.5
+  scaleX: 6
+  scaleY: 5
   Weight: 10
   WallsPrefabs: {fileID: 7363922660476437694, guid: c8edb2c04b6349a4b95d5928c516d505, type: 3}

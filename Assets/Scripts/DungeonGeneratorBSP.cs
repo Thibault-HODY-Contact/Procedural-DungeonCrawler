@@ -100,8 +100,8 @@ public class DungeonGeneratorBSP : MonoBehaviour
         foreach (BSPNode n in rooms)
         {
             RectInt r = n.roomBound.Value;
-            float left = r.center.x - r.size.x / 2+0.2f, right = r.center.x + r.size.x / 2- 0.2f;
-            float bottom = r.center.y - r.size.y / 2 + 0.2f, top = r.center.y + r.size.y / 2 - 0.2f;
+            float left = r.center.x - r.size.x / 2+0.5f, right = r.center.x + r.size.x / 2- 0.5f;
+            float bottom = r.center.y - r.size.y / 2 + 0.5f, top = r.center.y + r.size.y / 2 - 0.5f;
 
             BuildWallLine(n, r.size.x, new Vector3(left, transform.position.y, top), Vector3.right, 0);
             BuildWallLine(n, r.size.y, new Vector3(right, transform.position.y, top), Vector3.back, 90);
@@ -116,30 +116,30 @@ public class DungeonGeneratorBSP : MonoBehaviour
 
         RoomWalls smallest = null;
         foreach (RoomWalls wall in n.style.WallsPrefabsList)
-            if (wall.scale > 0 && (smallest == null || wall.scale < smallest.scale))
+            if (wall.scaleX > 0 && (smallest == null || wall.scaleX < smallest.scaleX))
                 smallest = wall;
         if (smallest == null) return;
 
         float covered = 0;
 
-        while (length - covered >= smallest.scale - epsilon)
+        while (length - covered >= smallest.scaleX - epsilon)
         {
             float remaining = length - covered;
             float better = 0;
             RoomWalls chosenWall = null;
             foreach (RoomWalls wall in n.style.WallsPrefabsList)
             {
-                if (wall.scale > better && wall.scale <= remaining + epsilon)
+                if (wall.scaleX > better && wall.scaleX <= remaining + epsilon)
                 {
-                    better = wall.scale;
+                    better = wall.scaleX;
                     chosenWall = wall;
                 }
-                if (wall.scale == better && wall.scale <= remaining + epsilon && Random.Range(0, 2) == 1)
+                if (wall.scaleX == better && wall.scaleX <= remaining + epsilon && Random.Range(0, 2) == 1)
                     chosenWall = wall;
             }
             if (chosenWall == null) break;
 
-            Vector3 pos = start + dir * (covered + better / 2) + Vector3.up * (better / 2);
+            Vector3 pos = start + dir * (covered + better / 2) + Vector3.up * (smallest.scaleY );
             WallMeshes.Add(Instantiate(chosenWall.WallsPrefabs, pos, Quaternion.Euler(0, yRotation, 0)));
             covered += better;
         }
@@ -150,19 +150,19 @@ public class DungeonGeneratorBSP : MonoBehaviour
             Vector3 pos;
             GameObject go;
 
-            if (gap > smallest.scale / 2)
+            if (gap > smallest.scaleX / 2)
             {
-                pos = start + dir * (covered + gap / 2) + Vector3.up * (smallest.scale / 2);
+                pos = start + dir * (covered + gap / 2) + Vector3.up * (smallest.scaleY);
                 go = Instantiate(smallest.WallsPrefabs, pos, Quaternion.Euler(0, yRotation, 0));
 
                 Vector3 s = go.transform.localScale;
-                s.x *= gap / smallest.scale;   
+                s.x *= gap / smallest.scaleX;   
                 go.transform.localScale = s;
             }
             else
             {
                 // Trou très petit
-                pos = start + dir * (length - smallest.scale / 2) + Vector3.up * (smallest.scale / 2);
+                pos = start + dir * (length - smallest.scaleX / 2) +  Vector3.up * (smallest.scaleY);
                 go = Instantiate(smallest.WallsPrefabs, pos, Quaternion.Euler(0, yRotation, 0));
             }
 

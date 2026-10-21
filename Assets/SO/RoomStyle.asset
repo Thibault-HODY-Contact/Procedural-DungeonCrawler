@@ -27,4 +27,5 @@ MonoBehaviour:
   WallsPrefabsList:
   - {fileID: 11400000, guid: 8477a2befe331b544bd9f8b1df496d78, type: 2}
   - {fileID: 11400000, guid: 39ff545e7e836e54d9a60401c136536b, type: 2}
+  - {fileID: 11400000, guid: b2d4004db4f34c8409c8123dc26ac1fa, type: 2}
   FloorProps: []

@@ -8,7 +8,8 @@ public class RoomWalls : ScriptableObject
     public Color gizmoColor = Color.blue;
 
     [Header("Transform")]
-    public float scale = 4.5f;
+    public float scaleX = 4.5f;
+    public float scaleY = 4.5f;
 
 
     [Header("Generation")]
