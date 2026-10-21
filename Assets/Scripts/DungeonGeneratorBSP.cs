@@ -141,7 +141,7 @@ public class DungeonGeneratorBSP : MonoBehaviour
             if (chosenWall == null) break;
 
             Vector3 pos = start + dir * (covered + better / 2) + Vector3.up * (smallest.scaleY );
-            WallMeshes.Add(Instantiate(chosenWall.WallsPrefabs, pos, Quaternion.Euler(0, yRotation, 0)));
+            WallMeshes.Add(Instantiate(chosenWall.WallsPrefabs, pos, Quaternion.Euler(0, yRotation, 0),transform));
             covered += better;
         }
 
@@ -154,7 +154,7 @@ public class DungeonGeneratorBSP : MonoBehaviour
             if (gap > smallest.scaleX / 2)
             {
                 pos = start + dir * (covered + gap / 2) + Vector3.up * (smallest.scaleY);
-                go = Instantiate(smallest.WallsPrefabs, pos, Quaternion.Euler(0, yRotation, 0));
+                go = Instantiate(smallest.WallsPrefabs, pos, Quaternion.Euler(0, yRotation, 0), transform);
 
                 Vector3 s = go.transform.localScale;
                 s.x *= gap / smallest.scaleX;   
@@ -164,7 +164,7 @@ public class DungeonGeneratorBSP : MonoBehaviour
             {
                 // Trou très petit
                 pos = start + dir * (length - smallest.scaleX / 2) +  Vector3.up * (smallest.scaleY);
-                go = Instantiate(smallest.WallsPrefabs, pos, Quaternion.Euler(0, yRotation, 0));
+                go = Instantiate(smallest.WallsPrefabs, pos, Quaternion.Euler(0, yRotation, 0), transform);
             }
 
             WallMeshes.Add(go);
