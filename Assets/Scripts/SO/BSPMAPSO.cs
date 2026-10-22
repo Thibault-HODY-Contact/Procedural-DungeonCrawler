@@ -1,28 +1,24 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "BSPMAPSO", menuName = "Dungeon/BSPMAPSO")]
 public class BSPMAPSO : ScriptableObject
 {
     [Header("Carte")]
-    public Vector2Int MapSize = new Vector2Int(100, 100);
-    public Color gizmoColor = Color.white;
+    [FormerlySerializedAs("MapSize")] public Vector2Int mapSize = new Vector2Int(100, 100);
 
     [Header("Découpage BSP")]
-    [Min(1)] public int MaxDepth = 4;       
-    [Min(4)] public int MinNodeSize = 16;   
+    [FormerlySerializedAs("MaxDepth")][Min(1)] public int maxSplitDepth = 4;
+    [FormerlySerializedAs("MinNodeSize")][Min(4)] public int minLeafSize = 16;
 
     [Header("Salles")]
-    [Min(0)] public int Padding = 2;        
-    public Vector2Int MinRoomSize = new Vector2Int(6, 6);
-    public List<RoomStyleSO> RoomStyles;
+    [FormerlySerializedAs("Padding")][Min(0)] public int roomPadding = 2;
+    [FormerlySerializedAs("MinRoomSize")] public Vector2Int minRoomSize = new Vector2Int(6, 6);
+    [FormerlySerializedAs("RoomStyles")] public List<RoomStyleSO> roomStyles;
 
     [Header("Couloirs")]
-    public List<RoomStyleSO> CorridorStyle;
-    public int CorridorPadding = 2;
-    [Min(1)] public int CorridorWidth = 1;
-
-    public RectInt MapBounds ;
-
-
+    [FormerlySerializedAs("CorridorStyle")] public List<RoomStyleSO> corridorStyles;
+    [FormerlySerializedAs("CorridorPadding")] public int corridorMargin = 2;
+    [FormerlySerializedAs("CorridorWidth")][Min(1)] public int corridorWidth = 1;
 }

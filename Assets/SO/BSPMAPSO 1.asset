@@ -12,20 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fcbc51c777f4de43b36de236a4ad702, type: 3}
   m_Name: BSPMAPSO 1
   m_EditorClassIdentifier: Assembly-CSharp::BSPMAPSO
-  MapSize: {x: 200, y: 200}
-  gizmoColor: {r: 0, g: 0.78377736, b: 0.9622642, a: 1}
-  MaxDepth: 200
-  MinNodeSize: 30
-  Padding: 5
-  MinRoomSize: {x: 12, y: 12}
-  RoomStyles:
+  mapSize: {x: 200, y: 200}
+  maxSplitDepth: 200
+  minLeafSize: 30
+  roomPadding: 10
+  minRoomSize: {x: 2, y: 2}
+  roomStyles:
   - {fileID: 11400000, guid: 11bf6ebcbc618db4b82e6b7a5dbc8700, type: 2}
-  CorridorStyle:
+  corridorStyles:
   - {fileID: 11400000, guid: 828b5d19fec22144abd1db330c2ed707, type: 2}
-  CorridorPadding: 2
-  CorridorWidth: 5
-  MapBounds:
-    x: -50
-    y: -50
-    width: 100
-    height: 100
+  corridorMargin: 2
+  corridorWidth: 5

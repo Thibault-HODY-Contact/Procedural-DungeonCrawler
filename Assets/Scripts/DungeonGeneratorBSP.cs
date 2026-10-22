@@ -1,551 +1,117 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
-using static UnityEngine.Rendering.DebugUI.MessageBox;
-
+using UnityEngine.Serialization;
 
 public class DungeonGeneratorBSP : MonoBehaviour
 {
-    const int CorridorAttempts = 10;
+    const float GizmoHeight = 5f;
+    const float MarkerRadius = 2f;
 
-    [SerializeField] public BSPMAPSO map;
-    [SerializeField] int Seed;
-    [SerializeField] public bool RandomSeed = false;
+    [FormerlySerializedAs("map")][SerializeField] BSPMAPSO settings;
+    [FormerlySerializedAs("Seed")][SerializeField] int seed;
+    [FormerlySerializedAs("RandomSeed")] public bool useRandomSeed;
+    [SerializeField] int cornerRotationOffset;
+    [SerializeField] float wallInset = 0.5f;
+    [SerializeField] bool drawCorridorGizmos;
 
-    List<RectInt> Feuilles = new List<RectInt>();
     List<BSPNode> rooms = new List<BSPNode>();
-    List<RectInt> corridors = new List<RectInt>();
-    List<GameObject> corridorObjects = new List<GameObject>(); 
-    public BSPNode rootNode;
-    public BSPNode startRoom;
-    public BSPNode endRoom;
+    List<CorridorPiece> corridors = new List<CorridorPiece>();
+    readonly List<GameObject> spawnedCorridors = new List<GameObject>();
+    readonly List<GameObject> spawnedFloors = new List<GameObject>();
+    readonly List<GameObject> spawnedWalls = new List<GameObject>();
 
-    List<GameObject> FloorMeshs = new List<GameObject>();
-    List<GameObject> WallMeshes = new List<GameObject>();
+    public BSPNode StartRoom { get; private set; }
+    public BSPNode EndRoom { get; private set; }
 
-    RectInt MapBounds => new RectInt(new Vector2Int((int)gameObject.transform.position.x - map.MapSize.x / 2, (int)gameObject.transform.position.z - map.MapSize.y / 2), map.MapSize);
+    RectInt MapArea
+    {
+        get
+        {
+            Vector2Int center = new Vector2Int((int)transform.position.x, (int)transform.position.z);
+            return new RectInt(center - settings.mapSize / 2, settings.mapSize);
+        }
+    }
 
     [ContextMenu("Generate")]
     public void Generate()
     {
-        ClearRooms();
-        if (RandomSeed) generateRandomSeed();
-        var rng = new System.Random(Seed);
+        ClearGeneration();
+        if (useRandomSeed) seed = Random.Range(int.MinValue, int.MaxValue);
+        System.Random rng = new System.Random(seed);
 
-        rootNode = new BSPNode { bounds = MapBounds };
-        Split(rootNode, map.MaxDepth, rng);
-        PlaceRooms(rootNode, rng);
-        AssignStartAndEnd(rng);
-        resizeRoom();
+        BSPLayout layout = new BSPLayout(settings);
+        BSPNode root = layout.Build(MapArea, transform.position, rng);
+        rooms = layout.Rooms;
+        StartRoom = layout.StartRoom;
+        EndRoom = layout.EndRoom;
 
-        ConnectRooms(rootNode, rng);
-        SpawnCorridors();
-        //buildRoom();
+        CorridorPlanner planner = new CorridorPlanner(settings, rooms);
+        corridors = planner.ConnectAllRooms(root, rng);
+        if (planner.FailedConnections > 0)
+            Debug.LogWarning($"{planner.FailedConnections} zone(s) sans couloir libre (seed {seed}).");
+
+        new CorridorBuilder(settings, transform, cornerRotationOffset).SpawnAll(corridors, spawnedCorridors);
     }
 
-    public void CleanRoom()
+    [ContextMenu("Build Rooms")]
+    public void BuildRooms()
     {
-        if (FloorMeshs.Count != 0)
-        {
-         
-
-            foreach (GameObject floor in FloorMeshs)
-            {
-                DestroyImmediate(floor);
-            }
-
-            FloorMeshs.Clear();
-        }
-        if (WallMeshes.Count != 0)
-        {
-            foreach (GameObject wall in WallMeshes)
-            {
-                DestroyImmediate(wall);
-            }
-            WallMeshes.Clear();
-        }
+        ClearRoomObjects();
+        RoomBuilder builder = new RoomBuilder(transform, corridors, wallInset);
+        builder.BuildFloors(rooms, spawnedFloors);
+        builder.BuildWalls(rooms, spawnedWalls);
     }
 
-    bool IsCorridor(Vector2Int pos)
+    public void ClearRoomObjects()
     {
-        foreach (RectInt c in corridors)
-        {
-            if (c.Contains(pos))
-                return true;
-        }
-
-        return false;
-
+        DestroyAll(spawnedFloors);
+        DestroyAll(spawnedWalls);
     }
 
-    [ContextMenu("CreateRoom")]
-    public void buildRoom()
+    void ClearGeneration()
     {
-        CleanRoom();
-        foreach (BSPNode n in rooms)
-        {
+        List<GameObject> children = new List<GameObject>();
+        foreach (Transform child in transform)
+            children.Add(child.gameObject);
+        DestroyAll(children);
 
-            GameObject sol = Instantiate(n.style.roomFloorPrefab, new Vector3(n.roomBound.Value.center.x, n.roomHeight, n.roomBound.Value.center.y), Quaternion.identity, transform);
-            sol.transform.localScale = new Vector3(n.roomBound.Value.size.x, 1, n.roomBound.Value.size.y) * sol.transform.localScale.x;
-                
-            FloorMeshs.Add(sol);
-
-        }
-        BuildWalls();
-    }
-
-    public void BuildWalls()
-    {
-        foreach (BSPNode n in rooms)
-        {
-            RectInt r = n.roomBound.Value;
-            float left = r.center.x - r.size.x / 2+0.5f, right = r.center.x + r.size.x / 2- 0.5f;
-            float bottom = r.center.y - r.size.y / 2 + 0.5f, top = r.center.y + r.size.y / 2 - 0.5f;
-
-            BuildWallLine(n, r.size.x, new Vector3(left, transform.position.y, top), Vector3.right, 0);
-            BuildWallLine(n, r.size.y, new Vector3(right, transform.position.y, top), Vector3.back, 90);
-            BuildWallLine(n, r.size.x, new Vector3(right, transform.position.y, bottom), Vector3.left, 180);
-            BuildWallLine(n, r.size.y, new Vector3(left, transform.position.y, bottom), Vector3.forward, 270);
-        }
-    }
-
-    void BuildWallLine(BSPNode n, float length, Vector3 start, Vector3 dir, float yRotation)
-    {
-        const float epsilon = 0.01f;
-
-        RoomWalls smallest = null;
-        foreach (RoomWalls wall in n.style.WallsPrefabsList)
-            if (wall.scaleX > 0 && (smallest == null || wall.scaleX < smallest.scaleX))
-                smallest = wall;
-        if (smallest == null) return;
-
-        float covered = 0;
-
-        while (length - covered >= smallest.scaleX - epsilon)
-        {
-            float remaining = length - covered;
-            float better = 0;
-            RoomWalls chosenWall = null;
-            foreach (RoomWalls wall in n.style.WallsPrefabsList)
-            {
-                if (wall.scaleX > better && wall.scaleX <= remaining + epsilon)
-                {
-                    better = wall.scaleX;
-                    chosenWall = wall;
-                }
-                if (wall.scaleX == better && wall.scaleX <= remaining + epsilon && Random.Range(0, 2) == 1)
-                    chosenWall = wall;
-            }
-            if (chosenWall == null) break;
-
-            Vector3 pos = start + dir * (covered + better / 2) + Vector3.up * (smallest.scaleY );
-            WallMeshes.Add(Instantiate(chosenWall.WallsPrefabs, pos, Quaternion.Euler(0, yRotation, 0),transform));
-            covered += better;
-        }
-
-        float gap = length - covered;
-        if (gap > epsilon)
-        {
-            Vector3 pos;
-            GameObject go;
-
-            if (gap > smallest.scaleX / 2)
-            {
-                pos = start + dir * (covered + gap / 2) + Vector3.up * (smallest.scaleY);
-                go = Instantiate(smallest.WallsPrefabs, pos, Quaternion.Euler(0, yRotation, 0), transform);
-
-                Vector3 s = go.transform.localScale;
-                s.x *= gap / smallest.scaleX;   
-                go.transform.localScale = s;
-            }
-            else
-            {
-                // Trou très petit
-                pos = start + dir * (length - smallest.scaleX / 2) +  Vector3.up * (smallest.scaleY);
-                go = Instantiate(smallest.WallsPrefabs, pos, Quaternion.Euler(0, yRotation, 0), transform);
-            }
-
-            WallMeshes.Add(go);
-        }
-    }
-
-    void resizeRoom()
-    {
-        Vector2Int padding = Vector2Int.one * map.Padding;
-        foreach (BSPNode node in rooms)
-        { 
-            node.roomBound = new RectInt(node.bounds.position + padding, node.bounds.size - padding * 2);
-            node.roomHeight = transform.position.y;
-        }
-    }
-    void Split(BSPNode node, int depth, System.Random rng)
-    {
-        var b = node.bounds;
-        bool horizontal = b.height > b.width;
-        int length = horizontal ? b.height : b.width;
-        if (depth == 0 || length < map.MinNodeSize * 2) return;
-
-        int cut = rng.Next(map.MinNodeSize, length - map.MinNodeSize + 1);
-        if (horizontal)
-        {
-            node.left = new BSPNode { bounds = new RectInt(b.x, b.y, b.width, cut) };
-            node.right = new BSPNode { bounds = new RectInt(b.x, b.y + cut, b.width, b.height - cut) };
-        }
-        else
-        {
-            node.left = new BSPNode { bounds = new RectInt(b.x, b.y, cut, b.height) };
-            node.right = new BSPNode { bounds = new RectInt(b.x + cut, b.y, b.width - cut, b.height) };
-        }
-        Split(node.left, depth - 1, rng);
-        Split(node.right, depth - 1, rng);
-    }
-
-    void PlaceRooms(BSPNode node, System.Random rng)
-    {
-        if (!node.IsLeaf)
-        {
-            PlaceRooms(node.left, rng);
-            PlaceRooms(node.right, rng);
-            return;
-        }
-
-        int maxW = node.bounds.width - 2 * map.Padding;
-        int maxH = node.bounds.height - 2 * map.Padding;
-        int w = rng.Next(map.MinRoomSize.x, maxW + 1);
-        int h = rng.Next(map.MinRoomSize.y, maxH + 1);
-        int x = node.bounds.x + map.Padding + rng.Next(0, maxW - w + 1);
-        int y = node.bounds.y + map.Padding + rng.Next(0, maxH - h + 1);
-
-        node.roomBound = new RectInt(x, y, w, h);
-        node.style = PickWeightedStyle(rng);
-
-        Feuilles.Add(node.bounds);
-        rooms.Add(node);
-    }
-
-    RoomStyleSO PickWeightedStyle(System.Random rng)
-    {
-        if (map.RoomStyles == null) return null;
-
-        float total = 0f;
-        foreach (RoomStyleSO s in map.RoomStyles)
-            if (s != null) total += Mathf.Max(0f, s.Weight);
-        if (total <= 0f) return null;
-
-        double roll = rng.NextDouble() * total;
-        RoomStyleSO last = null;
-        foreach (RoomStyleSO s in map.RoomStyles)
-        {
-            if (s == null || s.Weight <= 0f) continue;
-            last = s;
-            roll -= s.Weight;
-            if (roll < 0) return s;
-        }
-        return last;
-    }
-
-    RoomStyleSO PickSpecialStyle(System.Random rng, System.Predicate<RoomStyleSO> allowed)
-    {
-        if (map.RoomStyles == null) return null;
-
-        List<RoomStyleSO> candidates = map.RoomStyles.FindAll(s => s != null && allowed(s));
-        return candidates.Count > 0 ? candidates[rng.Next(candidates.Count)] : null;
-    }
-
-    void AssignStartAndEnd(System.Random rng)
-    {
-        if (rooms.Count == 0) return;
-
-        startRoom = rooms[rng.Next(rooms.Count)];
-        endRoom = startRoom;
-        float best = float.MaxValue;
-        foreach (BSPNode n in rooms)
-        {
-            Vector2Int mappos = new Vector2Int((int)gameObject.transform.position.x, (int)gameObject.transform.position.z);
-            float d = Vector2.Distance(n.roomBound.Value.center, mappos);
-            if (d < best) { best = d; startRoom = n; }
-        }
-
-        RoomStyleSO startStyle = PickSpecialStyle(rng, s => s.AllowAsStartRoom);
-        if (startStyle != null) startRoom.style = startStyle;
-
-        if (endRoom != startRoom)
-        {
-            RoomStyleSO endStyle = PickSpecialStyle(rng, s => s.AllowAsEndRoom);
-            if (endStyle != null) endRoom.style = endStyle;
-        }
-    }
-
-    void ConnectRooms(BSPNode node, System.Random rng)
-    {
-        if (node.IsLeaf) return;
-
-        ConnectRooms(node.left, rng);
-        ConnectRooms(node.right, rng);
-
-        List<BSPNode> leftRooms = new List<BSPNode>();
-        List<BSPNode> rightRooms = new List<BSPNode>();
-        CollectRooms(node.left, leftRooms);
-        CollectRooms(node.right, rightRooms);
-
-        List<(BSPNode a, BSPNode b)> pairs = new List<(BSPNode a, BSPNode b)>();
-        foreach (BSPNode a in leftRooms)
-            foreach (BSPNode b in rightRooms)
-                pairs.Add((a, b));
-        pairs.Sort((p, q) => Distance(p.a, p.b).CompareTo(Distance(q.a, q.b)));
-
-        foreach (var pair in pairs)
-        {
-            List<RectInt> corridor = TryCorridor(pair.a, pair.b, rng);
-            if (corridor == null) continue;
-            corridors.AddRange(corridor.FindAll(r => r.width > 0 && r.height > 0));
-            return;
-        }
-
-        Debug.LogWarning($"Aucun couloir libre trouvé entre deux zones (seed {Seed}).");
-    }
-
-
-    void SpawnCorridors()
-    {
-        foreach (RectInt c in corridors)
-        {
-            bool horizontal = c.width > c.height;
-
-            int index = Random.Range(0, map.CorridorStyle.Count);
-
-            GameObject prefab = map.CorridorStyle[index].CorridorPrefab;
-            GameObject floorPrefab = map.CorridorStyle[index].CorridorFloorPrefab;
-
-            if (prefab == null || floorPrefab == null)
-                continue;
-
-            Quaternion rotation = horizontal
-                ? Quaternion.Euler(0f, 90f, 0f)
-                : Quaternion.identity;
-
-            // Création du corridor
-            GameObject corridor = Instantiate(
-                prefab,
-                new Vector3(
-                    c.center.x,
-                    transform.position.y + prefab.transform.localScale.y * 2f - 0.212f,
-                    c.center.y
-                ),
-                rotation,
-                transform
-            );
-
-            // Scale du corridor
-            Vector3 corridorScale = corridor.transform.localScale;
-
-            float lengthFactor = (horizontal ? c.width : c.height) / 4.8f;
-            corridorScale.z *= lengthFactor;
-
-            corridor.transform.localScale = corridorScale;
-
-            // Création du sol
-            GameObject floor = Instantiate(
-                floorPrefab,
-                new Vector3(
-                    corridor.transform.position.x,
-                    transform.position.y,
-                    corridor.transform.position.z
-                ),
-                rotation,
-                transform
-            );
-
-            // Scales de base des deux prefabs
-            Vector3 corridorBaseScale =
-                prefab.transform.localScale;
-
-            Vector3 floorBaseScale =
-                floorPrefab.transform.localScale;
-
-            // Évite les divisions par zéro
-            if (Mathf.Abs(corridorBaseScale.x) > 0.0001f &&
-                Mathf.Abs(corridorBaseScale.z) > 0.0001f)
-            {
-                Vector3 floorScale = floorBaseScale;
-
-                // Même facteur d'allongement que le corridor
-                float lengthFactors = (horizontal ? c.width : c.height) / 4.8f;
-
-                floorScale.x *= corridorBaseScale.x;
-                floorScale.z *= corridorBaseScale.z * lengthFactors + 0.2f;
-
-                floor.transform.localScale = floorScale;
-            }
-
-            corridorObjects.Add(corridor);
-        }
-    }
-
-    void CollectRooms(BSPNode node, List<BSPNode> result)
-    {
-        if (node.IsLeaf)
-        {
-            result.Add(node);
-            return;
-        }
-        CollectRooms(node.left, result);
-        CollectRooms(node.right, result);
-    }
-
-    List<RectInt> TryCorridor(BSPNode a, BSPNode b, System.Random rng)
-    {
-        List<RectInt> straight = TryStraight(a, b, rng);
-        if (straight != null) return straight;
-
-        for (int i = 0; i < CorridorAttempts; i++)
-        {
-            List<RectInt> elbow = rng.Next(2) == 0 ? TryElbow(a, b, rng) : TryElbow(b, a, rng);
-            if (elbow != null) return elbow;
-        }
-        return null;
-    }
-
-    List<RectInt> TryStraight(BSPNode a, BSPNode b, System.Random rng)
-    {
-        RectInt ra = a.roomBound.Value;
-        RectInt rb = b.roomBound.Value;
-        int w = map.CorridorWidth;
-
-        int padding = map.CorridorPadding;
-
-        int xMin = Mathf.Max(ra.xMin + padding, rb.xMin + padding);
-        int xMax = Mathf.Min(ra.xMax - padding, rb.xMax - padding);
-
-        if (xMax - xMin >= w)
-        {
-            bool aBelow = ra.yMax <= rb.yMin;
-            RectInt low = aBelow ? ra : rb;
-            RectInt high = aBelow ? rb : ra;
-            for (int i = 0; i < CorridorAttempts; i++)
-            {
-                int x = rng.Next(xMin, xMax - w + 1);
-                RectInt r = new RectInt(x, low.yMax, w, high.yMin - low.yMax);
-                if (IsFree(r, a, b)) return new List<RectInt> { r };
-            }
-        }
-
-        int yMin = Mathf.Max(ra.yMin + padding, rb.yMin + padding);
-        int yMax = Mathf.Min(ra.yMax - padding, rb.yMax - padding);
-        if (yMax - yMin >= w)
-        {
-            bool aLeft = ra.xMax <= rb.xMin;
-            RectInt low = aLeft ? ra : rb;
-            RectInt high = aLeft ? rb : ra;
-            for (int i = 0; i < CorridorAttempts; i++)
-            {
-                int y = rng.Next(yMin, yMax - w + 1);
-                RectInt r = new RectInt(low.xMax, y, high.xMin - low.xMax, w);
-                if (IsFree(r, a, b)) return new List<RectInt> { r };
-            }
-        }
-
-        return null;
-    }
-
-    List<RectInt> TryElbow(BSPNode from, BSPNode to, System.Random rng)
-    {
-        RectInt a = from.roomBound.Value;
-        RectInt b = to.roomBound.Value;
-        int w = map.CorridorWidth;
-
-        int padding = map.CorridorPadding;
-
-        int y = rng.Next(a.yMin + padding, a.yMax - w - padding + 1);
-        int x = rng.Next(b.xMin + padding, b.xMax - w - padding + 1);
-        RectInt elbow = new RectInt(x, y, w, w);
-
-        RectInt horizontal;
-        if (elbow.xMin >= a.xMax) horizontal = new RectInt(a.xMax, y, elbow.xMax - a.xMax, w);
-        else if (elbow.xMax <= a.xMin) horizontal = new RectInt(elbow.xMin, y, a.xMin - elbow.xMin, w);
-        else return null;
-
-        RectInt vertical;
-        if (elbow.yMax <= b.yMin) vertical = new RectInt(x, elbow.yMax, w, b.yMin - elbow.yMax);
-        else if (elbow.yMin >= b.yMax) vertical = new RectInt(x, b.yMax, w, elbow.yMin - b.yMax);
-        else return null;
-
-        if (!IsFree(horizontal, from, to) || !IsFree(vertical, from, to)) return null;
-        return new List<RectInt> { horizontal, vertical };
-    }
-
-    bool IsFree(RectInt r, BSPNode a, BSPNode b)
-    {
-        if (r.width <= 0 || r.height <= 0) return true;
-
-        foreach (BSPNode n in rooms)
-        {
-            RectInt room = n.roomBound.Value;
-            if (n != a && n != b)
-                room = new RectInt(room.x - 1, room.y - 1, room.width + 2, room.height + 2);
-            if (r.Overlaps(room)) return false;
-        }
-        return true;
-    }
-
-    float Distance(BSPNode a, BSPNode b) => Vector2.Distance(a.roomBound.Value.center, b.roomBound.Value.center);
-
-    int generateRandomSeed()
-    {
-        Seed = Random.Range(int.MinValue, int.MaxValue);
-        return Seed;
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (map == null) return;
-
-        //DrawRect(MapBounds, map.gizmoColor);
-
-        //foreach (RectInt f in Feuilles) DrawRect(f, Color.red);
-
-        //foreach (RectInt f in corridors) DrawRect(f, Color.yellow);
-
-
-        DrawMarker(startRoom, Color.green);
-        DrawMarker(endRoom, Color.magenta);
-    }
-
-    void DrawRect(RectInt r, Color color)
-    {
-        Gizmos.color = color;
-        Gizmos.DrawCube(new Vector3(r.center.x, (int)gameObject.transform.position.y, r.center.y), new Vector3(r.width, 5, r.height));
-    }
-
-    void DrawMarker(BSPNode node, Color color)
-    {
-        if (node == null) return;
-        Gizmos.color = color;
-        Vector2 c = node.roomBound.Value.center;
-        Gizmos.DrawSphere(new Vector3(c.x, (int)gameObject.transform.position.y, c.y), 2f);
-    }
-    void ClearRooms()
-    {
-        List<GameObject> childTransforms = new List<GameObject>();
-
-        foreach (Transform t in transform)
-        {
-            childTransforms.Add(t.gameObject);
-        }
-
-        foreach (var child in childTransforms)
-        {
-            DestroyImmediate(child.gameObject);
-        }
-
-        childTransforms.Clear();
         rooms.Clear();
         corridors.Clear();
-        Feuilles.Clear();
-        corridorObjects.Clear();
-        startRoom = null;
-        endRoom = null;
+        spawnedCorridors.Clear();
+        StartRoom = null;
+        EndRoom = null;
+    }
+
+    static void DestroyAll(List<GameObject> objects)
+    {
+        foreach (GameObject obj in objects)
+            if (obj != null) DestroyImmediate(obj);
+        objects.Clear();
+    }
+
+    void OnDrawGizmos()
+    {
+        if (settings == null) return;
+
+        if (drawCorridorGizmos)
+            foreach (CorridorPiece piece in corridors)
+                DrawAreaGizmo(piece.area, piece.isCorner ? Color.red : Color.yellow);
+
+        DrawRoomMarker(StartRoom, Color.green);
+        DrawRoomMarker(EndRoom, Color.magenta);
+    }
+
+    void DrawAreaGizmo(RectInt area, Color color)
+    {
+        Gizmos.color = color;
+        Gizmos.DrawCube(new Vector3(area.center.x, transform.position.y, area.center.y), new Vector3(area.width, GizmoHeight, area.height));
+    }
+
+    void DrawRoomMarker(BSPNode room, Color color)
+    {
+        if (room == null) return;
+        Gizmos.color = color;
+        Vector2 center = room.roomBounds.center;
+        Gizmos.DrawSphere(new Vector3(center.x, transform.position.y, center.y), MarkerRadius);
     }
 }

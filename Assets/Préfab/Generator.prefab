@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d45aefd21f5a344b450a5eb66b9d6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DungeonGeneratorBSP
-  map: {fileID: 11400000, guid: fad9567ef69eb9b4a8ea7a56cd04bc73, type: 2}
-  Seed: 0
-  RandomSeed: 1
+  settings: {fileID: 11400000, guid: fad9567ef69eb9b4a8ea7a56cd04bc73, type: 2}
+  seed: 0
+  useRandomSeed: 1
+  cornerRotationOffset: 0
+  wallInset: 0.5
+  drawCorridorGizmos: 0

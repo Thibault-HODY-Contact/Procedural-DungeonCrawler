@@ -1,79 +1,69 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GenGenerator : MonoBehaviour
 {
-    [SerializeField] GameObject GeneratorPrefab;
-
-    [SerializeField] int numberLEveles;
-
-    [SerializeField] List<GameObject> GenList = new List<GameObject>() ;
-    List<GameObject> LadderGenList = new List<GameObject>();
-
-    [SerializeField] GameObject Ladder;
+    [FormerlySerializedAs("GeneratorPrefab")][SerializeField] GameObject levelPrefab;
+    [FormerlySerializedAs("numberLEveles")][SerializeField] int levelCount;
+    [FormerlySerializedAs("Ladder")][SerializeField] GameObject ladderPrefab;
+    [SerializeField] float levelSpacing = 15f;
+    [FormerlySerializedAs("GenList")][SerializeField] List<GameObject> spawnedLevels = new List<GameObject>();
+    [SerializeField] List<GameObject> spawnedLadders = new List<GameObject>();
 
     [ContextMenu("Generate")]
-    void Generate() {
-        if(GenList.Count != 0)
+    void GenerateLevels()
+    {
+        ClearLevels();
+
+        for (int i = 0; i < levelCount; i++)
+            spawnedLevels.Add(Instantiate(levelPrefab));
+
+        foreach (GameObject level in spawnedLevels)
         {
-            foreach (GameObject objet in GenList)
-            {if (objet != null)
-                {
-                    objet.GetComponent<DungeonGeneratorBSP>().CleanRoom();
-                    DestroyImmediate(objet);
-                }
-            }
-        }
-        if (LadderGenList.Count != 0)
-        {
-            foreach (GameObject objet in LadderGenList)
-            {
-                if (objet != null)
-                {
-                    DestroyImmediate(objet);
-                }
-            }
+            DungeonGeneratorBSP generator = level.GetComponent<DungeonGeneratorBSP>();
+            generator.Generate();
+            generator.useRandomSeed = false;
         }
 
-
-        GenList.Clear();
-        LadderGenList.Clear();
-
-        for (int i = 0; i < numberLEveles; i++)
+        for (int i = 0; i < levelCount; i++)
         {
-            GenList.Add(Instantiate(GeneratorPrefab));
+            DungeonGeneratorBSP generator = spawnedLevels[i].GetComponent<DungeonGeneratorBSP>();
+            if (i > 0)
+                StackOnPreviousLevel(generator, spawnedLevels[i - 1].GetComponent<DungeonGeneratorBSP>());
 
+            spawnedLadders.Add(Instantiate(ladderPrefab, GetLadderPosition(generator), generator.transform.rotation));
+            generator.BuildRooms();
         }
-        foreach (GameObject objet in GenList)
-        {
-            objet.GetComponent<DungeonGeneratorBSP>().Generate();
-            objet.GetComponent<DungeonGeneratorBSP>().RandomSeed =false;
-        }
-        for (int i = 0; i < numberLEveles; i++)
-        {
-            DungeonGeneratorBSP level = GenList[i].GetComponent<DungeonGeneratorBSP>();
-
-
-            if(i>0)
-            {
-                DungeonGeneratorBSP Prevlevel = GenList[i - 1].GetComponent<DungeonGeneratorBSP>();
-
-                Vector2 distance = level.startRoom.roomBound.Value.center - Prevlevel.endRoom.roomBound.Value.center;
-
-                GenList[i].transform.position -= new Vector3(distance.x, 0, distance.y);
-                GenList[i].transform.position += new Vector3(0, GenList[i-1].transform.position.y+15, 0);
-                GenList[i].GetComponent<DungeonGeneratorBSP>().Generate();
-
-            }
-            LadderGenList.Add(Instantiate(Ladder, new Vector3(level.endRoom.roomBound.Value.center.x, level.transform.position.y, level.endRoom.roomBound.Value.center.y),level.transform.rotation));
-
-            level.buildRoom();
-        }
-
     }
-    
-    
 
+    void StackOnPreviousLevel(DungeonGeneratorBSP level, DungeonGeneratorBSP previousLevel)
+    {
+        Vector2 offset = level.StartRoom.roomBounds.center - previousLevel.EndRoom.roomBounds.center;
+        level.transform.position -= new Vector3(offset.x, 0f, offset.y);
+        level.transform.position += new Vector3(0f, previousLevel.transform.position.y + levelSpacing, 0f);
+        level.Generate();
+    }
+
+    Vector3 GetLadderPosition(DungeonGeneratorBSP level)
+    {
+        Vector2 endRoomCenter = level.EndRoom.roomBounds.center;
+        return new Vector3(endRoomCenter.x, level.transform.position.y, endRoomCenter.y);
+    }
+
+    void ClearLevels()
+    {
+        foreach (GameObject level in spawnedLevels)
+        {
+            if (level == null) continue;
+            level.GetComponent<DungeonGeneratorBSP>().ClearRoomObjects();
+            DestroyImmediate(level);
+        }
+
+        foreach (GameObject ladder in spawnedLadders)
+            if (ladder != null) DestroyImmediate(ladder);
+
+        spawnedLevels.Clear();
+        spawnedLadders.Clear();
+    }
 }
