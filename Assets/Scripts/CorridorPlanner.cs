@@ -4,18 +4,17 @@ using UnityEngine;
 public class CorridorPlanner
 {
     const int MaxAttempts = 10;
-    const int SpacingAroundObstacles = 1;
 
     readonly BSPMAPSO settings;
-    readonly List<BSPNode> rooms;
     readonly List<CorridorPiece> corridors = new List<CorridorPiece>();
+    readonly CorridorSpace space;
 
     public int FailedConnections { get; private set; }
 
     public CorridorPlanner(BSPMAPSO settings, List<BSPNode> rooms)
     {
         this.settings = settings;
-        this.rooms = rooms;
+        space = new CorridorSpace(rooms, corridors);
     }
 
     public List<CorridorPiece> ConnectAllRooms(BSPNode root, System.Random rng)
@@ -31,27 +30,30 @@ public class CorridorPlanner
         ConnectChildren(node.left, rng);
         ConnectChildren(node.right, rng);
 
+        List<(BSPNode left, BSPNode right)> candidatePairs = GetPairsByDistance(node);
+        bool preferElbow = settings.elbowPriority > 0 && rng.Next(100) < settings.elbowPriority;
+
+        List<CorridorPiece> corridor = preferElbow ? FindElbowCorridor(candidatePairs, rng) : null;
+        if (corridor == null) corridor = FindAnyCorridor(candidatePairs, rng);
+
+        if (corridor == null) FailedConnections++;
+        else corridors.AddRange(corridor.FindAll(piece => piece.area.width > 0 && piece.area.height > 0));
+    }
+
+    List<(BSPNode left, BSPNode right)> GetPairsByDistance(BSPNode node)
+    {
         List<BSPNode> leftRooms = new List<BSPNode>();
         List<BSPNode> rightRooms = new List<BSPNode>();
         CollectLeafRooms(node.left, leftRooms);
         CollectLeafRooms(node.right, rightRooms);
 
-        List<(BSPNode left, BSPNode right)> candidatePairs = new List<(BSPNode left, BSPNode right)>();
+        List<(BSPNode left, BSPNode right)> pairs = new List<(BSPNode left, BSPNode right)>();
         foreach (BSPNode leftRoom in leftRooms)
             foreach (BSPNode rightRoom in rightRooms)
-                candidatePairs.Add((leftRoom, rightRoom));
-        candidatePairs.Sort((first, second) =>
+                pairs.Add((leftRoom, rightRoom));
+        pairs.Sort((first, second) =>
             DistanceBetween(first.left, first.right).CompareTo(DistanceBetween(second.left, second.right)));
-
-        foreach (var pair in candidatePairs)
-        {
-            List<CorridorPiece> corridor = TryBuildCorridor(pair.left, pair.right, rng);
-            if (corridor == null) continue;
-            corridors.AddRange(corridor.FindAll(piece => piece.area.width > 0 && piece.area.height > 0));
-            return;
-        }
-
-        FailedConnections++;
+        return pairs;
     }
 
     void CollectLeafRooms(BSPNode node, List<BSPNode> result)
@@ -65,11 +67,30 @@ public class CorridorPlanner
         CollectLeafRooms(node.right, result);
     }
 
-    List<CorridorPiece> TryBuildCorridor(BSPNode roomA, BSPNode roomB, System.Random rng)
+    List<CorridorPiece> FindElbowCorridor(List<(BSPNode left, BSPNode right)> pairs, System.Random rng)
     {
-        List<CorridorPiece> straightCorridor = TryVerticalCorridor(roomA, roomB, rng) ?? TryHorizontalCorridor(roomA, roomB, rng);
-        if (straightCorridor != null) return straightCorridor;
+        foreach (var pair in pairs)
+        {
+            List<CorridorPiece> elbowCorridor = TryElbowWithRetries(pair.left, pair.right, rng);
+            if (elbowCorridor != null) return elbowCorridor;
+        }
+        return null;
+    }
 
+    List<CorridorPiece> FindAnyCorridor(List<(BSPNode left, BSPNode right)> pairs, System.Random rng)
+    {
+        foreach (var pair in pairs)
+        {
+            List<CorridorPiece> corridor = TryVerticalCorridor(pair.left, pair.right, rng)
+                ?? TryHorizontalCorridor(pair.left, pair.right, rng)
+                ?? TryElbowWithRetries(pair.left, pair.right, rng);
+            if (corridor != null) return corridor;
+        }
+        return null;
+    }
+
+    List<CorridorPiece> TryElbowWithRetries(BSPNode roomA, BSPNode roomB, System.Random rng)
+    {
         for (int attempt = 0; attempt < MaxAttempts; attempt++)
         {
             bool startFromA = rng.Next(2) == 0;
@@ -97,7 +118,7 @@ public class CorridorPlanner
         {
             int x = rng.Next(overlapMin, overlapMax - width + 1);
             RectInt area = new RectInt(x, lowerRoom.yMax, width, upperRoom.yMin - lowerRoom.yMax);
-            if (IsAreaFree(area, roomA, roomB))
+            if (space.IsAreaFree(area, roomA, roomB))
                 return new List<CorridorPiece> { new CorridorPiece { area = area, runsAlongX = false } };
         }
         return null;
@@ -121,7 +142,7 @@ public class CorridorPlanner
         {
             int y = rng.Next(overlapMin, overlapMax - width + 1);
             RectInt area = new RectInt(leftRoom.xMax, y, rightRoom.xMin - leftRoom.xMax, width);
-            if (IsAreaFree(area, roomA, roomB))
+            if (space.IsAreaFree(area, roomA, roomB))
                 return new List<CorridorPiece> { new CorridorPiece { area = area, runsAlongX = true } };
         }
         return null;
@@ -152,9 +173,9 @@ public class CorridorPlanner
 
         bool hasBothLegs = horizontalLeg.width > 0 && verticalLeg.height > 0;
         bool pathIsFree = hasBothLegs
-            && IsAreaFree(horizontalLeg, fromRoom, toRoom)
-            && IsAreaFree(verticalLeg, fromRoom, toRoom)
-            && IsAreaFree(elbowCell, fromRoom, toRoom);
+            && space.IsAreaFree(horizontalLeg, fromRoom, toRoom)
+            && space.IsAreaFree(verticalLeg, fromRoom, toRoom)
+            && space.IsAreaFree(elbowCell, fromRoom, toRoom);
         if (!pathIsFree) return null;
 
         return new List<CorridorPiece>
@@ -172,26 +193,6 @@ public class CorridorPlanner
         if (!opensNorth) return 180;
         return 270;
     }
-
-    bool IsAreaFree(RectInt area, BSPNode roomA, BSPNode roomB)
-    {
-        if (area.width <= 0 || area.height <= 0) return true;
-
-        foreach (BSPNode room in rooms)
-        {
-            bool isConnectedRoom = room == roomA || room == roomB;
-            RectInt blockedArea = isConnectedRoom ? room.roomBounds : Expand(room.roomBounds, SpacingAroundObstacles);
-            if (area.Overlaps(blockedArea)) return false;
-        }
-
-        foreach (CorridorPiece existing in corridors)
-            if (area.Overlaps(Expand(existing.area, SpacingAroundObstacles))) return false;
-
-        return true;
-    }
-
-    static RectInt Expand(RectInt bounds, int amount) =>
-        new RectInt(bounds.x - amount, bounds.y - amount, bounds.width + amount * 2, bounds.height + amount * 2);
 
     static float DistanceBetween(BSPNode roomA, BSPNode roomB) =>
         Vector2.Distance(roomA.roomBounds.center, roomB.roomBounds.center);

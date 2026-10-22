@@ -19,4 +19,5 @@ public class RoomStyleSO : ScriptableObject
     [FormerlySerializedAs("CorridorPrefab")] public GameObject corridorPrefab;
     [FormerlySerializedAs("CorridorCornerRightPrefab")] public GameObject corridorCornerPrefab;
     [FormerlySerializedAs("CorridorFloorPrefab")] public GameObject corridorFloorPrefab;
+    public GameObject corridorEntrancePrefab;
 }

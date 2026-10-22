@@ -50,7 +50,7 @@ public class DungeonGeneratorBSP : MonoBehaviour
         if (planner.FailedConnections > 0)
             Debug.LogWarning($"{planner.FailedConnections} zone(s) sans couloir libre (seed {seed}).");
 
-        new CorridorBuilder(settings, transform, cornerRotationOffset).SpawnAll(corridors, spawnedCorridors);
+        new CorridorBuilder(settings, transform, cornerRotationOffset, wallInset).SpawnAll(corridors, spawnedCorridors);
     }
 
     [ContextMenu("Build Rooms")]

@@ -28,4 +28,5 @@ MonoBehaviour:
   WallPrefab: {fileID: 6487248804287716864, guid: aefd8d2a3a2301142937dfcb4ee48371, type: 3}
   CorridorCornerRightPrefab: {fileID: 9219391783613347933, guid: d12c62a0c6604ca3b0bb02dfe880b3d1, type: 3}
   CorridorCornerLeftPrefab: {fileID: 3125119747023335, guid: 10184769c7287ee47952dbb0bfcf5b96, type: 3}
+  corridorEntrancePrefab: {fileID: 6974896515468221620, guid: 9bb9c51e14c140df9d42837612e06e57, type: 3}
   FloorProps: []

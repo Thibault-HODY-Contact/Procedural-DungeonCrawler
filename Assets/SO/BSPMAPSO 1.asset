@@ -23,3 +23,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 828b5d19fec22144abd1db330c2ed707, type: 2}
   corridorMargin: 2
   corridorWidth: 5
+  elbowPriority: 100

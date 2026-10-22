@@ -21,4 +21,5 @@ public class BSPMAPSO : ScriptableObject
     [FormerlySerializedAs("CorridorStyle")] public List<RoomStyleSO> corridorStyles;
     [FormerlySerializedAs("CorridorPadding")] public int corridorMargin = 2;
     [FormerlySerializedAs("CorridorWidth")][Min(1)] public int corridorWidth = 1;
+    [Range(0, 100)] public int elbowPriority = 50;
 }
