@@ -11,6 +11,8 @@ public class GenGenerator : MonoBehaviour
     [FormerlySerializedAs("GenList")][SerializeField] List<GameObject> spawnedLevels = new List<GameObject>();
     [SerializeField] List<GameObject> spawnedLadders = new List<GameObject>();
 
+    [SerializeField] private Transform player;
+
     [ContextMenu("Generate")]
     void GenerateLevels()
     {
@@ -35,6 +37,7 @@ public class GenGenerator : MonoBehaviour
             spawnedLadders.Add(Instantiate(ladderPrefab, GetLadderPosition(generator), generator.transform.rotation));
             generator.BuildRooms();
         }
+        PlacePlayer();
     }
 
     void StackOnPreviousLevel(DungeonGeneratorBSP level, DungeonGeneratorBSP previousLevel)
@@ -65,5 +68,20 @@ public class GenGenerator : MonoBehaviour
 
         spawnedLevels.Clear();
         spawnedLadders.Clear();
+    }
+
+
+
+    private void PlacePlayer()
+    {
+        DungeonGeneratorBSP firstLevel = GenList[0].GetComponent<DungeonGeneratorBSP>();
+
+        Vector2 center = firstLevel.startRoom.roomBound.Value.center;
+
+        player.position = new Vector3(
+            center.x,
+            firstLevel.transform.position.y + 1f,
+            center.y
+        );
     }
 }
