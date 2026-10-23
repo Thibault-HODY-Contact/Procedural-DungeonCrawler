@@ -14,6 +14,8 @@ public class GenGenerator : MonoBehaviour
 
     [SerializeField] GameObject Ladder;
 
+    [SerializeField] private Transform player;
+
     [ContextMenu("Generate")]
     void Generate() {
         if(GenList.Count != 0)
@@ -71,9 +73,18 @@ public class GenGenerator : MonoBehaviour
 
             level.buildRoom();
         }
-
+        PlacePlayer();
     }
-    
-    
+    private void PlacePlayer()
+    {
+        DungeonGeneratorBSP firstLevel = GenList[0].GetComponent<DungeonGeneratorBSP>();
 
+        Vector2 center = firstLevel.startRoom.roomBound.Value.center;
+
+        player.position = new Vector3(
+            center.x,
+            firstLevel.transform.position.y + 1f,
+            center.y
+        );
+    }
 }
