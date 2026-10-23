@@ -83,6 +83,7 @@ public class MoveScript : MonoBehaviour
 
 
     }
+
     public void Jump()
     {
         if (!_canMove)
