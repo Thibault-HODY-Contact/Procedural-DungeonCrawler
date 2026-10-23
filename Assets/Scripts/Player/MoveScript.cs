@@ -9,7 +9,6 @@ public class MoveScript : MonoBehaviour
     [SerializeField] Camera _camera;
     [SerializeField] Rigidbody _rb;
     [SerializeField] GameObject _player;
-    [SerializeField] Animator _animator;
 
     [Header("Config")]
     [SerializeField] float _speed;
@@ -70,15 +69,18 @@ public class MoveScript : MonoBehaviour
 
             Quaternion targetRotation = Quaternion.LookRotation(_moveDirection);
 
-            //_rb.MoveRotation(
-            //    Quaternion.Slerp(
-            //        _rb.rotation,
-            //        targetRotation,
-            //        _rotationSpeed * Time.fixedDeltaTime
-            //    )
-            //);
+            _rb.MoveRotation(
+                Quaternion.Slerp(
+                    _rb.rotation,
+                    targetRotation,
+                    _rotationSpeed * Time.fixedDeltaTime
+                )
+            );
         }
+
         _rb.linearVelocity = new Vector3(horizontal.x, _rb.linearVelocity.y, horizontal.z);
+      
+
 
     }
     public void Jump()
