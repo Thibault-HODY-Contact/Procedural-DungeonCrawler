@@ -74,9 +74,9 @@ public class GenGenerator : MonoBehaviour
 
     private void PlacePlayer()
     {
-        DungeonGeneratorBSP firstLevel = GenList[0].GetComponent<DungeonGeneratorBSP>();
+        DungeonGeneratorBSP firstLevel = spawnedLevels[0].GetComponent<DungeonGeneratorBSP>();
 
-        Vector2 center = firstLevel.startRoom.roomBound.Value.center;
+        Vector2 center = firstLevel.StartRoom.roomBounds.center;
 
         player.position = new Vector3(
             center.x,

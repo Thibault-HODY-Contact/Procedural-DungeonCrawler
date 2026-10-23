@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 using static UnityEngine.UI.Image;
 
 public class MoveScript : MonoBehaviour
@@ -58,22 +59,27 @@ public class MoveScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        Vector3 horizontal = Vector3.zero;
+
+
         if (_moveDirection.sqrMagnitude > 0.01f)
         {
             Vector3 movement = _moveDirection.normalized * _speed * Time.fixedDeltaTime;
 
-            _rb.MovePosition(_rb.position + movement);
+            horizontal = _moveDirection.normalized * _speed;
 
             Quaternion targetRotation = Quaternion.LookRotation(_moveDirection);
 
-            _rb.MoveRotation(
-                Quaternion.Slerp(
-                    _rb.rotation,
-                    targetRotation,
-                    _rotationSpeed * Time.fixedDeltaTime
-                )
-            );
+            //_rb.MoveRotation(
+            //    Quaternion.Slerp(
+            //        _rb.rotation,
+            //        targetRotation,
+            //        _rotationSpeed * Time.fixedDeltaTime
+            //    )
+            //);
         }
+        _rb.linearVelocity = new Vector3(horizontal.x, _rb.linearVelocity.y, horizontal.z);
+
     }
     public void Jump()
     {
