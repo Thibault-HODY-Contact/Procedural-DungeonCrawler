@@ -81,6 +81,7 @@ public class MoveScript : MonoBehaviour
         _rb.linearVelocity = new Vector3(horizontal.x, _rb.linearVelocity.y, horizontal.z);
 
     }
+
     public void Jump()
     {
         if (!_canMove)
