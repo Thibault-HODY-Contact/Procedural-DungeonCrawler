@@ -27,15 +27,41 @@ public class RoomBuilder
     {
         foreach (BSPNode room in rooms)
         {
-            RectInt bounds = room.roomBounds;
-            GameObject prefab = room.style.floorPrefab;
-            Vector3 bottomCenter = new Vector3(bounds.center.x, room.floorHeight, bounds.center.y);
-            Vector3 size = new Vector3(bounds.width, MeshSize.KeepPrefabSize, bounds.height);
+            RoomStyleSO style = room.style;
+            SpawnSurface(style.floorPrefab, style.floorHatchPrefab, room.roomBounds, room.floorHeight, spawnedFloors);
 
-            GameObject floor = Object.Instantiate(prefab, bottomCenter, Quaternion.identity, parent);
-            MeshSize.ResizeAndPlace(floor, MeshSize.GetLocalBounds(prefab), bottomCenter, size);
-            spawnedFloors.Add(floor);
+            if (style.roofPrefab == null) continue;
+            float wallHeight = MeshSize.GetScaledSize(style.wallPieces[0].prefab).y;
+            SpawnSurface(style.roofPrefab, style.roofHatchPrefab, room.roomBounds, room.floorHeight + wallHeight, spawnedFloors);
         }
+    }
+
+    void SpawnSurface(GameObject prefab, GameObject hatchPrefab, RectInt bounds, float height, List<GameObject> spawned)
+    {
+        Rect area = new Rect(bounds.x, bounds.y, bounds.width, bounds.height);
+        if (hatchPrefab == null)
+        {
+            spawned.Add(SpawnPart(prefab, area, height));
+            return;
+        }
+
+        Vector3 hatchSize = MeshSize.GetScaledSize(hatchPrefab);
+        Rect hatch = new Rect(area.center.x - hatchSize.x / 2f, area.center.y - hatchSize.z / 2f, hatchSize.x, hatchSize.z);
+        spawned.Add(SpawnPart(hatchPrefab, hatch, height));
+
+        spawned.Add(SpawnPart(prefab, Rect.MinMaxRect(area.xMin, area.yMin, area.xMax, hatch.yMin), height));
+        spawned.Add(SpawnPart(prefab, Rect.MinMaxRect(area.xMin, hatch.yMax, area.xMax, area.yMax), height));
+        spawned.Add(SpawnPart(prefab, Rect.MinMaxRect(area.xMin, hatch.yMin, hatch.xMin, hatch.yMax), height));
+        spawned.Add(SpawnPart(prefab, Rect.MinMaxRect(hatch.xMax, hatch.yMin, area.xMax, hatch.yMax), height));
+    }
+
+    GameObject SpawnPart(GameObject prefab, Rect part, float height)
+    {
+        Vector3 bottomCenter = new Vector3(part.center.x, height, part.center.y);
+        Vector3 size = new Vector3(part.width, MeshSize.KeepPrefabSize, part.height);
+        GameObject instance = Object.Instantiate(prefab, bottomCenter, Quaternion.identity, parent);
+        MeshSize.ResizeAndPlace(instance, MeshSize.GetLocalBounds(prefab), bottomCenter, size);
+        return instance;
     }
 
     public void BuildWalls(List<BSPNode> rooms, List<GameObject> spawnedWalls)

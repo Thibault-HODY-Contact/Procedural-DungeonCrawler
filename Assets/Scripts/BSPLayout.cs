@@ -103,9 +103,12 @@ public class BSPLayout
     {
         if (Rooms.Count == 0) return;
 
-        EndRoom = Rooms[rng.Next(Rooms.Count)];
         StartRoom = FindRoomClosestTo(new Vector2Int((int)generatorPosition.x, (int)generatorPosition.z));
-
+        EndRoom = Rooms[rng.Next(Rooms.Count)];
+        while (EndRoom == StartRoom && Rooms.Count > 1)
+        {
+            EndRoom = Rooms[rng.Next(Rooms.Count)];
+        }
         RoomStyleSO startStyle = PickStyleWhere(rng, style => style.canBeStartRoom);
         if (startStyle != null) StartRoom.style = startStyle;
 
@@ -136,7 +139,9 @@ public class BSPLayout
         Vector2Int padding = Vector2Int.one * settings.roomPadding;
         foreach (BSPNode room in Rooms)
         {
-            room.roomBounds = new RectInt(room.area.position + padding, room.area.size - padding * 2);
+            Vector2Int size = room.area.size - padding * 2;
+            size -= new Vector2Int(size.x % 2, size.y % 2);
+            room.roomBounds = new RectInt(room.area.position + padding, size);
             room.floorHeight = generatorPosition.y;
         }
     }

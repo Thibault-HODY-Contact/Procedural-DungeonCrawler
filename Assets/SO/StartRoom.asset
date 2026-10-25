@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d8d9fa6981e1d41985950cb39ff455, type: 3}
+  m_Name: StartRoom
+  m_EditorClassIdentifier: Assembly-CSharp::RoomStyleSO
+  weight: 0
+  canBeStartRoom: 1
+  canBeEndRoom: 0
+  floorPrefab: {fileID: 6487248804287716864, guid: ef6c04e74edae4b4d8aee417ecd5f671, type: 3}
+  roofPrefab: {fileID: 6487248804287716864, guid: e089e45d7a0c10c43969f2405ad4decc, type: 3}
+  floorHatchPrefab: {fileID: 6487248804287716864, guid: 4b9d94743c6355b41b57b9e9f76d8143, type: 3}
+  roofHatchPrefab: {fileID: 0}
+  wallPieces:
+  - {fileID: 11400000, guid: 8477a2befe331b544bd9f8b1df496d78, type: 2}
+  - {fileID: 11400000, guid: 39ff545e7e836e54d9a60401c136536b, type: 2}
+  - {fileID: 11400000, guid: b2d4004db4f34c8409c8123dc26ac1fa, type: 2}
+  floorProps: []
+  corridorPrefab: {fileID: 3125119747023335, guid: 83068f57a2449a34a97620ec855e5c50, type: 3}
+  corridorCornerPrefab: {fileID: 3125119747023335, guid: 10184769c7287ee47952dbb0bfcf5b96, type: 3}
+  corridorFloorPrefab: {fileID: 6487248804287716864, guid: 0943bcadc36d32242a7e38f9241bf085, type: 3}
+  corridorEntrancePrefab: {fileID: 0}

@@ -21,6 +21,7 @@ public class GenGenerator : MonoBehaviour
         for (int i = 0; i < levelCount; i++)
             spawnedLevels.Add(Instantiate(levelPrefab));
 
+        spawnedLevels[0].GetComponent<DungeonGeneratorBSP>().isFirstLevel = true;
         foreach (GameObject level in spawnedLevels)
         {
             DungeonGeneratorBSP generator = level.GetComponent<DungeonGeneratorBSP>();

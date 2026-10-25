@@ -19,6 +19,8 @@ MonoBehaviour:
   minRoomSize: {x: 2, y: 2}
   roomStyles:
   - {fileID: 11400000, guid: 11bf6ebcbc618db4b82e6b7a5dbc8700, type: 2}
+  - {fileID: 11400000, guid: 19fcc94c84e47fc48a535a09b7c2158c, type: 2}
+  - {fileID: 11400000, guid: 36ba4e0e6f2866d4c9f5d317ca4d87cf, type: 2}
   corridorStyles:
   - {fileID: 11400000, guid: 828b5d19fec22144abd1db330c2ed707, type: 2}
   corridorMargin: 2

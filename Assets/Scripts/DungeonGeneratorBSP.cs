@@ -19,10 +19,10 @@ public class DungeonGeneratorBSP : MonoBehaviour
     readonly List<GameObject> spawnedCorridors = new List<GameObject>();
     readonly List<GameObject> spawnedFloors = new List<GameObject>();
     readonly List<GameObject> spawnedWalls = new List<GameObject>();
+    public bool isFirstLevel;
 
     public BSPNode StartRoom { get; private set; }
     public BSPNode EndRoom { get; private set; }
-
     RectInt MapArea
     {
         get
@@ -44,6 +44,11 @@ public class DungeonGeneratorBSP : MonoBehaviour
         rooms = layout.Rooms;
         StartRoom = layout.StartRoom;
         EndRoom = layout.EndRoom;
+
+        if (isFirstLevel) 
+        {
+            StartRoom.style = settings.roomStyles.Find(style => style != null && !style.canBeStartRoom && !style.canBeEndRoom); 
+        }
 
         CorridorPlanner planner = new CorridorPlanner(settings, rooms);
         corridors = planner.ConnectAllRooms(root, rng);

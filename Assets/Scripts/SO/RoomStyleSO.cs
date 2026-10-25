@@ -12,6 +12,9 @@ public class RoomStyleSO : ScriptableObject
 
     [Header("Salle")]
     [FormerlySerializedAs("roomFloorPrefab")] public GameObject floorPrefab;
+    [FormerlySerializedAs("RoofPrefab")] public GameObject roofPrefab;
+    [FormerlySerializedAs("FloorHatchPrefab")] public GameObject floorHatchPrefab;
+    [FormerlySerializedAs("RoofHatchPrefab")] public GameObject roofHatchPrefab;
     [FormerlySerializedAs("WallsPrefabsList")] public List<RoomWalls> wallPieces;
     [FormerlySerializedAs("FloorProps")] public List<GameObject> floorProps;
 
