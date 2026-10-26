@@ -68,7 +68,7 @@ public class LadderController : MonoBehaviour
             _rb.isKinematic = true;
 
         }
-        else if (layerMask == LayerMask.NameToLayer("OnGround") && !animator.GetBool("isClimbing"))
+        if (layerMask == LayerMask.NameToLayer("OnGround") && !animator.GetBool("isClimbing"))
         {
             moveScript.CanMove = true;
             _rb.useGravity = true;
