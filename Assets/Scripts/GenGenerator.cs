@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -72,7 +71,13 @@ public class GenGenerator : MonoBehaviour
         GasSpread gasSpread = gasObject.GetComponent<GasSpread>();
 
         if (gasSpread != null)
+        {
             gasSpread.StartSpread();
+        }
+        if (gasSpread != null)
+        {
+            gasSpread.Initialize(player);
+        }
     }
 
     Vector3 GetLadderPosition(DungeonGeneratorBSP level)
