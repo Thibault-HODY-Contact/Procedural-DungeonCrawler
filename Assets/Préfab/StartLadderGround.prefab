@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3934320443256913814}
   - component: {fileID: 7963624867761379344}
   - component: {fileID: 4439861138237327364}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StartLadderGround (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 4654020332981082585}
   - component: {fileID: 6720711915705759072}
   - component: {fileID: 6211343319902163545}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StartLadderGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 7435099156445531015}
   - component: {fileID: 714689089210753986}
   - component: {fileID: 3910449351552365451}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StartLadderGround (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4728871225591840680}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StartLadderGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 3638980131294213694}
   - component: {fileID: 7747462315913179214}
   - component: {fileID: 144992934487246646}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StartLadderGround (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
