@@ -59,7 +59,8 @@ public class MoveScript : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 horizontal = Vector3.zero;
-
+        if (!_canMove)
+            return;
 
         if (_moveDirection.sqrMagnitude > 0.01f)
         {

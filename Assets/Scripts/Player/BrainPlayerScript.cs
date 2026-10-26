@@ -12,6 +12,9 @@ public class BrainPlayerScript : MonoBehaviour
 
     [Header("Dependencies")]
     [SerializeField] MoveScript _moveScript;
+
+    [SerializeField] LadderController _LadderScript;
+
     //[SerializeField] InteractionScript _interactionScript;
     [SerializeField] LifeScript _lifeScript;    
     //[SerializeField] PauseMenu _pauseMenu;
@@ -20,6 +23,7 @@ public class BrainPlayerScript : MonoBehaviour
         if (_lifeScript.Lives <= 0) return;
 
         _moveScript.Move(_moveInput.action.ReadValue<Vector2>());
+        _LadderScript.Climb(_moveInput.action.ReadValue<Vector2>());
         _animator.SetFloat("Forward", _moveInput.action.ReadValue<Vector2>().y);
         _animator.SetFloat("Right", _moveInput.action.ReadValue<Vector2>().x);
         if (_jumpInput.action.WasPressedThisFrame()) _moveScript.Jump();
