@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,17 +10,29 @@ public class LifeScript : MonoBehaviour, IDamageable
     [SerializeField] Animator _animator;
 
     [Header("Config")]
-    [SerializeField] int _lives;
+    [SerializeField] private int _lives = 3;
+    [SerializeField] private int damagePerHeart = 10;
+
+    private int _maxLives;
+    private int _currentHealth;
+    private int _maxHealth;
+    public int Lives => _lives;
+    public int MaxLives => _maxLives;
+    public int CurrentHealth => _currentHealth;
+    public int MaxHealth => _maxHealth;
 
     [Header("Sound")]
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _deathClip;
     [SerializeField] private AudioClip _hurtClip;
 
-    private int _maxLives;
+    [Header("Gas Damage")]
+    [SerializeField] private GasSpread gas;
+    [SerializeField] private Transform playerPosition;
+    [SerializeField] private int gasDamage = 1;
+    [SerializeField] private float gasDamageInterval = 1f;
 
-    public int Lives => _lives;
-    public int MaxLives => _maxLives;
+    private float gasDamageTimer;
 
     public event Action OnDamaged;
     public event Action OnHeal;
@@ -35,23 +48,58 @@ public class LifeScript : MonoBehaviour, IDamageable
     void Start()
     {
         _maxLives = _lives;
+
+        _maxHealth = _maxLives * damagePerHeart;
+        _currentHealth = _maxHealth;
     }
 
-    public void TakeDamage(int damageAmount)
+    private void Update()
     {
-        if (_isBlocking)
+        if (gas == null || playerPosition == null)
             return;
 
-        _lives -= damageAmount;
+        Vector3 playerPos = playerPosition.position;
+        Vector3 gasPos = gas.transform.position;
+
+        float distance = Vector2.Distance(
+            new Vector2(playerPos.x, playerPos.z),
+            new Vector2(gasPos.x, gasPos.z)
+        );
+
+        if (distance <= gas.CurrentRadius)
+        {
+            gasDamageTimer += Time.deltaTime;
+
+            if (gasDamageTimer >= gasDamageInterval)
+            {
+                TakeDamage(gasDamage);
+                gasDamageTimer = 0f;
+            }
+        }
+        else
+        {
+            gasDamageTimer = 0f;
+        }
+    }
+    public void TakeDamage(int damageAmount)
+    {
+        if (_isBlocking || _currentHealth <= 0)
+            return;
+
+        _currentHealth -= damageAmount;
+        _currentHealth = Mathf.Max(0, _currentHealth);
+
+        _lives = Mathf.CeilToInt(
+            (float)_currentHealth / damagePerHeart
+        );
 
         _animator.SetTrigger("Hit");
-
         OnDamaged?.Invoke();
 
-        if (_lives <= 0)
+        if (_currentHealth <= 0)
         {
-            Die();
             _lives = 0;
+            Die();
         }
     }
 
