@@ -10,8 +10,9 @@ public class GenGenerator : MonoBehaviour
     [SerializeField] float levelSpacing = 15f;
     [FormerlySerializedAs("GenList")][SerializeField] List<GameObject> spawnedLevels = new List<GameObject>();
     [SerializeField] List<GameObject> spawnedLadders = new List<GameObject>();
-
+    [SerializeField] private GameObject gasObject;
     [SerializeField] private Transform player;
+    [SerializeField] private float gasHeightOffset = 0.1f;
 
     [ContextMenu("Generate")]
     void GenerateLevels()
@@ -39,6 +40,7 @@ public class GenGenerator : MonoBehaviour
             generator.BuildRooms();
         }
         PlacePlayer();
+        SpawnGasAtStart();
     }
 
     void StackOnPreviousLevel(DungeonGeneratorBSP level, DungeonGeneratorBSP previousLevel)
@@ -47,6 +49,35 @@ public class GenGenerator : MonoBehaviour
         level.transform.position -= new Vector3(offset.x, 0f, offset.y);
         level.transform.position += new Vector3(0f, previousLevel.transform.position.y + levelSpacing, 0f);
         level.Generate();
+    }
+
+    private void SpawnGasAtStart()
+    {
+        if (gasObject == null || spawnedLevels.Count == 0)
+            return;
+
+        DungeonGeneratorBSP firstLevel = spawnedLevels[0].GetComponent<DungeonGeneratorBSP>();
+
+        Vector2 startCenter = firstLevel.StartRoom.roomBounds.center;
+
+        Vector3 gasPosition = new Vector3(
+            startCenter.x,
+            firstLevel.transform.position.y + gasHeightOffset,
+            startCenter.y
+        );
+
+        gasObject.transform.position = gasPosition;
+
+        GasSpread gasSpread = gasObject.GetComponent<GasSpread>();
+
+        if (gasSpread != null)
+        {
+            gasSpread.StartSpread();
+        }
+        if (gasSpread != null)
+        {
+            gasSpread.Initialize(player);
+        }
     }
 
     Vector3 GetLadderPosition(DungeonGeneratorBSP level)

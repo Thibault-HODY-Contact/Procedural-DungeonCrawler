@@ -1,0 +1,136 @@
+using UnityEngine;
+
+public class GasSpread : MonoBehaviour
+{
+    [SerializeField] private float maxRadius = 15f;
+    [SerializeField] private float spreadDuration = 30f;
+    [SerializeField] private GameObject gasEmitterPrefab;
+    [SerializeField] private Transform player;
+    [SerializeField] private float playerRenderRadius = 8f;
+    [SerializeField] private float emitterRadius = 6f;
+
+    private GameObject currentEmitter;
+
+    public float CurrentRadius { get; private set; }
+
+    private float elapsedTime;
+    public void Initialize(Transform playerTransform)
+    {
+        player = playerTransform;
+    }
+    public void StartSpread()
+    {
+        elapsedTime = 0f;
+        CurrentRadius = 0.5f;
+
+        if (currentEmitter != null)
+        {
+            Destroy(currentEmitter);
+            currentEmitter = null;
+        }
+    }
+
+    private void Update()
+    {
+        elapsedTime += Time.deltaTime;
+
+        float progress = Mathf.Clamp01(elapsedTime / spreadDuration);
+        CurrentRadius = Mathf.Lerp(0.5f, maxRadius, progress);
+
+        UpdateRenderer();
+    }
+    private void UpdateRenderer()
+    {
+        if (player == null || gasEmitterPrefab == null)
+            return;
+
+        Vector3 direction = player.position - transform.position;
+        float distance = direction.magnitude;
+
+        // Les deux cercles se touchent ?
+        bool shouldRender = distance <= CurrentRadius + playerRenderRadius;
+
+        if (shouldRender)
+        {
+            Vector3 emitterPosition;
+
+            // Si le nuage peut être entièrement centré sur le joueur
+            if (distance <= CurrentRadius - emitterRadius)
+            {
+                emitterPosition = player.position;
+            }
+            else
+            {
+                // Sinon on le garde juste à l'intérieur du gaz
+                direction.Normalize();
+                emitterPosition = transform.position + direction * (CurrentRadius - emitterRadius);
+            }
+
+            if (currentEmitter == null)
+            {
+                currentEmitter = Instantiate(
+                    gasEmitterPrefab,
+                    emitterPosition,
+                    Quaternion.identity);
+
+                ParticleSystem ps = currentEmitter.GetComponent<ParticleSystem>();
+
+                if (ps != null)
+                {
+                    ps.Clear(true);
+                    ps.Play(true);
+                }
+            }
+
+            currentEmitter.transform.position = Vector3.Lerp(
+                currentEmitter.transform.position,
+                emitterPosition,
+                Time.deltaTime * 8f);
+        }
+        else
+        {
+            if (currentEmitter != null)
+            {
+                Destroy(currentEmitter);
+                currentEmitter = null;
+            }
+        }
+    }
+
+    public bool IsInside(Vector3 position)
+    {
+        return Vector3.Distance(transform.position, position) <= CurrentRadius;
+    }
+
+    private void OnDrawGizmos()
+    {
+        // Cercle du gaz
+        Gizmos.color = Color.red;
+        DrawCircle(transform.position, CurrentRadius);
+
+        // Cercle du joueur
+        if (player != null)
+        {
+            Gizmos.color = Color.green;
+            DrawCircle(player.position, playerRenderRadius);
+        }
+    }
+
+    private void DrawCircle(Vector3 center, float radius, int segments = 64)
+    {
+        float angleStep = 360f / segments;
+        Vector3 previousPoint = center + new Vector3(radius, 0f, 0f);
+
+        for (int i = 1; i <= segments; i++)
+        {
+            float angle = angleStep * i * Mathf.Deg2Rad;
+            Vector3 newPoint = center + new Vector3(
+                Mathf.Cos(angle) * radius,
+                0f,
+                Mathf.Sin(angle) * radius);
+
+            Gizmos.DrawLine(previousPoint, newPoint);
+            previousPoint = newPoint;
+        }
+    }
+}

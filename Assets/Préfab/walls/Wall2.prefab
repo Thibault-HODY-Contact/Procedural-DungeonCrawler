@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6874101080913258857}
   - component: {fileID: 5381925034512749201}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 3559366875315655047}
   - component: {fileID: 514127781810035948}
   - component: {fileID: 4739916746960275453}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 479330216300457756}
   - component: {fileID: 1933391724732846242}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,6 +248,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wood_Platform_Post_D
       objectReference: {fileID: 0}
+    - target: {fileID: 6833628110673137627, guid: 209164abeae14bc43b38af9ee1062a06, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -269,6 +273,10 @@ PrefabInstance:
     - target: {fileID: 3101770154072072292, guid: 289f27a03a0321b49acda3dd740ab799, type: 3}
       propertyPath: m_Name
       value: Wood_Platform_Planks_A_Side
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101770154072072292, guid: 289f27a03a0321b49acda3dd740ab799, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6472573237360222561, guid: 289f27a03a0321b49acda3dd740ab799, type: 3}
       propertyPath: m_LocalPosition.x
@@ -331,6 +339,10 @@ PrefabInstance:
     - target: {fileID: 3101770154072072292, guid: 289f27a03a0321b49acda3dd740ab799, type: 3}
       propertyPath: m_Name
       value: Wood_Platform_Planks_A_Side (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101770154072072292, guid: 289f27a03a0321b49acda3dd740ab799, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6472573237360222561, guid: 289f27a03a0321b49acda3dd740ab799, type: 3}
       propertyPath: m_LocalPosition.x
@@ -434,6 +446,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wood_Platform_45Deg_A
       objectReference: {fileID: 0}
+    - target: {fileID: 8080352095381556107, guid: d0151ea2da9be4143be566c4f828326c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -496,6 +512,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wood_Platform_Post_D (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6833628110673137627, guid: 209164abeae14bc43b38af9ee1062a06, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -517,6 +537,10 @@ PrefabInstance:
     - target: {fileID: 6652253692654203261, guid: 82a8db201f01d0e44973c438cbb08b15, type: 3}
       propertyPath: m_Name
       value: Wall_Mines_A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6652253692654203261, guid: 82a8db201f01d0e44973c438cbb08b15, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9187287524967175619, guid: 82a8db201f01d0e44973c438cbb08b15, type: 3}
       propertyPath: m_LocalPosition.x

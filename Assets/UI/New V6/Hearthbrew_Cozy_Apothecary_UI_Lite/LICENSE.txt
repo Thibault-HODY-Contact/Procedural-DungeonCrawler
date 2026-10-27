@@ -1,0 +1,29 @@
+Cozy Apothecary UI Kit - Hearthbrew - Licence (v1.0)
+
+With a copy of this pack (bought, or downloaded free as the Lite) you may:
+- Use the assets in any number of personal and commercial projects (games, apps, videos,
+  prototypes, client work, commissions) without paying royalties.
+- Modify, recolour, crop, animate and combine the assets.
+- Ship the assets inside your compiled or published project. Credit is appreciated, not
+  required. If you want to credit: "UI: Hearthbrew by Brunka Games".
+
+You may not:
+- Resell, redistribute, sublicense or share the assets or modified versions as assets,
+  templates, packs, NFTs, or in any form where the assets themselves are the product. This
+  applies to modified versions too: link to the pack page instead of re-uploading it.
+- Upload the assets to public repositories or asset stores. (Open-source game: ship the assets
+  in your build, keep the raw pack out of the public repository.)
+- Use the assets to train, fine-tune or evaluate generative AI models.
+- Claim the assets as your own creation.
+
+How it was made: AI-assisted image generation supplied base images. Code keys, cleans and
+assembles the sprites, 9-slice geometry, states and manifest. Automated checks and independent
+AI-agent reviews verify the results. The code and documentation are also AI-assisted.
+
+The fonts in fonts/ are third-party and carry their own licences (see fonts/LICENSE-*.txt):
+- Fraunces by The Fraunces Project Authors (Undercase Type): SIL Open Font License 1.1, see fonts/LICENSE-Fraunces-OFL.txt
+- Andika by SIL International: SIL Open Font License 1.1, see fonts/LICENSE-Andika-OFL.txt
+
+The assets are provided "as is", without warranty of any kind.
+
+Questions: https://brunkagames.itch.io (post a comment on the pack page).
