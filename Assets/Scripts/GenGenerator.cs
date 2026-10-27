@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 public class GenGenerator : MonoBehaviour
 {
     [FormerlySerializedAs("GeneratorPrefab")][SerializeField] GameObject levelPrefab;
-    [FormerlySerializedAs("numberLEveles")][SerializeField] int levelCount;
+    [FormerlySerializedAs("numberLEveles")][SerializeField] public int levelCount;
     [FormerlySerializedAs("Ladder")][SerializeField] GameObject ladderPrefab;
     [SerializeField] float levelSpacing = 15f;
     [FormerlySerializedAs("GenList")][SerializeField] List<GameObject> spawnedLevels = new List<GameObject>();
@@ -14,8 +14,14 @@ public class GenGenerator : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private float gasHeightOffset = 0.1f;
 
+
+    private void Start()
+    {
+        GameManager.Instance.genGenerator = this.gameObject;
+    }
+
     [ContextMenu("Generate")]
-    void GenerateLevels()
+    public void GenerateLevels()
     {
         ClearLevels();
 
