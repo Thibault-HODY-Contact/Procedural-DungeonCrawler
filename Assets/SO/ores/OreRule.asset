@@ -14,24 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PropRuleSO
   prefabs:
   - {fileID: 1163109836690658095, guid: 9510212c0d32fb648ba7114fc7945a60, type: 3}
-  - {fileID: 1606900428103001970, guid: 542bfd268e9c2df4599570f0383ab1c4, type: 3}
-  - {fileID: 1759454994225839176, guid: 57b17f5bb3d995347860c35334c6221f, type: 3}
-  - {fileID: 4437444258056012129, guid: 1fc8b07f0630630458f6ab0b1bbb4def, type: 3}
   - {fileID: 9168874971402315467, guid: c7596af1b13c18c40b00bb6f9c27945d, type: 3}
-  - {fileID: 8814671262921902331, guid: 8c703dff9ba0c20449f6ec23aa52bddc, type: 3}
-  - {fileID: 6771956679579522679, guid: 15c4cb145b954b840839d83fcf36e23c, type: 3}
-  - {fileID: 3679619519407033436, guid: 62599582a370fd445bb3d939f23248c4, type: 3}
   - {fileID: 7733740078883088268, guid: d65dad49b5746a8438ba43235a4cee02, type: 3}
-  - {fileID: 5768018149181517626, guid: f1502ca1afd1fa04189d5b7891aff7fd, type: 3}
-  - {fileID: 4958857540744329339, guid: 6ed274bc80c306a49aabe0ae981ae4fb, type: 3}
-  - {fileID: 7532051575030154628, guid: 7db7ff93d58a7174b84f598103007ee1, type: 3}
   - {fileID: 2440253123795219001, guid: cbd53b593e6a4f8459bd7c3265fb0043, type: 3}
-  - {fileID: 6231683509477398089, guid: cba685546013af742b26eba30bf35b3c, type: 3}
-  - {fileID: 1955355883971167483, guid: 52bea1e2a391dfa4c9ef22ec61428d37, type: 3}
-  - {fileID: 6132168753975995894, guid: c5a0a0ce73ff82448831fd0b15dbd682, type: 3}
   - {fileID: 1906915834136047369, guid: 5bac2fcace2e4a645af12786511fcba7, type: 3}
+  - {fileID: 1606900428103001970, guid: 542bfd268e9c2df4599570f0383ab1c4, type: 3}
+  - {fileID: 8814671262921902331, guid: 8c703dff9ba0c20449f6ec23aa52bddc, type: 3}
+  - {fileID: 5768018149181517626, guid: f1502ca1afd1fa04189d5b7891aff7fd, type: 3}
+  - {fileID: 6231683509477398089, guid: cba685546013af742b26eba30bf35b3c, type: 3}
   - {fileID: 1671083288175718625, guid: 31b2019d40fe65545a3d06b80d7a64c5, type: 3}
+  - {fileID: 1759454994225839176, guid: 57b17f5bb3d995347860c35334c6221f, type: 3}
+  - {fileID: 6771956679579522679, guid: 15c4cb145b954b840839d83fcf36e23c, type: 3}
+  - {fileID: 4958857540744329339, guid: 6ed274bc80c306a49aabe0ae981ae4fb, type: 3}
+  - {fileID: 1955355883971167483, guid: 52bea1e2a391dfa4c9ef22ec61428d37, type: 3}
   - {fileID: 4566590584938456345, guid: 5afc71bde6efd6441a90414d2e938c25, type: 3}
+  - {fileID: 4437444258056012129, guid: 1fc8b07f0630630458f6ab0b1bbb4def, type: 3}
+  - {fileID: 3679619519407033436, guid: 62599582a370fd445bb3d939f23248c4, type: 3}
+  - {fileID: 7532051575030154628, guid: 7db7ff93d58a7174b84f598103007ee1, type: 3}
+  - {fileID: 6132168753975995894, guid: c5a0a0ce73ff82448831fd0b15dbd682, type: 3}
   - {fileID: 587298317319122455, guid: 66f5962e952778844aa38f3e482d18cb, type: 3}
   randomRotation: 1
   sinkIntoGround: 0.25
@@ -41,11 +41,8 @@ MonoBehaviour:
   bigMaxScale: 0.4
   bigChanceNearExit: 0
   bigChanceFarFromExit: 0.9
-  gridStep: 0.8
-  noiseFrequency: 0.09
-  jitter: 0.3
-  thresholdNearExit: 0.9
-  thresholdFarFromExit: 0.32
+  countNearExit: 0
+  countFarFromExit: 10
   distanceInfluence:
     serializedVersion: 2
     m_Curve:
@@ -70,7 +67,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  doorGradient: 1
+  gridStep: 0.4
+  noiseFrequency: 0.15
+  jitter: 0.3
+  exitDoorClearRadius: 2
+  pickPrefabByDistance: 1
   onlyAlongWalls: 0
   wallBandWidth: 1.5
   wallMargin: 0.3
