@@ -14,7 +14,6 @@ public class numberLevelChoose : MonoBehaviour
         if (int.TryParse(selectedText, out int levelNumber))
         {
             GameManager.Instance.numberlevel = levelNumber;
-            Debug.Log($"Niveau sélectionné : {levelNumber}");
         }
     }
 
