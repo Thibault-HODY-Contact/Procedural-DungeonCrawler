@@ -599,6 +599,7 @@ MonoBehaviour:
   gasObject: {fileID: 9158985979147729976, guid: bb4e740e68bd3ca43b7d8f85470d84d5, type: 3}
   player: {fileID: 1569150969}
   gasHeightOffset: 0.1
+  gasSpawnDelay: 5
 --- !u!4 &1451166044
 Transform:
   m_ObjectHideFlags: 0

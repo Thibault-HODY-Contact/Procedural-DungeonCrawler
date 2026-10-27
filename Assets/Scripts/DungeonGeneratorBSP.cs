@@ -19,6 +19,7 @@ public class DungeonGeneratorBSP : MonoBehaviour
     readonly List<GameObject> spawnedCorridors = new List<GameObject>();
     readonly List<GameObject> spawnedFloors = new List<GameObject>();
     readonly List<GameObject> spawnedWalls = new List<GameObject>();
+    readonly List<GameObject> spawnedProps = new List<GameObject>();
     public bool isFirstLevel;
 
     public BSPNode StartRoom { get; private set; }
@@ -52,6 +53,7 @@ public class DungeonGeneratorBSP : MonoBehaviour
 
         CorridorPlanner planner = new CorridorPlanner(settings, rooms);
         corridors = planner.ConnectAllRooms(root, rng);
+        RoomGraph.ComputeDistanceToExit(rooms, corridors, EndRoom);
         if (planner.FailedConnections > 0)
             Debug.LogWarning($"{planner.FailedConnections} zone(s) sans couloir libre (seed {seed}).");
 
@@ -65,12 +67,15 @@ public class DungeonGeneratorBSP : MonoBehaviour
         RoomBuilder builder = new RoomBuilder(transform, corridors, wallInset);
         builder.BuildFloors(rooms, spawnedFloors);
         builder.BuildWalls(rooms, spawnedWalls);
+        List<Vector2> ladderSpots = new List<Vector2> { StartRoom.roomBounds.center, EndRoom.roomBounds.center };
+        new PropSpawner(transform, corridors, wallInset, seed).SpawnAll(rooms, ladderSpots, spawnedProps);
     }
 
     public void ClearRoomObjects()
     {
         DestroyAll(spawnedFloors);
         DestroyAll(spawnedWalls);
+        DestroyAll(spawnedProps);
     }
 
     void ClearGeneration()

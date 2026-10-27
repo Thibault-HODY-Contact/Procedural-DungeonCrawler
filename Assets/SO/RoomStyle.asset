@@ -17,10 +17,14 @@ MonoBehaviour:
   canBeEndRoom: 0
   floorPrefab: {fileID: 6487248804287716864, guid: ef6c04e74edae4b4d8aee417ecd5f671, type: 3}
   roofPrefab: {fileID: 6487248804287716864, guid: e089e45d7a0c10c43969f2405ad4decc, type: 3}
+  floorHatchPrefab: {fileID: 0}
+  roofHatchPrefab: {fileID: 0}
   wallPieces:
   - {fileID: 11400000, guid: 8477a2befe331b544bd9f8b1df496d78, type: 2}
   - {fileID: 11400000, guid: 39ff545e7e836e54d9a60401c136536b, type: 2}
   - {fileID: 11400000, guid: b2d4004db4f34c8409c8123dc26ac1fa, type: 2}
+  propRules:
+  - {fileID: 11400000, guid: 9f90cfa9d800c6a449f0918db8537381, type: 2}
   floorProps: []
   corridorPrefab: {fileID: 3125119747023335, guid: 83068f57a2449a34a97620ec855e5c50, type: 3}
   corridorCornerPrefab: {fileID: 3125119747023335, guid: 10184769c7287ee47952dbb0bfcf5b96, type: 3}
