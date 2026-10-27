@@ -80,6 +80,7 @@ public class LifeScript : MonoBehaviour, IDamageable
         {
             gasDamageTimer = 0f;
         }
+        _animator.SetInteger("vies", _lives);
     }
     public void TakeDamage(int damageAmount)
     {
@@ -115,6 +116,7 @@ public class LifeScript : MonoBehaviour, IDamageable
         if (!GetComponentInParent<PlayerInput>())
         {
             Destroy(gameObject, 2.5f);
+            transform.root.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         }
         //else
         //{

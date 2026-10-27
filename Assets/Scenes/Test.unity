@@ -124,6 +124,17 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 1883199745129811037, guid: c65a01ae56ffad74d8e1ed9ac48f2926, type: 3}
   m_PrefabInstance: {fileID: 1977996356}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &273659551 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6519574758664520061, guid: b006dd95583c12d449dea1c99cecb8b7, type: 3}
+  m_PrefabInstance: {fileID: 911722624}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb2bccf851c85f4693e4143e3d913c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GasSpread
 --- !u!1001 &822091500
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -497,6 +508,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1569150969}
+    - target: {fileID: 6519574758664520061, guid: b006dd95583c12d449dea1c99cecb8b7, type: 3}
+      propertyPath: maxRadius
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519574758664520061, guid: b006dd95583c12d449dea1c99cecb8b7, type: 3}
+      propertyPath: spreadDuration
+      value: 110
+      objectReference: {fileID: 0}
     - target: {fileID: 8906068597135831536, guid: b006dd95583c12d449dea1c99cecb8b7, type: 3}
       propertyPath: m_Name
       value: Gaz
@@ -1007,6 +1026,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -6.4773374
       objectReference: {fileID: 0}
+    - target: {fileID: 7668672959037886740, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
+      propertyPath: gas
+      value: 
+      objectReference: {fileID: 273659551}
+    - target: {fileID: 7668672959037886740, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 1569150972}
+    - target: {fileID: 7668672959037886740, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
+      propertyPath: playerPosition
+      value: 
+      objectReference: {fileID: 1569150969}
     - target: {fileID: 8484296994745305862, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 9.881615
@@ -1105,6 +1136,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e0029f118cc4e428c41082748d7e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!95 &1569150972 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2394457568491890773, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
+  m_PrefabInstance: {fileID: 1569150968}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1773709261
 GameObject:
   m_ObjectHideFlags: 0
@@ -1303,8 +1339,53 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2783525206170554672, guid: c65a01ae56ffad74d8e1ed9ac48f2926, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1977996359}
+    - targetCorrespondingSourceObject: {fileID: 2783525206170554672, guid: c65a01ae56ffad74d8e1ed9ac48f2926, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1977996358}
   m_SourcePrefab: {fileID: 100100000, guid: c65a01ae56ffad74d8e1ed9ac48f2926, type: 3}
+--- !u!1 &1977996357 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2783525206170554672, guid: c65a01ae56ffad74d8e1ed9ac48f2926, type: 3}
+  m_PrefabInstance: {fileID: 1977996356}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1977996358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977996357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12356405d942b6439ffb6ba5207ac9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  feedback: {fileID: 1977996359}
+  lifeScript: {fileID: 1569150971}
+  shakeDuration: 1
+  shakeAmplitude: 2
+  shakeFrequency: 2
+--- !u!114 &1977996359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977996357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
+  NoiseProfile: {fileID: 11400000, guid: 435507ce411d7434bab1aaec0a727976, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0
+  FrequencyGain: 0
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
