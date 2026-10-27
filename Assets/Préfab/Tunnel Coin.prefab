@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2837134185089011015}
   - component: {fileID: 2574249768893401729}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Footprint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   - component: {fileID: 4757345817421703449}
   - component: {fileID: 7354002864999228253}
   - component: {fileID: 1473226690989069544}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 7802540399344106412}
   - component: {fileID: 543692569574367019}
   - component: {fileID: 4689103225922850399}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 1870272945355908695}
   - component: {fileID: 646299880281820868}
   - component: {fileID: 2522227310897913481}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 6654313236924277219}
   - component: {fileID: 8199069968968684839}
   - component: {fileID: 2793623569373388503}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -498,7 +498,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1840214638478944087}
   - component: {fileID: 2736089185165621473}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Tunnel Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -610,7 +610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7855772652925941788, guid: f233bff259e1324438e5c0491aa60c0f, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -636,7 +636,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3048484361714608666, guid: e826e984f09ad564e9f2d7b5cc346ab0, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6741334307143453581, guid: e826e984f09ad564e9f2d7b5cc346ab0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -754,7 +754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7855772652925941788, guid: f233bff259e1324438e5c0491aa60c0f, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -832,7 +832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7855772652925941788, guid: f233bff259e1324438e5c0491aa60c0f, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -858,7 +858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3048484361714608666, guid: e826e984f09ad564e9f2d7b5cc346ab0, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6741334307143453581, guid: e826e984f09ad564e9f2d7b5cc346ab0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -976,7 +976,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7855772652925941788, guid: f233bff259e1324438e5c0491aa60c0f, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
