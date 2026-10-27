@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -13,8 +14,9 @@ public class GenGenerator : MonoBehaviour
     [SerializeField] private GameObject gasObject;
     [SerializeField] private Transform player;
     [SerializeField] private float gasHeightOffset = 0.1f;
+    [SerializeField] private float gasSpawnDelay = 5f;
 
-
+    private Coroutine gasSpawnCoroutine;
     private void Start()
     {
         GameManager.Instance.genGenerator = this.gameObject;
@@ -46,9 +48,24 @@ public class GenGenerator : MonoBehaviour
             generator.BuildRooms();
         }
         PlacePlayer();
-        SpawnGasAtStart();
-    }
+        PlaceGasAtStart();
 
+        if (gasSpawnCoroutine != null)
+            StopCoroutine(gasSpawnCoroutine);
+
+        gasSpawnCoroutine = StartCoroutine(SpawnGasAfterDelay());
+    }
+    private void PlaceGasAtStart()
+    {
+        if (gasObject == null || player == null)
+            return;
+
+        gasObject.transform.position = new Vector3(
+            player.position.x,
+            player.position.y - 1f + gasHeightOffset,
+            player.position.z
+        );
+    }
     void StackOnPreviousLevel(DungeonGeneratorBSP level, DungeonGeneratorBSP previousLevel)
     {
         Vector2 offset = level.StartRoom.roomBounds.center - previousLevel.EndRoom.roomBounds.center;
@@ -56,36 +73,24 @@ public class GenGenerator : MonoBehaviour
         level.transform.position += new Vector3(0f, previousLevel.transform.position.y + levelSpacing, 0f);
         level.Generate();
     }
-
-    private void SpawnGasAtStart()
+    private IEnumerator SpawnGasAfterDelay()
     {
-        if (gasObject == null || spawnedLevels.Count == 0)
-            return;
+        yield return new WaitForSeconds(gasSpawnDelay);
 
-        DungeonGeneratorBSP firstLevel = spawnedLevels[0].GetComponent<DungeonGeneratorBSP>();
-
-        Vector2 startCenter = firstLevel.StartRoom.roomBounds.center;
-
-        Vector3 gasPosition = new Vector3(
-            startCenter.x,
-            firstLevel.transform.position.y + gasHeightOffset,
-            startCenter.y
-        );
-
-        gasObject.transform.position = gasPosition;
+        if (gasObject == null)
+            yield break;
 
         GasSpread gasSpread = gasObject.GetComponent<GasSpread>();
 
         if (gasSpread != null)
         {
+            gasSpread.Initialize(player);
             gasSpread.StartSpread();
         }
-        if (gasSpread != null)
-        {
-            gasSpread.Initialize(player);
-        }
-    }
 
+        gasObject.SetActive(true);
+        gasSpawnCoroutine = null;
+    }
     Vector3 GetLadderPosition(DungeonGeneratorBSP level)
     {
         Vector2 endRoomCenter = level.EndRoom.roomBounds.center;
