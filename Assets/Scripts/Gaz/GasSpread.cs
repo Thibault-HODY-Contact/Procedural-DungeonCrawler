@@ -47,21 +47,18 @@ public class GasSpread : MonoBehaviour
         Vector3 direction = player.position - transform.position;
         float distance = direction.magnitude;
 
-        // Les deux cercles se touchent ?
         bool shouldRender = distance <= CurrentRadius + playerRenderRadius;
 
         if (shouldRender)
         {
             Vector3 emitterPosition;
 
-            // Si le nuage peut être entièrement centré sur le joueur
             if (distance <= CurrentRadius - emitterRadius)
             {
                 emitterPosition = player.position;
             }
             else
             {
-                // Sinon on le garde juste à l'intérieur du gaz
                 direction.Normalize();
                 emitterPosition = transform.position + direction * (CurrentRadius - emitterRadius);
             }
@@ -104,14 +101,12 @@ public class GasSpread : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        // Cercle du gaz
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.green;
         DrawCircle(transform.position, CurrentRadius);
 
-        // Cercle du joueur
         if (player != null)
         {
-            Gizmos.color = Color.green;
+            Gizmos.color = Color.red;
             DrawCircle(player.position, playerRenderRadius);
         }
     }
