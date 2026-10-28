@@ -37,12 +37,20 @@ MonoBehaviour:
   sinkIntoGround: 0.25
   minScale: 0.12
   maxScale: 0.17
+  gridStep: 0.4
+  noiseFrequency: 0.15
+  jitter: 0.3
+  onlyAlongWalls: 0
+  wallBandWidth: 1.5
+  wallMargin: 0.3
+  spacing: -0.2
+  passageClearance: 2
   bigMinScale: 0.3
   bigMaxScale: 0.4
   bigChanceNearExit: 0
   bigChanceFarFromExit: 0.9
   countNearExit: 0
-  countFarFromExit: 10
+  countFarFromExit: 5
   distanceInfluence:
     serializedVersion: 2
     m_Curve:
@@ -67,13 +75,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  gridStep: 0.4
-  noiseFrequency: 0.15
-  jitter: 0.3
   exitDoorClearRadius: 2
   pickPrefabByDistance: 1
-  onlyAlongWalls: 0
-  wallBandWidth: 1.5
-  wallMargin: 0.3
-  spacing: -0.2
-  passageClearance: 2

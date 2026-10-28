@@ -19,10 +19,10 @@ MonoBehaviour:
   sinkIntoGround: 0
   minScale: 0.8
   maxScale: 1.1
-  gridStep: 0.8
+  gridStep: 10
   noiseFrequency: 0.09
   jitter: 0.3
-  onlyAlongWalls: 1
+  onlyAlongWalls: 0
   wallBandWidth: 1.5
   wallMargin: 0.1
   spacing: -0.2
