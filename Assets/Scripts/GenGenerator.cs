@@ -143,7 +143,28 @@ public class GenGenerator : MonoBehaviour
         spawnedLadders.Clear();
     }
 
+    public void RestartGasAtPlayer()
+    {
+        if (gasSpawnCoroutine != null)
+        {
+            StopCoroutine(gasSpawnCoroutine);
+            gasSpawnCoroutine = null;
+        }
 
+        if (gasObject == null || player == null)
+            return;
+
+        GasSpread spread = gasObject.GetComponent<GasSpread>();
+
+        if (spread != null)
+            spread.StopSpread();
+
+        gasObject.SetActive(false);
+
+        PlaceGasAtStart();
+
+        gasSpawnCoroutine = StartCoroutine(SpawnGasAfterDelay());
+    }
 
     private void PlacePlayer()
     {
