@@ -2,26 +2,32 @@ using UnityEngine;
 
 public class GasSpread : MonoBehaviour
 {
+    [Header("Propagation")]
     [SerializeField] private float maxRadius = 15f;
     [SerializeField] private float spreadDuration = 30f;
+
+    [Header("Gaz")]
     [SerializeField] private GameObject gasEmitterPrefab;
     [SerializeField] private Transform player;
     [SerializeField] private float playerRenderRadius = 8f;
     [SerializeField] private float emitterRadius = 6f;
 
     private GameObject currentEmitter;
-
-    public float CurrentRadius { get; private set; }
-
+    private bool isSpreading = false;
     private float elapsedTime;
+
+    public float CurrentRadius { get; private set; } = 0f;
+
     public void Initialize(Transform playerTransform)
     {
         player = playerTransform;
     }
+
     public void StartSpread()
     {
         elapsedTime = 0f;
         CurrentRadius = 0.5f;
+        isSpreading = true;
 
         if (currentEmitter != null)
         {
@@ -30,15 +36,28 @@ public class GasSpread : MonoBehaviour
         }
     }
 
+    public void StopSpread()
+    {
+        // Arrête la propagation sans détruire le gaz.
+        isSpreading = false;
+    }
+
     private void Update()
     {
+        if (!isSpreading)
+            return;
+
         elapsedTime += Time.deltaTime;
 
-        float progress = Mathf.Clamp01(elapsedTime / spreadDuration);
+        float progress = spreadDuration > 0f
+            ? Mathf.Clamp01(elapsedTime / spreadDuration)
+            : 1f;
+
         CurrentRadius = Mathf.Lerp(0.5f, maxRadius, progress);
 
         UpdateRenderer();
     }
+
     private void UpdateRenderer()
     {
         if (player == null || gasEmitterPrefab == null)
@@ -60,7 +79,8 @@ public class GasSpread : MonoBehaviour
             else
             {
                 direction.Normalize();
-                emitterPosition = transform.position + direction * (CurrentRadius - emitterRadius);
+                emitterPosition = transform.position
+                    + direction * (CurrentRadius - emitterRadius);
             }
 
             if (currentEmitter == null)
@@ -68,9 +88,11 @@ public class GasSpread : MonoBehaviour
                 currentEmitter = Instantiate(
                     gasEmitterPrefab,
                     emitterPosition,
-                    Quaternion.identity);
+                    Quaternion.identity
+                );
 
-                ParticleSystem ps = currentEmitter.GetComponent<ParticleSystem>();
+                ParticleSystem ps =
+                    currentEmitter.GetComponent<ParticleSystem>();
 
                 if (ps != null)
                 {
@@ -82,23 +104,21 @@ public class GasSpread : MonoBehaviour
             currentEmitter.transform.position = Vector3.Lerp(
                 currentEmitter.transform.position,
                 emitterPosition,
-                Time.deltaTime * 8f);
+                Time.deltaTime * 8f
+            );
         }
-        else
+        else if (currentEmitter != null)
         {
-            if (currentEmitter != null)
-            {
-                Destroy(currentEmitter);
-                currentEmitter = null;
-            }
+            Destroy(currentEmitter);
+            currentEmitter = null;
         }
     }
 
     public bool IsInside(Vector3 position)
     {
-        return Vector3.Distance(transform.position, position) <= CurrentRadius;
+        return isSpreading &&
+            Vector3.Distance(transform.position, position) <= CurrentRadius;
     }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
