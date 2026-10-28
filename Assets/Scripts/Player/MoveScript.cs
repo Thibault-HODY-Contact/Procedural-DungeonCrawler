@@ -1,7 +1,5 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
-using static UnityEngine.UI.Image;
+
 
 public class MoveScript : MonoBehaviour
 {

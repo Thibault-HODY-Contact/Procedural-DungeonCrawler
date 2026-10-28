@@ -17,7 +17,7 @@ public class GenGenerator : MonoBehaviour
     [SerializeField] private float gasSpawnDelay = 5f;
 
     private Coroutine gasSpawnCoroutine;
-    private void Start()
+    private void Awake()
     {
         GameManager.Instance.genGenerator = this.gameObject;
     }
