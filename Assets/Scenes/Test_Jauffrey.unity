@@ -699,6 +699,7 @@ MonoBehaviour:
   levelPrefab: {fileID: 1406739387290585380, guid: abd76e2a91e79244ab9b1bf9e9d27e09, type: 3}
   levelCount: 2
   ladderPrefab: {fileID: 3103808955717124296, guid: 0dea271580694394a99cdd4faaff0eda, type: 3}
+  END: {fileID: 1603510736981066614, guid: 095b6cba8028c5f478084559ddda38a9, type: 3}
   levelSpacing: 8
   spawnedLevels:
   - {fileID: 0}

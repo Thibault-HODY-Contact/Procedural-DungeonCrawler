@@ -45,7 +45,9 @@ public class PauseMenu : MonoBehaviour
     public void MainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("MainMenu");
+        GameManager.Instance.hasGenerate = false;
+        GameManager.Instance.genGenerator = null;
     }
 
     public void OpenVolume()
