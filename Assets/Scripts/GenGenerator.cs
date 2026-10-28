@@ -8,6 +8,8 @@ public class GenGenerator : MonoBehaviour
     [FormerlySerializedAs("GeneratorPrefab")][SerializeField] GameObject levelPrefab;
     [FormerlySerializedAs("numberLEveles")][SerializeField] public int levelCount;
     [FormerlySerializedAs("Ladder")][SerializeField] GameObject ladderPrefab;
+    [FormerlySerializedAs("End")][SerializeField] GameObject END;
+
     [SerializeField] float levelSpacing = 15f;
     [FormerlySerializedAs("GenList")][SerializeField] List<GameObject> spawnedLevels = new List<GameObject>();
     [SerializeField] List<GameObject> spawnedLadders = new List<GameObject>();
@@ -43,8 +45,14 @@ public class GenGenerator : MonoBehaviour
             DungeonGeneratorBSP generator = spawnedLevels[i].GetComponent<DungeonGeneratorBSP>();
             if (i > 0)
                 StackOnPreviousLevel(generator, spawnedLevels[i - 1].GetComponent<DungeonGeneratorBSP>());
-
             spawnedLadders.Add(Instantiate(ladderPrefab, GetLadderPosition(generator), generator.transform.rotation));
+            if(i == levelCount-1)
+            {
+                DungeonGeneratorBSP level = spawnedLevels[i].GetComponent<DungeonGeneratorBSP>();
+                Vector3 pos = new Vector3(level.EndRoom.roomBounds.center.x, level.transform.position.y + levelSpacing, level.EndRoom.roomBounds.center.y);
+
+                Instantiate(END, pos, Quaternion.identity);
+            }
             generator.BuildRooms();
         }
         PlacePlayer();
