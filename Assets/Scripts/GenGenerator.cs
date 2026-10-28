@@ -48,12 +48,34 @@ public class GenGenerator : MonoBehaviour
             generator.BuildRooms();
         }
         PlacePlayer();
-        PlaceGasAtStart();
 
         if (gasSpawnCoroutine != null)
             StopCoroutine(gasSpawnCoroutine);
 
+        if (gasObject != null)
+            gasObject.SetActive(false);
+
+        PlaceGasAtStart();
+
         gasSpawnCoroutine = StartCoroutine(SpawnGasAfterDelay());
+    }
+    public void StopGas()
+    {
+        if (gasSpawnCoroutine != null)
+        {
+            StopCoroutine(gasSpawnCoroutine);
+            gasSpawnCoroutine = null;
+        }
+
+        if (gasObject == null)
+            return;
+
+        GasSpread spread = gasObject.GetComponent<GasSpread>();
+
+        if (spread != null)
+            spread.StopSpread();
+
+        Debug.Log("[GAZ] Propagation arrêtée à l'échelle.");
     }
     private void PlaceGasAtStart()
     {

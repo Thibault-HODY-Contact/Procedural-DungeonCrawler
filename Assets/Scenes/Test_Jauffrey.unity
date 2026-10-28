@@ -269,7 +269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3829448442209517180, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3829448442209517180, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: m_LocalPosition.y
@@ -277,7 +277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3829448442209517180, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 3829448442209517180, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: m_LocalRotation.w
@@ -697,12 +697,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GenGenerator
   levelPrefab: {fileID: 1406739387290585380, guid: abd76e2a91e79244ab9b1bf9e9d27e09, type: 3}
-  levelCount: 1
+  levelCount: 2
   ladderPrefab: {fileID: 3103808955717124296, guid: 0dea271580694394a99cdd4faaff0eda, type: 3}
   levelSpacing: 8
   spawnedLevels:
   - {fileID: 0}
+  - {fileID: 0}
   spawnedLadders:
+  - {fileID: 0}
   - {fileID: 0}
   gasObject: {fileID: 1409439200}
   player: {fileID: 964893247}
@@ -760,7 +762,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2842987761431815475, guid: b006dd95583c12d449dea1c99cecb8b7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2842987761431815475, guid: b006dd95583c12d449dea1c99cecb8b7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -768,7 +770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2842987761431815475, guid: b006dd95583c12d449dea1c99cecb8b7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 2842987761431815475, guid: b006dd95583c12d449dea1c99cecb8b7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -814,6 +816,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gaz
       objectReference: {fileID: 0}
+    - target: {fileID: 8906068597135831536, guid: b006dd95583c12d449dea1c99cecb8b7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -837,19 +843,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1921055873179481991, guid: c65a01ae56ffad74d8e1ed9ac48f2926, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1921055873179481991, guid: c65a01ae56ffad74d8e1ed9ac48f2926, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.221767
+      value: -8.221767
       objectReference: {fileID: 0}
     - target: {fileID: 2042557039359832080, guid: c65a01ae56ffad74d8e1ed9ac48f2926, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2042557039359832080, guid: c65a01ae56ffad74d8e1ed9ac48f2926, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.221767
+      value: -8.221767
       objectReference: {fileID: 0}
     - target: {fileID: 6669315111420714418, guid: c65a01ae56ffad74d8e1ed9ac48f2926, type: 3}
       propertyPath: Target.TrackingTarget

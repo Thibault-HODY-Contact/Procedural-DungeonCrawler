@@ -26,8 +26,12 @@ public class BrainPlayerScript : MonoBehaviour
         _LadderScript.Climb(_moveInput.action.ReadValue<Vector2>());
         _animator.SetFloat("Forward", _moveInput.action.ReadValue<Vector2>().y);
         _animator.SetFloat("Right", _moveInput.action.ReadValue<Vector2>().x);
-        if (_jumpInput.action.WasPressedThisFrame()) _moveScript.Jump();
+        if (_jumpInput.action.WasPressedThisFrame())
+        {
+            _moveScript.Jump();
+            _LadderScript.UnClimb();
 
+        }
        // if (_interactInput.action.WasPressedThisFrame()) _interactionScript.Interact();
 
         //if (_pauseInput.action.WasPressedThisFrame())
