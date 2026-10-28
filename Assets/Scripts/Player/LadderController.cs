@@ -62,13 +62,14 @@ public class LadderController : MonoBehaviour
                         .GetComponent<GenGenerator>();
 
                 if (generator != null)
-                    generator.StopGas();
+                    generator.RestartGasAtPlayer();
             }
 
             moveScript.CanMove = false;
             animator.SetBool("isClimbing", true);
 
             Vector3 ladderCenter = other.bounds.center;
+
             Vector3 ladderAtPlayerHeight = new Vector3(
                 ladderCenter.x,
                 _rb.position.y,
