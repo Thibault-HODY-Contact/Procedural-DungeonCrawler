@@ -244,6 +244,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1947759220994683659, guid: b7c7c450885fee846a819a448ca8b431, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947759220994683659, guid: b7c7c450885fee846a819a448ca8b431, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9065148826416531786, guid: b7c7c450885fee846a819a448ca8b431, type: 3}
       propertyPath: m_Name
       value: Ladder_Tall
@@ -371,6 +379,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 507789005408179156, guid: b7c7c450885fee846a819a448ca8b431, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947759220994683659, guid: b7c7c450885fee846a819a448ca8b431, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9065148826416531786, guid: b7c7c450885fee846a819a448ca8b431, type: 3}
