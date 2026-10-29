@@ -318,7 +318,7 @@ PrefabInstance:
     - target: {fileID: 3927648596302428927, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: _animator
       value: 
-      objectReference: {fileID: 82374366}
+      objectReference: {fileID: 17438919}
     - target: {fileID: 3927648596302428927, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: _pauseMenu
       value: 
@@ -326,7 +326,7 @@ PrefabInstance:
     - target: {fileID: 3927648596302428927, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: _pauseInput
       value: 
-      objectReference: {fileID: 5269046629061816911, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+      objectReference: {fileID: -8528131068714639860, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     - target: {fileID: 4209561026203319215, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -463,6 +463,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbc163786507a64cb1a43e0405557a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
+--- !u!95 &17438919 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2394457568491890773, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
+  m_PrefabInstance: {fileID: 17438917}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &529910869 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1784072928971092503, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
