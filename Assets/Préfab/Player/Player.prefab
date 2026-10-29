@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259495179d3fb2542836461e58407e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  viewDistance: 40
+  viewDistance: 80
   viewHeight: 3
   refreshInterval: 0.2
 --- !u!114 &6161751711777029838
