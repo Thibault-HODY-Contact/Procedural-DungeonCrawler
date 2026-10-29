@@ -7,7 +7,7 @@ public class BrainPlayerScript : MonoBehaviour
     [SerializeField] InputActionReference _moveInput;
     [SerializeField] InputActionReference _jumpInput;
     //[SerializeField] InputActionReference _interactInput;
-    //[SerializeField] InputActionReference _pauseInput;
+    [SerializeField] InputActionReference _pauseInput;
     [SerializeField] Animator _animator;
 
     [Header("Dependencies")]
@@ -17,7 +17,7 @@ public class BrainPlayerScript : MonoBehaviour
 
     //[SerializeField] InteractionScript _interactionScript;
     [SerializeField] LifeScript _lifeScript;    
-    //[SerializeField] PauseMenu _pauseMenu;
+    [SerializeField] PauseMenu _pauseMenu;
     void Update()
     {
         if (_lifeScript.Lives <= 0) return;
@@ -32,14 +32,14 @@ public class BrainPlayerScript : MonoBehaviour
             _LadderScript.UnClimb();
 
         }
-       // if (_interactInput.action.WasPressedThisFrame()) _interactionScript.Interact();
+        // if (_interactInput.action.WasPressedThisFrame()) _interactionScript.Interact();
 
-        //if (_pauseInput.action.WasPressedThisFrame())
-        //{
-        //    if (Time.timeScale == 0)
-        //        _pauseMenu.Resume();
-        //    else
-        //        _pauseMenu.Pause();
-        //}
+        if (_pauseInput.action.WasPressedThisFrame())
+        {
+            if (Time.timeScale == 0)
+                _pauseMenu.Resume();
+            else
+                _pauseMenu.Pause();
+        }
     }
 }

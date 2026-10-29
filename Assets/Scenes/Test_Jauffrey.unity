@@ -236,8 +236,12 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2928401026718944450, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928401026718944450, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.42
+      value: 0.342
       objectReference: {fileID: 0}
     - target: {fileID: 2928401026718944450, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: m_LocalRotation.w
@@ -315,6 +319,14 @@ PrefabInstance:
       propertyPath: _animator
       value: 
       objectReference: {fileID: 82374366}
+    - target: {fileID: 3927648596302428927, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
+      propertyPath: _pauseMenu
+      value: 
+      objectReference: {fileID: 7903403967787822132}
+    - target: {fileID: 3927648596302428927, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
+      propertyPath: _pauseInput
+      value: 
+      objectReference: {fileID: 5269046629061816911, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     - target: {fileID: 4209561026203319215, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -345,7 +357,7 @@ PrefabInstance:
       objectReference: {fileID: 82374366}
     - target: {fileID: 4672759536099181022, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: _rotationSpeed
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4915825373008319225, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: m_Layer
@@ -453,7 +465,7 @@ PrefabInstance:
       objectReference: {fileID: 964893247}
     - target: {fileID: 7709393835620569022, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: m_Range
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7709393835620569022, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: m_Color.b
@@ -473,7 +485,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7709393835620569022, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: m_Intensity
-      value: 80
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 7709393835620569022, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: m_SpotAngle
@@ -493,6 +505,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7709393835620569022, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709393835620569022, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
+      propertyPath: m_ColorTemperature
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709393835620569022, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
+      propertyPath: m_UseColorTemperature
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7742652369680190536, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
@@ -874,6 +894,10 @@ PrefabInstance:
       propertyPath: spreadDuration
       value: 110
       objectReference: {fileID: 0}
+    - target: {fileID: 6519574758664520061, guid: b006dd95583c12d449dea1c99cecb8b7, type: 3}
+      propertyPath: playerRenderRadius
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 8906068597135831536, guid: b006dd95583c12d449dea1c99cecb8b7, type: 3}
       propertyPath: m_Name
       value: Gaz
@@ -1072,6 +1096,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f67e5d7f4f4add42b8b062bcf79e8bd, type: 3}
+--- !u!114 &7903403967787822132 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9091699414940432495, guid: 6f67e5d7f4f4add42b8b062bcf79e8bd, type: 3}
+  m_PrefabInstance: {fileID: 7903403967787822131}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5cb4d4e9b938741ab98c2d428fb6d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
