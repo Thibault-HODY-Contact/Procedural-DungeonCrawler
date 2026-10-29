@@ -6,6 +6,9 @@ public class BrainPlayerScript : MonoBehaviour
     [Header("Inputs")]
     [SerializeField] InputActionReference _moveInput;
     [SerializeField] InputActionReference _jumpInput;
+    [SerializeField] InputActionReference _selectFirstSlotInput;
+    [SerializeField] InputActionReference _selectSecondSlotInput;
+    [SerializeField] InputActionReference _useItemInput;
     //[SerializeField] InputActionReference _interactInput;
     //[SerializeField] InputActionReference _pauseInput;
     [SerializeField] Animator _animator;
@@ -16,6 +19,7 @@ public class BrainPlayerScript : MonoBehaviour
     [SerializeField] LadderController _LadderScript;
 
     //[SerializeField] InteractionScript _interactionScript;
+    [SerializeField] Inventory _inventory;
     [SerializeField] LifeScript _lifeScript;    
     //[SerializeField] PauseMenu _pauseMenu;
     void Update()
@@ -32,7 +36,10 @@ public class BrainPlayerScript : MonoBehaviour
             _LadderScript.UnClimb();
 
         }
-       // if (_interactInput.action.WasPressedThisFrame()) _interactionScript.Interact();
+        if (_selectFirstSlotInput.action.WasPressedThisFrame()) _inventory.Select(0);
+        if (_selectSecondSlotInput.action.WasPressedThisFrame()) _inventory.Select(1);
+        if (_useItemInput.action.WasPressedThisFrame()) _inventory.UseSelected();
+        // if (_interactInput.action.WasPressedThisFrame()) _interactionScript.Interact();
 
         //if (_pauseInput.action.WasPressedThisFrame())
         //{

@@ -103,7 +103,17 @@ public class LifeScript : MonoBehaviour, IDamageable
             Die();
         }
     }
+    public bool Heal(int healAmount)
+    {
+        if (_currentHealth <= 0 || _currentHealth >= _maxHealth)
+            return false;
 
+        _currentHealth = Mathf.Min(_maxHealth, _currentHealth + healAmount);
+        _lives = Mathf.CeilToInt((float)_currentHealth / damagePerHeart);
+
+        OnHeal?.Invoke();
+        return true;
+    }
     public void SetBlocking(bool blocking)
     {
         _isBlocking = blocking;

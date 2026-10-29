@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 7385112330338468836}
   - component: {fileID: 7668672959037886740}
   - component: {fileID: 6989096370927059104}
+  - component: {fileID: 6161751711777029838}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -241,6 +242,18 @@ MonoBehaviour:
   viewDistance: 40
   viewHeight: 3
   refreshInterval: 0.2
+--- !u!114 &6161751711777029838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5423941178783386710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acbc163786507a64cb1a43e0405557a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Inventory
 --- !u!1 &6121597500040015289
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,9 +530,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   _moveInput: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _jumpInput: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _selectFirstSlotInput: {fileID: 5035309422064476162, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _selectSecondSlotInput: {fileID: 5819737904998334370, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _useItemInput: {fileID: 3477924513781227146, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _animator: {fileID: 2394457568491890773}
   _moveScript: {fileID: 4672759536099181022}
   _LadderScript: {fileID: 5479592597503620933}
+  _inventory: {fileID: 6161751711777029838}
   _lifeScript: {fileID: 7668672959037886740}
 --- !u!1001 &3445872318427797268
 PrefabInstance:

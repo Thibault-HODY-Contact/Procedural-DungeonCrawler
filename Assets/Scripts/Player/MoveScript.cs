@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections;
 
 public class MoveScript : MonoBehaviour
 {
@@ -21,6 +21,8 @@ public class MoveScript : MonoBehaviour
     }
 
     private Vector3 _moveDirection;
+    private float _speedMultiplier = 1f;
+    private Coroutine _speedBoostRoutine;
 
     void Reset()
     {
@@ -64,7 +66,7 @@ public class MoveScript : MonoBehaviour
         {
             Vector3 movement = _moveDirection.normalized * _speed * Time.fixedDeltaTime;
 
-            horizontal = _moveDirection.normalized * _speed;
+            horizontal = _moveDirection.normalized * _speed * _speedMultiplier;
 
             Quaternion targetRotation = Quaternion.LookRotation(_moveDirection);
 
@@ -82,7 +84,21 @@ public class MoveScript : MonoBehaviour
 
 
     }
+    public void BoostSpeed(float multiplier, float duration)
+    {
+        if (_speedBoostRoutine != null)
+            StopCoroutine(_speedBoostRoutine);
 
+        _speedBoostRoutine = StartCoroutine(SpeedBoost(multiplier, duration));
+    }
+
+    IEnumerator SpeedBoost(float multiplier, float duration)
+    {
+        _speedMultiplier = multiplier;
+        yield return new WaitForSeconds(duration);
+        _speedMultiplier = 1f;
+        _speedBoostRoutine = null;
+    }
     public void Jump()
     {
         if (!_canMove)

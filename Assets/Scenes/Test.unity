@@ -392,6 +392,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3130123008780245497, guid: 6f67e5d7f4f4add42b8b062bcf79e8bd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9643f0623db2a7d4c9ef8ca6eeadaf02, type: 3}
+    - target: {fileID: 3784913075080032162, guid: 6f67e5d7f4f4add42b8b062bcf79e8bd, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -170
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248234711939781747, guid: 6f67e5d7f4f4add42b8b062bcf79e8bd, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974869117917103165, guid: 6f67e5d7f4f4add42b8b062bcf79e8bd, type: 3}
+      propertyPath: _inventory
+      value: 
+      objectReference: {fileID: 1569150972}
     - target: {fileID: 7664594997799188483, guid: 6f67e5d7f4f4add42b8b062bcf79e8bd, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -492,6 +508,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8868704461278998693, guid: 6f67e5d7f4f4add42b8b062bcf79e8bd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9643f0623db2a7d4c9ef8ca6eeadaf02, type: 3}
     - target: {fileID: 9104856862202147031, guid: 6f67e5d7f4f4add42b8b062bcf79e8bd, type: 3}
       propertyPath: m_UiScaleMode
       value: 1
@@ -758,6 +778,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e0029f118cc4e428c41082748d7e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!114 &1569150972 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6161751711777029838, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
+  m_PrefabInstance: {fileID: 1569150968}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acbc163786507a64cb1a43e0405557a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Inventory
 --- !u!1 &1773709261
 GameObject:
   m_ObjectHideFlags: 0
