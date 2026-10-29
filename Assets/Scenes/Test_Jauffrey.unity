@@ -14,17 +14,17 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.109
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.01886791, g: 0.01860091, b: 0.01860091, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0.3
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 0}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -171,14 +171,38 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 7820522662622257826}
+    - target: {fileID: 4672759536099181022, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
+      propertyPath: _rotationSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5423941178783386710, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6989096370927059104, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7668672959037886740, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
       propertyPath: gas
       value: 
       objectReference: {fileID: 4981231381931850043}
+    - target: {fileID: 7709393835620569022, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
+      propertyPath: m_Range
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709393835620569022, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
+      propertyPath: m_Intensity
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709393835620569022, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
+      propertyPath: m_SpotAngle
+      value: 75.76848
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709393835620569022, guid: 54a10d6f0f698284c880fe49124f2770, type: 3}
+      propertyPath: m_InnerSpotAngle
+      value: 61.724136
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
