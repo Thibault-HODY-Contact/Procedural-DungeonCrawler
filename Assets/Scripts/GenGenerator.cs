@@ -82,8 +82,6 @@ public class GenGenerator : MonoBehaviour
 
         if (spread != null)
             spread.StopSpread();
-
-        Debug.Log("[GAZ] Propagation arrêtée à l'échelle.");
     }
     private void PlaceGasAtStart()
     {

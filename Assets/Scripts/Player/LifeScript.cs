@@ -13,6 +13,7 @@ public class LifeScript : MonoBehaviour, IDamageable
     [SerializeField] private int _lives = 3;
     [SerializeField] private int damagePerHeart = 10;
 
+    private bool hasDied = false;
     private int _maxLives;
     private int _currentHealth;
     private int _maxHealth;
@@ -81,6 +82,21 @@ public class LifeScript : MonoBehaviour, IDamageable
             gasDamageTimer = 0f;
         }
         _animator.SetInteger("vies", _lives);
+
+        if (!hasDied && _currentHealth <= 0)
+        {
+            hasDied = true;
+        }
+
+        if (hasDied)
+        {
+            AnimatorStateInfo state = _animator.GetCurrentAnimatorStateInfo(0);
+
+            if (state.IsName("death") && state.normalizedTime >= 1f)
+            {
+                SceneManager.LoadScene(2);
+            }
+        }
     }
     public void TakeDamage(int damageAmount)
     {

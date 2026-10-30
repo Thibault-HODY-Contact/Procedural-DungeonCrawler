@@ -9,9 +9,6 @@ public class LadderController : MonoBehaviour
     [SerializeField] float _offsetTowardLadder = 0.2f;
     [SerializeField] GameObject player;
 
-    [Header("Gaz")]
-    [SerializeField] private GasSpread gasSpread;
-
     private RigidbodyConstraints _baseConstraints;
     private float _climbInput;
 
