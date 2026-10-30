@@ -18,5 +18,7 @@ public class ChangeScene : MonoBehaviour
     public void ChangeScenes(string name)
     {
         SceneManager.LoadScene(name);
+        GameManager.Instance.hasGenerate = false;
+        GameManager.Instance.genGenerator = null;
     }
 }
