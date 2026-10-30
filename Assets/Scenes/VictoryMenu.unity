@@ -26363,6 +26363,10 @@ PrefabInstance:
       value: Victory
       objectReference: {fileID: 0}
     - target: {fileID: 1458471612013188318, guid: e826e984f09ad564e9f2d7b5cc346ab0, type: 3}
+      propertyPath: m_margin.z
+      value: 7.27773
+      objectReference: {fileID: 0}
+    - target: {fileID: 1458471612013188318, guid: e826e984f09ad564e9f2d7b5cc346ab0, type: 3}
       propertyPath: m_fontColor.a
       value: 0.6862745
       objectReference: {fileID: 0}
@@ -26396,7 +26400,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6741334307143453581, guid: e826e984f09ad564e9f2d7b5cc346ab0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.55
+      value: -12.268
       objectReference: {fileID: 0}
     - target: {fileID: 6741334307143453581, guid: e826e984f09ad564e9f2d7b5cc346ab0, type: 3}
       propertyPath: m_LocalRotation.w
