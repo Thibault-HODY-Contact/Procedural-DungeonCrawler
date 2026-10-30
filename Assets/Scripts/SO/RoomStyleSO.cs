@@ -1,40 +1,27 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Serialization;
 
-[CreateAssetMenu(fileName="RoomStyle", menuName = "Dungeon/Room Style")]
+[CreateAssetMenu(fileName = "RoomStyle", menuName = "Dungeon/Room Style")]
 public class RoomStyleSO : ScriptableObject
 {
-    [Header("Identity")]
-    public string styleId = "Normal";
-    public Color gizmoColor = Color.white;
+    [Header("Génération")]
+    [FormerlySerializedAs("Weight")] public float weight = 10;
+    [FormerlySerializedAs("AllowAsStartRoom")] public bool canBeStartRoom;
+    [FormerlySerializedAs("AllowAsEndRoom")] public bool canBeEndRoom;
 
-    [Header("Transform")]
-     public int minX= 6;
-     public int minY = 6;
-     public int maxX = 12;
-     public int maxY  = 12;
-     public Vector2 center;
+    [Header("Salle")]
+    [FormerlySerializedAs("roomFloorPrefab")] public GameObject floorPrefab;
+    [FormerlySerializedAs("RoofPrefab")] public GameObject roofPrefab;
+    [FormerlySerializedAs("FloorHatchPrefab")] public GameObject floorHatchPrefab;
+    [FormerlySerializedAs("RoofHatchPrefab")] public GameObject roofHatchPrefab;
+    [FormerlySerializedAs("WallsPrefabsList")] public List<RoomWalls> wallPieces;
+    [FormerlySerializedAs("PropsRules")] public List<PropRuleSO> propRules;
+    [FormerlySerializedAs("FloorProps")] public List<GameObject> floorProps;
 
-
-    [Header("Generation")]
-    public float Weight = 10;
-    public bool AllowAsStartRoom;
-    public bool AllowAsEndRoom;
-
-    [Header("Prefabs")]
-    public GameObject roomFloorPrefab;
-    public GameObject CorridorFloorPrefab;
-    public List<RoomWalls> WallsPrefabsList;
-    public GameObject CorridorPrefab;
-    public GameObject CorridorCornerRightPrefab;
-    public GameObject CorridorCornerLeftPrefab;
-
-    [Header("Props")]
-    public List<GameObject> FloorProps;
-    private RoomStyleSO roomStyleSO;
-
-    public RoomStyleSO(RoomStyleSO roomStyleSO)
-    {
-        this.roomStyleSO = roomStyleSO;
-    }
+    [Header("Couloirs")]
+    [FormerlySerializedAs("CorridorPrefab")] public GameObject corridorPrefab;
+    [FormerlySerializedAs("CorridorCornerRightPrefab")] public GameObject corridorCornerPrefab;
+    [FormerlySerializedAs("CorridorFloorPrefab")] public GameObject corridorFloorPrefab;
+    public GameObject corridorEntrancePrefab;
 }

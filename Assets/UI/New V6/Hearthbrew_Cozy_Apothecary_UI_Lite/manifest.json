@@ -1,0 +1,5714 @@
+{
+ "conventions": {
+  "border_order": "l,t,r,b in pixels of that scale (nine_slice_1x / nine_slice_2x)",
+  "fill": "stretch = stretch edges and centre; tile = repeat edges and centre; tile_x / tile_y = repeat on that axis; fixed = never resize",
+  "filtering": "smooth (bilinear) filtering; these are rendered sprites, not pixel art",
+  "geometry": "*_2x / *_1x are pixels at that scale; fill_rect_* and content_rect_* are x,y,width,height; trough_* is x0,y0,x1,y1; min_host_* is minimum host width,height; attachment rect_* is reference x,y,width,height on the native host; resized hosts use center + signed offset_* and fixed size_* when scale_with_host=false",
+  "hotspot": "hotspot_* is the click pixel (x,y from the top-left) at that scale; hotspot_1x is the 1x pixel that holds the 2x hotspot pixel, floor(hotspot_2x / 2)",
+  "resize_axes": "x = horizontal only; y = vertical only; xy = both; none = fixed. Unlisted axes use native size_* at the requested scale regardless of requested host size. Sliced default xy, fixed default none; min_host_* applies on resizable axes and cannot exceed native size on fixed axes.",
+  "text": "no baked text; draw labels with your own font"
+ },
+ "counts": {
+  "by_category": {
+   "bar": 4,
+   "button": 11,
+   "cursors": 2,
+   "dividers": 1,
+   "hud": 1,
+   "icon_button": 11,
+   "icons": 48,
+   "panels": 8,
+   "slider": 7,
+   "slot": 10,
+   "tab": 5,
+   "toggle": 18
+  },
+  "chrome": 78,
+  "families": 53,
+  "files_per_scale": 126,
+  "headline": 102,
+  "icons_disabled": 24,
+  "icons_normal": 24,
+  "interface_families": 29
+ },
+ "families": [
+  {
+   "family": "panel_window_main_9s",
+   "files": [
+    "panel_window_main_9s"
+   ],
+   "group": "Windows and panels"
+  },
+  {
+   "family": "panel_panel_parchment_9s",
+   "files": [
+    "panel_panel_parchment_9s"
+   ],
+   "group": "Windows and panels"
+  },
+  {
+   "family": "panel_panel_inset_9s",
+   "files": [
+    "panel_panel_inset_9s"
+   ],
+   "group": "Windows and panels"
+  },
+  {
+   "family": "panel_title_plate_9s",
+   "files": [
+    "panel_title_plate_9s"
+   ],
+   "group": "Windows and panels"
+  },
+  {
+   "family": "panel_list_row_9s",
+   "files": [
+    "panel_list_row_9s_normal",
+    "panel_list_row_9s_hover",
+    "panel_list_row_9s_selected"
+   ],
+   "group": "Windows and panels"
+  },
+  {
+   "family": "panel_tooltip_9s",
+   "files": [
+    "panel_tooltip_9s"
+   ],
+   "group": "Windows and panels"
+  },
+  {
+   "family": "divider_rule_oak",
+   "files": [
+    "divider_rule_oak"
+   ],
+   "group": "Windows and panels"
+  },
+  {
+   "family": "btn_primary_md",
+   "files": [
+    "btn_primary_md_normal",
+    "btn_primary_md_hover",
+    "btn_primary_md_pressed",
+    "btn_primary_md_selected",
+    "btn_primary_md_focus",
+    "btn_primary_md_disabled"
+   ],
+   "group": "Buttons"
+  },
+  {
+   "family": "btn_primary_sm",
+   "files": [
+    "btn_primary_sm_normal",
+    "btn_primary_sm_hover",
+    "btn_primary_sm_pressed",
+    "btn_primary_sm_focus",
+    "btn_primary_sm_disabled"
+   ],
+   "group": "Buttons"
+  },
+  {
+   "family": "ibtn_close_md",
+   "files": [
+    "ibtn_close_md_normal",
+    "ibtn_close_md_hover",
+    "ibtn_close_md_pressed",
+    "ibtn_close_md_focus",
+    "ibtn_close_md_disabled"
+   ],
+   "group": "Buttons"
+  },
+  {
+   "family": "ibtn_square_md",
+   "files": [
+    "ibtn_square_md_normal",
+    "ibtn_square_md_hover",
+    "ibtn_square_md_pressed",
+    "ibtn_square_md_selected",
+    "ibtn_square_md_focus",
+    "ibtn_square_md_disabled"
+   ],
+   "group": "Buttons"
+  },
+  {
+   "family": "toggle_checkbox_off",
+   "files": [
+    "toggle_checkbox_off_normal",
+    "toggle_checkbox_off_hover",
+    "toggle_checkbox_off_pressed",
+    "toggle_checkbox_off_focus",
+    "toggle_checkbox_off_disabled"
+   ],
+   "group": "Controls"
+  },
+  {
+   "family": "toggle_checkbox_on",
+   "files": [
+    "toggle_checkbox_on_normal",
+    "toggle_checkbox_on_hover",
+    "toggle_checkbox_on_pressed",
+    "toggle_checkbox_on_focus",
+    "toggle_checkbox_on_disabled"
+   ],
+   "group": "Controls"
+  },
+  {
+   "family": "toggle_switch_off",
+   "files": [
+    "toggle_switch_off_normal",
+    "toggle_switch_off_hover",
+    "toggle_switch_off_focus",
+    "toggle_switch_off_disabled"
+   ],
+   "group": "Controls"
+  },
+  {
+   "family": "toggle_switch_on",
+   "files": [
+    "toggle_switch_on_normal",
+    "toggle_switch_on_hover",
+    "toggle_switch_on_focus",
+    "toggle_switch_on_disabled"
+   ],
+   "group": "Controls"
+  },
+  {
+   "family": "slider_track_h_9s",
+   "files": [
+    "slider_track_h_9s"
+   ],
+   "group": "Controls"
+  },
+  {
+   "family": "slider_fill_h_sage",
+   "files": [
+    "slider_fill_h_sage"
+   ],
+   "group": "Controls"
+  },
+  {
+   "family": "slider_handle",
+   "files": [
+    "slider_handle_normal",
+    "slider_handle_hover",
+    "slider_handle_pressed",
+    "slider_handle_focus",
+    "slider_handle_disabled"
+   ],
+   "group": "Controls"
+  },
+  {
+   "family": "tab_top",
+   "files": [
+    "tab_top_normal",
+    "tab_top_hover",
+    "tab_top_selected",
+    "tab_top_focus",
+    "tab_top_disabled"
+   ],
+   "group": "Controls"
+  },
+  {
+   "family": "bar_frame_md_9s",
+   "files": [
+    "bar_frame_md_9s"
+   ],
+   "group": "Bars, slots and HUD"
+  },
+  {
+   "family": "bar_fill_health",
+   "files": [
+    "bar_fill_health"
+   ],
+   "group": "Bars, slots and HUD"
+  },
+  {
+   "family": "bar_fill_mana",
+   "files": [
+    "bar_fill_mana"
+   ],
+   "group": "Bars, slots and HUD"
+  },
+  {
+   "family": "bar_fill_stamina",
+   "files": [
+    "bar_fill_stamina"
+   ],
+   "group": "Bars, slots and HUD"
+  },
+  {
+   "family": "slot_square_md",
+   "files": [
+    "slot_square_md_normal",
+    "slot_square_md_hover",
+    "slot_square_md_selected",
+    "slot_square_md_focus",
+    "slot_square_md_disabled",
+    "slot_square_md_empty",
+    "slot_square_md_drag_over",
+    "slot_square_md_locked"
+   ],
+   "group": "Bars, slots and HUD"
+  },
+  {
+   "family": "slot_lock_overlay",
+   "files": [
+    "slot_lock_overlay"
+   ],
+   "group": "Bars, slots and HUD"
+  },
+  {
+   "family": "slot_qty_badge_9s",
+   "files": [
+    "slot_qty_badge_9s"
+   ],
+   "group": "Bars, slots and HUD"
+  },
+  {
+   "family": "hud_coin_purse_plate_9s",
+   "files": [
+    "hud_coin_purse_plate_9s"
+   ],
+   "group": "Bars, slots and HUD"
+  },
+  {
+   "family": "cursor_arrow",
+   "files": [
+    "cursor_arrow"
+   ],
+   "group": "Cursors"
+  },
+  {
+   "family": "cursor_hand_point",
+   "files": [
+    "cursor_hand_point"
+   ],
+   "group": "Cursors"
+  },
+  {
+   "family": "shop_coin_gold",
+   "files": [
+    "shop_coin_gold",
+    "shop_coin_gold_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "status_vital_health",
+   "files": [
+    "status_vital_health",
+    "status_vital_health_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "potion_health_small",
+   "files": [
+    "potion_health_small",
+    "potion_health_small_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "potion_mana_small",
+   "files": [
+    "potion_mana_small",
+    "potion_mana_small_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "herb_sage_leaf",
+   "files": [
+    "herb_sage_leaf",
+    "herb_sage_leaf_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "shop_key",
+   "files": [
+    "shop_key",
+    "shop_key_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "shop_chest_small",
+   "files": [
+    "shop_chest_small",
+    "shop_chest_small_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "shop_reputation_star",
+   "files": [
+    "shop_reputation_star",
+    "shop_reputation_star_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "tool_cauldron",
+   "files": [
+    "tool_cauldron",
+    "tool_cauldron_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "tool_mortar_pestle",
+   "files": [
+    "tool_mortar_pestle",
+    "tool_mortar_pestle_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "ui_inventory_bag",
+   "files": [
+    "ui_inventory_bag",
+    "ui_inventory_bag_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "quest_scroll",
+   "files": [
+    "quest_scroll",
+    "quest_scroll_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "ui_map",
+   "files": [
+    "ui_map",
+    "ui_map_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "ui_settings",
+   "files": [
+    "ui_settings",
+    "ui_settings_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "ui_volume_on",
+   "files": [
+    "ui_volume_on",
+    "ui_volume_on_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "ui_volume_off",
+   "files": [
+    "ui_volume_off",
+    "ui_volume_off_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "ui_play",
+   "files": [
+    "ui_play",
+    "ui_play_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "ui_pause",
+   "files": [
+    "ui_pause",
+    "ui_pause_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "nav_arrow_left",
+   "files": [
+    "nav_arrow_left",
+    "nav_arrow_left_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "nav_arrow_right",
+   "files": [
+    "nav_arrow_right",
+    "nav_arrow_right_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "ui_info",
+   "files": [
+    "ui_info",
+    "ui_info_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "ui_close",
+   "files": [
+    "ui_close",
+    "ui_close_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "ui_check",
+   "files": [
+    "ui_check",
+    "ui_check_disabled"
+   ],
+   "group": "Icons"
+  },
+  {
+   "family": "ui_menu",
+   "files": [
+    "ui_menu",
+    "ui_menu_disabled"
+   ],
+   "group": "Icons"
+  }
+ ],
+ "fonts": [
+  {
+   "file": "fonts/Fraunces[SOFT,WONK,opsz,wght].ttf",
+   "license": "SIL OFL 1.1",
+   "name": "Fraunces",
+   "use": "titles, buttons"
+  },
+  {
+   "file": "fonts/Andika-*.ttf",
+   "license": "SIL OFL 1.1",
+   "name": "Andika",
+   "use": "body text, numbers"
+  }
+ ],
+ "full_pack": {
+  "adds": [
+   "658 icons in 13 sets (cooking food, creatures, herbs flowers, home decor, ingredients, navigation, potions bottles, quests social, shop economy, skills, status, tools crafting, ui system), each with a disabled version; the Lite has 24",
+   "more text-button styles: secondary, hero, buy, danger, outline and pill, plus a wide size",
+   "round and large square icon buttons, and minus and plus steppers",
+   "dark and ornate windows, a dialogue box with a name plate, a popup, toasts, a journal page, a recipe-book spread, notes, shelf planks, header bands and choice rows",
+   "text, number, search and dropdown fields, radio buttons, scroll bars, a vertical slider and bookmark tabs",
+   "small, large, vertical and ornate bar frames, XP, brewing and warning fills, potion-bottle bars, a cauldron meter, radial meters, pips and relationship hearts",
+   "hotbar and shelf slots, rarity frames, ingredient and result slots",
+   "recipe, item and request cards, price tags, shop fixtures, a calendar, a clock with a season wheel, skill-tree nodes, map markers, key prompts, a quest tracker, speech bubbles and a tool wheel",
+   "banners and ribbons, copper corners, hinges, herb sprigs and other ornaments, portrait and picture frames, more dividers",
+   "12 cursors with hotspots (the Lite has 2), an 8-frame loading animation, 10 effect frames and 6 backgrounds",
+   "13 example screens with layout files, catalog.html, catalog.json and contact sheets per category",
+   "the full LLM_GUIDE.md that lists every sprite"
+  ],
+  "chrome": 488,
+  "files_per_scale": 1804,
+  "headline": 1146,
+  "icon_sets": 13,
+  "icons_disabled": 658,
+  "icons_normal": 658,
+  "name": "Cozy Apothecary UI Kit – Hearthbrew",
+  "price": "$4.99",
+  "scales": [
+   "1x",
+   "2x"
+  ],
+  "screens": 13,
+  "store": "itch.io"
+ },
+ "pack": "Cozy Apothecary UI Kit – Hearthbrew (Lite)",
+ "palette": {
+  "amber": {
+   "hex": "#F2B347",
+   "role": "INTERACTION STATE ONLY: hover edge, focus ring, selected mark, active slot. Subject material inside an item icon (honey, flame) may use it; document it (cf. Tidecrown D-11)"
+  },
+  "common": {
+   "hex": "#958A7C",
+   "role": "common tier: stone grey"
+  },
+  "copper": {
+   "hex": "#AF6B3B",
+   "role": "corner caps, hinges, rivets, bar end caps, button end caps"
+  },
+  "copper_light": {
+   "hex": "#D7935F",
+   "role": "copper top-left highlight; never a fill"
+  },
+  "cream": {
+   "hex": "#F3E6CC",
+   "role": "text and glyphs on wood and dark grounds"
+  },
+  "danger": {
+   "hex": "#82261E",
+   "role": "danger buttons, errors, negative deltas (health family, one step darker; different context)"
+  },
+  "epic": {
+   "hex": "#1F625D",
+   "role": "epic tier: deep bottle teal (no purple in this pack)"
+  },
+  "ground": {
+   "hex": "#2F2016",
+   "role": "darkest ground: menu backdrops, HUD plates, frame outer shadow, behind-UI scenes"
+  },
+  "health": {
+   "hex": "#9E3428",
+   "role": "health bar fill, vitality hearts AND relationship hearts (a separate rosehip affection hue merged with success and copper under deuteranopia, so the heart shape is the cue; D-08)"
+  },
+  "ink": {
+   "hex": "#2E1D10",
+   "role": "text and glyphs on parchment; the gentle ink outline of the pieces"
+  },
+  "legendary": {
+   "hex": "#E2601C",
+   "role": "legendary tier: saffron orange, redder, lighter and more saturated than copper"
+  },
+  "mana": {
+   "hex": "#34668F",
+   "role": "mana / magic bar fill, info notices"
+  },
+  "mythic": {
+   "hex": "#F3E6CC",
+   "role": "mythic tier: cream inlay with a copper keyline"
+  },
+  "oak": {
+   "hex": "#7A4F2E",
+   "role": "frame wood: every window, panel and button frame rail"
+  },
+  "oak_light": {
+   "hex": "#A2754A",
+   "role": "top-left bevel highlight on oak, grain lights"
+  },
+  "parchment": {
+   "hex": "#E5CDA7",
+   "role": "panel and card interiors, title caps, active tab face, tooltips"
+  },
+  "parchment_shade": {
+   "hex": "#C6AA83",
+   "role": "inset wells and empty slots on parchment, pressed parchment"
+  },
+  "rare": {
+   "hex": "#4C82BC",
+   "role": "rare tier: cornflower blue"
+  },
+  "sage": {
+   "hex": "#6D7855",
+   "role": "primary / confirm button body, herb motif leaves on caps"
+  },
+  "slate": {
+   "hex": "#3A3028",
+   "role": "chalkboard sign field (host chalk text in cream); not a ground or trough"
+  },
+  "stamina": {
+   "hex": "#A9C46A",
+   "role": "stamina / energy bar fill (light leaf green; separated from health by value)"
+  },
+  "success": {
+   "hex": "#7FA650",
+   "role": "success toasts, check marks, positive deltas, 'ready' (brew done)"
+  },
+  "uncommon": {
+   "hex": "#6E9A48",
+   "role": "uncommon tier: leaf green"
+  },
+  "walnut": {
+   "hex": "#543620",
+   "role": "dark wood: inactive tabs, header bands, wells on wood, frame inner shadow"
+  },
+  "warning": {
+   "hex": "#D98321",
+   "role": "warning toasts and marks (marigold; darker than amber by value; shape cue: triangle). Shares a family with legendary on purpose: different contexts (toast vs rarity frame)"
+  },
+  "xp": {
+   "hex": "#5FA39B",
+   "role": "experience / progress bar fill (sea-glass bottle teal)"
+  }
+ },
+ "scales": {
+  "1x": {
+   "folder": "1x",
+   "target_screen": [
+    1920,
+    1080
+   ]
+  },
+  "2x": {
+   "folder": "2x",
+   "target_screen": [
+    3840,
+    2160
+   ]
+  }
+ },
+ "sprites": [
+  {
+   "category": "panels",
+   "family": "panels",
+   "fill": "stretch",
+   "id": "panel_window_main_9s",
+   "lite_family": "panel_window_main_9s",
+   "lite_group": "Windows and panels",
+   "min_host_1x": [
+    600.0,
+    430.0
+   ],
+   "min_host_2x": [
+    1200,
+    860
+   ],
+   "nine_slice_1x": {
+    "b": 64,
+    "l": 64,
+    "r": 64,
+    "t": 64
+   },
+   "nine_slice_2x": {
+    "b": 128,
+    "l": 128,
+    "r": 128,
+    "t": 128
+   },
+   "path": "panels/panel_window_main_9s.png",
+   "resize_axes": "xy",
+   "size_1x": [
+    686,
+    453
+   ],
+   "size_2x": [
+    1372,
+    906
+   ],
+   "sliced": true,
+   "state": "normal",
+   "use_when": "main window (shop, brewing, inventory); minimum host 1200x860 at 2x / 600x430 at 1x; reject smaller widths or heights; resize rails and parchment only within this contract"
+  },
+  {
+   "category": "panels",
+   "content_rect_1x": [
+    20.0,
+    20.0,
+    280.0,
+    200.0
+   ],
+   "content_rect_2x": [
+    40,
+    40,
+    560,
+    400
+   ],
+   "family": "panels",
+   "fill": "tile",
+   "id": "panel_panel_parchment_9s",
+   "lite_family": "panel_panel_parchment_9s",
+   "lite_group": "Windows and panels",
+   "min_host_1x": [
+    160.0,
+    120.0
+   ],
+   "min_host_2x": [
+    320,
+    240
+   ],
+   "nine_slice_1x": {
+    "b": 20,
+    "l": 20,
+    "r": 20,
+    "t": 20
+   },
+   "nine_slice_2x": {
+    "b": 40,
+    "l": 40,
+    "r": 40,
+    "t": 40
+   },
+   "path": "panels/panel_panel_parchment_9s.png",
+   "resize_axes": "xy",
+   "size_1x": [
+    320,
+    240
+   ],
+   "size_2x": [
+    640,
+    480
+   ],
+   "sliced": true,
+   "state": "normal",
+   "use_when": "frameless parchment with a soft deckled edge; native 640x480 at2x / 320x240 at1x; resize_axes xy; minimum 320x240 at2x / 160x120 at1x; reject smaller or unsupported fixed-axis sizes; tile periodic deckled rails and quiet parchment center; never stretch contour or grain"
+  },
+  {
+   "category": "panels",
+   "content_rect_1x": [
+    32.0,
+    32.0,
+    176.0,
+    112.0
+   ],
+   "content_rect_2x": [
+    64,
+    64,
+    352,
+    224
+   ],
+   "family": "panels",
+   "fill": "stretch",
+   "id": "panel_panel_inset_9s",
+   "lite_family": "panel_panel_inset_9s",
+   "lite_group": "Windows and panels",
+   "min_host_1x": [
+    180.0,
+    136.0
+   ],
+   "min_host_2x": [
+    360,
+    272
+   ],
+   "nine_slice_1x": {
+    "b": 48,
+    "l": 48,
+    "r": 48,
+    "t": 48
+   },
+   "nine_slice_2x": {
+    "b": 96,
+    "l": 96,
+    "r": 96,
+    "t": 96
+   },
+   "path": "panels/panel_panel_inset_9s.png",
+   "resize_axes": "xy",
+   "size_1x": [
+    240,
+    176
+   ],
+   "size_2x": [
+    480,
+    352
+   ],
+   "sliced": true,
+   "state": "normal",
+   "use_when": "parchment_shade well, inner shadow; resize_axes xy, reject hosts below minimum or differing on fixed axes; native(480, 352) at2x /(240, 176) at1x; real host text/icon alpha inside content_rect; no baked text; stretch rails and well between fixed textured corners/caps (do not tile)",
+   "variant": "panel_inset_9s"
+  },
+  {
+   "category": "panels",
+   "content_rect_1x": [
+    20.0,
+    16.0,
+    88.0,
+    24.0
+   ],
+   "content_rect_2x": [
+    40,
+    32,
+    176,
+    48
+   ],
+   "family": "panels",
+   "fill": "tile_x",
+   "id": "panel_title_plate_9s",
+   "lite_family": "panel_title_plate_9s",
+   "lite_group": "Windows and panels",
+   "min_host_1x": [
+    128.0,
+    56.0
+   ],
+   "min_host_2x": [
+    256,
+    112
+   ],
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 24,
+    "r": 24,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 48,
+    "r": 48,
+    "t": 0
+   },
+   "path": "panels/panel_title_plate_9s.png",
+   "resize_axes": "x",
+   "size_1x": [
+    128,
+    56
+   ],
+   "size_2x": [
+    256,
+    112
+   ],
+   "sliced": true,
+   "state": "normal",
+   "use_when": "parchment title cap with copper studs; resize_axes x, reject hosts below minimum or differing on fixed axes; native(256, 112) at2x /(128, 56) at1x; real host text/icon alpha inside content_rect; no baked text; tile quiet rails at native brush scale, full textured corners/caps fixed",
+   "variant": "title_plate_9s"
+  },
+  {
+   "category": "panels",
+   "content_rect_1x": [
+    32.0,
+    14.0,
+    108.0,
+    28.0
+   ],
+   "content_rect_2x": [
+    64,
+    28,
+    216,
+    56
+   ],
+   "family": "panels",
+   "fill": "tile_x",
+   "id": "panel_list_row_9s_normal",
+   "lite_family": "panel_list_row_9s",
+   "lite_group": "Windows and panels",
+   "min_host_1x": [
+    160.0,
+    56.0
+   ],
+   "min_host_2x": [
+    320,
+    112
+   ],
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 24,
+    "r": 24,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 48,
+    "r": 48,
+    "t": 0
+   },
+   "path": "panels/panel_list_row_9s_normal.png",
+   "resize_axes": "x",
+   "size_1x": [
+    160,
+    56
+   ],
+   "size_2x": [
+    320,
+    112
+   ],
+   "sliced": true,
+   "state": "normal",
+   "use_when": "list / table row; resize_axes x, reject hosts below minimum or differing on fixed axes; native(320, 112) at2x /(160, 56) at1x; real host text/icon alpha inside content_rect; no baked text; tile quiet rails at native brush scale, full textured corners/caps fixed",
+   "variant": "list_row_9s"
+  },
+  {
+   "category": "panels",
+   "content_rect_1x": [
+    32.0,
+    14.0,
+    108.0,
+    28.0
+   ],
+   "content_rect_2x": [
+    64,
+    28,
+    216,
+    56
+   ],
+   "family": "panels",
+   "fill": "tile_x",
+   "id": "panel_list_row_9s_hover",
+   "lite_family": "panel_list_row_9s",
+   "lite_group": "Windows and panels",
+   "min_host_1x": [
+    160.0,
+    56.0
+   ],
+   "min_host_2x": [
+    320,
+    112
+   ],
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 24,
+    "r": 24,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 48,
+    "r": 48,
+    "t": 0
+   },
+   "path": "panels/panel_list_row_9s_hover.png",
+   "resize_axes": "x",
+   "size_1x": [
+    160,
+    56
+   ],
+   "size_2x": [
+    320,
+    112
+   ],
+   "sliced": true,
+   "state": "hover",
+   "use_when": "list / table row; resize_axes x, reject hosts below minimum or differing on fixed axes; native(320, 112) at2x /(160, 56) at1x; real host text/icon alpha inside content_rect; no baked text; tile quiet rails at native brush scale, full textured corners/caps fixed",
+   "variant": "list_row_9s"
+  },
+  {
+   "category": "panels",
+   "content_rect_1x": [
+    32.0,
+    14.0,
+    108.0,
+    28.0
+   ],
+   "content_rect_2x": [
+    64,
+    28,
+    216,
+    56
+   ],
+   "family": "panels",
+   "fill": "tile_x",
+   "id": "panel_list_row_9s_selected",
+   "lite_family": "panel_list_row_9s",
+   "lite_group": "Windows and panels",
+   "min_host_1x": [
+    160.0,
+    56.0
+   ],
+   "min_host_2x": [
+    320,
+    112
+   ],
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 24,
+    "r": 24,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 48,
+    "r": 48,
+    "t": 0
+   },
+   "path": "panels/panel_list_row_9s_selected.png",
+   "resize_axes": "x",
+   "size_1x": [
+    160,
+    56
+   ],
+   "size_2x": [
+    320,
+    112
+   ],
+   "sliced": true,
+   "state": "selected",
+   "use_when": "list / table row; resize_axes x, reject hosts below minimum or differing on fixed axes; native(320, 112) at2x /(160, 56) at1x; real host text/icon alpha inside content_rect; no baked text; tile quiet rails at native brush scale, full textured corners/caps fixed",
+   "variant": "list_row_9s"
+  },
+  {
+   "category": "panels",
+   "content_rect_1x": [
+    16.0,
+    14.0,
+    168.0,
+    56.0
+   ],
+   "content_rect_2x": [
+    32,
+    28,
+    336,
+    112
+   ],
+   "family": "panels",
+   "fill": "tile",
+   "id": "panel_tooltip_9s",
+   "lite_family": "panel_tooltip_9s",
+   "lite_group": "Windows and panels",
+   "min_host_1x": [
+    140.0,
+    72.0
+   ],
+   "min_host_2x": [
+    280,
+    144
+   ],
+   "nine_slice_1x": {
+    "b": 20,
+    "l": 20,
+    "r": 20,
+    "t": 20
+   },
+   "nine_slice_2x": {
+    "b": 40,
+    "l": 40,
+    "r": 40,
+    "t": 40
+   },
+   "path": "panels/panel_tooltip_9s.png",
+   "resize_axes": "xy",
+   "size_1x": [
+    200,
+    88
+   ],
+   "size_2x": [
+    400,
+    176
+   ],
+   "sliced": true,
+   "state": "normal",
+   "use_when": "small parchment card, drop shadow (floating); native 400x176 at2x / 200x88 at1x; resize_axes xy; minimum 280x144 at2x / 140x72 at1x; reject smaller or unsupported fixed-axis sizes; tile periodic deckled rails and quiet parchment center; never stretch contour or grain"
+  },
+  {
+   "alpha_bounds_2x": [
+    0,
+    1,
+    192,
+    20
+   ],
+   "category": "dividers",
+   "family": "dividers",
+   "fill": "tile_x",
+   "fill_rect_1x": [
+    11.0,
+    0.0,
+    74.0,
+    10.0
+   ],
+   "fill_rect_2x": [
+    22,
+    0,
+    148,
+    20
+   ],
+   "id": "divider_rule_oak",
+   "lite_family": "divider_rule_oak",
+   "lite_group": "Windows and panels",
+   "min_host_1x": [
+    22.0,
+    10.0
+   ],
+   "min_host_2x": [
+    44,
+    20
+   ],
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 11,
+    "r": 11,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 22,
+    "r": 22,
+    "t": 0
+   },
+   "notes": "3-slice (not whole-file tileable): 22 px copper ferrule caps on each end, the 148 px middle band repeats on x with 0 seam step (periodic by construction, proven in verify). Edges (ink, highlight, shade, ink) are the slot rail's native rows; grain is the approved window rail wood colour-matched to the slot rail. Height fixed at 20.",
+   "path": "dividers/divider_rule_oak.png",
+   "resize_axes": "x",
+   "size_1x": [
+    96,
+    10
+   ],
+   "size_2x": [
+    192,
+    20
+   ],
+   "sliced": true,
+   "state": "normal",
+   "tile_mode": "3-slice, middle band tiles on x",
+   "tile_period_x": 148,
+   "use_when": "thin horizontal oak rule with copper end ferrules; stretch the 148 px middle band by tiling it",
+   "variant": "rule_oak"
+  },
+  {
+   "category": "button",
+   "content_rect_1x": [
+    28.0,
+    11.0,
+    104.0,
+    39.0
+   ],
+   "content_rect_2x": [
+    56,
+    22,
+    208,
+    78
+   ],
+   "family": "button",
+   "fill": "stretch",
+   "id": "btn_primary_md_normal",
+   "lite_family": "btn_primary_md",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    160.0,
+    60.0
+   ],
+   "min_host_2x": [
+    320,
+    120
+   ],
+   "nine_slice_1x": {
+    "b": 13,
+    "l": 28,
+    "r": 28,
+    "t": 13
+   },
+   "nine_slice_2x": {
+    "b": 25,
+    "l": 56,
+    "r": 56,
+    "t": 26
+   },
+   "path": "button/btn_primary_md_normal.png",
+   "resize_axes": "x",
+   "size_1x": [
+    160,
+    60
+   ],
+   "size_2x": [
+    320,
+    120
+   ],
+   "sliced": true,
+   "state": "normal",
+   "use_when": "main action of a dialog (Brew, Buy, Use); horizontal resize only; minimum width 320 at 2x / 160 at 1x; fixed native height 120 at 2x / 60 at 1x; reject smaller widths or any other height"
+  },
+  {
+   "category": "button",
+   "content_rect_1x": [
+    28.0,
+    11.0,
+    104.0,
+    39.0
+   ],
+   "content_rect_2x": [
+    56,
+    22,
+    208,
+    78
+   ],
+   "family": "button",
+   "fill": "stretch",
+   "id": "btn_primary_md_hover",
+   "lite_family": "btn_primary_md",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    160.0,
+    60.0
+   ],
+   "min_host_2x": [
+    320,
+    120
+   ],
+   "nine_slice_1x": {
+    "b": 13,
+    "l": 28,
+    "r": 28,
+    "t": 13
+   },
+   "nine_slice_2x": {
+    "b": 25,
+    "l": 56,
+    "r": 56,
+    "t": 26
+   },
+   "path": "button/btn_primary_md_hover.png",
+   "resize_axes": "x",
+   "size_1x": [
+    160,
+    60
+   ],
+   "size_2x": [
+    320,
+    120
+   ],
+   "sliced": true,
+   "state": "hover",
+   "use_when": "main action of a dialog (Brew, Buy, Use); horizontal resize only; minimum width 320 at 2x / 160 at 1x; fixed native height 120 at 2x / 60 at 1x; reject smaller widths or any other height"
+  },
+  {
+   "category": "button",
+   "content_rect_1x": [
+    28.0,
+    11.0,
+    104.0,
+    39.0
+   ],
+   "content_rect_2x": [
+    56,
+    22,
+    208,
+    78
+   ],
+   "family": "button",
+   "fill": "stretch",
+   "id": "btn_primary_md_pressed",
+   "lite_family": "btn_primary_md",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    160.0,
+    60.0
+   ],
+   "min_host_2x": [
+    320,
+    120
+   ],
+   "nine_slice_1x": {
+    "b": 13,
+    "l": 28,
+    "r": 28,
+    "t": 13
+   },
+   "nine_slice_2x": {
+    "b": 25,
+    "l": 56,
+    "r": 56,
+    "t": 26
+   },
+   "path": "button/btn_primary_md_pressed.png",
+   "resize_axes": "x",
+   "size_1x": [
+    160,
+    60
+   ],
+   "size_2x": [
+    320,
+    120
+   ],
+   "sliced": true,
+   "state": "pressed",
+   "use_when": "main action of a dialog (Brew, Buy, Use); horizontal resize only; minimum width 320 at 2x / 160 at 1x; fixed native height 120 at 2x / 60 at 1x; reject smaller widths or any other height"
+  },
+  {
+   "category": "button",
+   "content_rect_1x": [
+    28.0,
+    11.0,
+    104.0,
+    39.0
+   ],
+   "content_rect_2x": [
+    56,
+    22,
+    208,
+    78
+   ],
+   "family": "button",
+   "fill": "stretch",
+   "id": "btn_primary_md_selected",
+   "lite_family": "btn_primary_md",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    160.0,
+    60.0
+   ],
+   "min_host_2x": [
+    320,
+    120
+   ],
+   "nine_slice_1x": {
+    "b": 13,
+    "l": 28,
+    "r": 28,
+    "t": 13
+   },
+   "nine_slice_2x": {
+    "b": 25,
+    "l": 56,
+    "r": 56,
+    "t": 26
+   },
+   "path": "button/btn_primary_md_selected.png",
+   "resize_axes": "x",
+   "size_1x": [
+    160,
+    60
+   ],
+   "size_2x": [
+    320,
+    120
+   ],
+   "sliced": true,
+   "state": "selected",
+   "use_when": "main action of a dialog (Brew, Buy, Use); horizontal resize only; minimum width 320 at 2x / 160 at 1x; fixed native height 120 at 2x / 60 at 1x; reject smaller widths or any other height"
+  },
+  {
+   "category": "button",
+   "content_rect_1x": [
+    28.0,
+    11.0,
+    104.0,
+    39.0
+   ],
+   "content_rect_2x": [
+    56,
+    22,
+    208,
+    78
+   ],
+   "family": "button",
+   "fill": "stretch",
+   "id": "btn_primary_md_focus",
+   "lite_family": "btn_primary_md",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    160.0,
+    60.0
+   ],
+   "min_host_2x": [
+    320,
+    120
+   ],
+   "nine_slice_1x": {
+    "b": 13,
+    "l": 28,
+    "r": 28,
+    "t": 13
+   },
+   "nine_slice_2x": {
+    "b": 25,
+    "l": 56,
+    "r": 56,
+    "t": 26
+   },
+   "path": "button/btn_primary_md_focus.png",
+   "resize_axes": "x",
+   "size_1x": [
+    160,
+    60
+   ],
+   "size_2x": [
+    320,
+    120
+   ],
+   "sliced": true,
+   "state": "focus",
+   "use_when": "main action of a dialog (Brew, Buy, Use); horizontal resize only; minimum width 320 at 2x / 160 at 1x; fixed native height 120 at 2x / 60 at 1x; reject smaller widths or any other height"
+  },
+  {
+   "category": "button",
+   "content_rect_1x": [
+    28.0,
+    11.0,
+    104.0,
+    39.0
+   ],
+   "content_rect_2x": [
+    56,
+    22,
+    208,
+    78
+   ],
+   "family": "button",
+   "fill": "stretch",
+   "id": "btn_primary_md_disabled",
+   "lite_family": "btn_primary_md",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    160.0,
+    60.0
+   ],
+   "min_host_2x": [
+    320,
+    120
+   ],
+   "nine_slice_1x": {
+    "b": 13,
+    "l": 28,
+    "r": 28,
+    "t": 13
+   },
+   "nine_slice_2x": {
+    "b": 25,
+    "l": 56,
+    "r": 56,
+    "t": 26
+   },
+   "path": "button/btn_primary_md_disabled.png",
+   "resize_axes": "x",
+   "size_1x": [
+    160,
+    60
+   ],
+   "size_2x": [
+    320,
+    120
+   ],
+   "sliced": true,
+   "state": "disabled",
+   "use_when": "main action of a dialog (Brew, Buy, Use); horizontal resize only; minimum width 320 at 2x / 160 at 1x; fixed native height 120 at 2x / 60 at 1x; reject smaller widths or any other height"
+  },
+  {
+   "category": "button",
+   "content_rect_1x": [
+    26.0,
+    10.0,
+    60.0,
+    28.0
+   ],
+   "content_rect_2x": [
+    52,
+    20,
+    120,
+    56
+   ],
+   "family": "button",
+   "fill": "stretch",
+   "id": "btn_primary_sm_normal",
+   "lite_family": "btn_primary_sm",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    112.0,
+    48.0
+   ],
+   "min_host_2x": [
+    224,
+    96
+   ],
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 26,
+    "r": 26,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 52,
+    "r": 52,
+    "t": 0
+   },
+   "path": "button/btn_primary_sm_normal.png",
+   "resize_axes": "x",
+   "size_1x": [
+    112,
+    48
+   ],
+   "size_2x": [
+    224,
+    96
+   ],
+   "sliced": true,
+   "state": "normal",
+   "use_when": "sage, 2x 224x96; horizontal resize only; native/minimum 224x96 at2x / 112x48 at1x; reject smaller widths or non-native heights; fit live text inside content_rect; fixed cap region includes complete copper silhouette, bevel and shadow; stretch quiet center/rails only"
+  },
+  {
+   "category": "button",
+   "content_rect_1x": [
+    26.0,
+    10.0,
+    60.0,
+    28.0
+   ],
+   "content_rect_2x": [
+    52,
+    20,
+    120,
+    56
+   ],
+   "family": "button",
+   "fill": "stretch",
+   "id": "btn_primary_sm_hover",
+   "lite_family": "btn_primary_sm",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    112.0,
+    48.0
+   ],
+   "min_host_2x": [
+    224,
+    96
+   ],
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 26,
+    "r": 26,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 52,
+    "r": 52,
+    "t": 0
+   },
+   "path": "button/btn_primary_sm_hover.png",
+   "resize_axes": "x",
+   "size_1x": [
+    112,
+    48
+   ],
+   "size_2x": [
+    224,
+    96
+   ],
+   "sliced": true,
+   "state": "hover",
+   "use_when": "sage, 2x 224x96; horizontal resize only; native/minimum 224x96 at2x / 112x48 at1x; reject smaller widths or non-native heights; fit live text inside content_rect; fixed cap region includes complete copper silhouette, bevel and shadow; stretch quiet center/rails only"
+  },
+  {
+   "category": "button",
+   "content_rect_1x": [
+    26.0,
+    10.0,
+    60.0,
+    28.0
+   ],
+   "content_rect_2x": [
+    52,
+    20,
+    120,
+    56
+   ],
+   "family": "button",
+   "fill": "stretch",
+   "id": "btn_primary_sm_pressed",
+   "lite_family": "btn_primary_sm",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    112.0,
+    48.0
+   ],
+   "min_host_2x": [
+    224,
+    96
+   ],
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 26,
+    "r": 26,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 52,
+    "r": 52,
+    "t": 0
+   },
+   "path": "button/btn_primary_sm_pressed.png",
+   "resize_axes": "x",
+   "size_1x": [
+    112,
+    48
+   ],
+   "size_2x": [
+    224,
+    96
+   ],
+   "sliced": true,
+   "state": "pressed",
+   "use_when": "sage, 2x 224x96; horizontal resize only; native/minimum 224x96 at2x / 112x48 at1x; reject smaller widths or non-native heights; fit live text inside content_rect; fixed cap region includes complete copper silhouette, bevel and shadow; stretch quiet center/rails only"
+  },
+  {
+   "category": "button",
+   "content_rect_1x": [
+    26.0,
+    10.0,
+    60.0,
+    28.0
+   ],
+   "content_rect_2x": [
+    52,
+    20,
+    120,
+    56
+   ],
+   "family": "button",
+   "fill": "stretch",
+   "id": "btn_primary_sm_focus",
+   "lite_family": "btn_primary_sm",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    112.0,
+    48.0
+   ],
+   "min_host_2x": [
+    224,
+    96
+   ],
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 26,
+    "r": 26,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 52,
+    "r": 52,
+    "t": 0
+   },
+   "path": "button/btn_primary_sm_focus.png",
+   "resize_axes": "x",
+   "size_1x": [
+    112,
+    48
+   ],
+   "size_2x": [
+    224,
+    96
+   ],
+   "sliced": true,
+   "state": "focus",
+   "use_when": "sage, 2x 224x96; horizontal resize only; native/minimum 224x96 at2x / 112x48 at1x; reject smaller widths or non-native heights; fit live text inside content_rect; fixed cap region includes complete copper silhouette, bevel and shadow; stretch quiet center/rails only"
+  },
+  {
+   "category": "button",
+   "content_rect_1x": [
+    26.0,
+    10.0,
+    60.0,
+    28.0
+   ],
+   "content_rect_2x": [
+    52,
+    20,
+    120,
+    56
+   ],
+   "family": "button",
+   "fill": "stretch",
+   "id": "btn_primary_sm_disabled",
+   "lite_family": "btn_primary_sm",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    112.0,
+    48.0
+   ],
+   "min_host_2x": [
+    224,
+    96
+   ],
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 26,
+    "r": 26,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 52,
+    "r": 52,
+    "t": 0
+   },
+   "path": "button/btn_primary_sm_disabled.png",
+   "resize_axes": "x",
+   "size_1x": [
+    112,
+    48
+   ],
+   "size_2x": [
+    224,
+    96
+   ],
+   "sliced": true,
+   "state": "disabled",
+   "use_when": "sage, 2x 224x96; horizontal resize only; native/minimum 224x96 at2x / 112x48 at1x; reject smaller widths or non-native heights; fit live text inside content_rect; fixed cap region includes complete copper silhouette, bevel and shadow; stretch quiet center/rails only"
+  },
+  {
+   "category": "icon_button",
+   "content_rect_1x": [
+    12.0,
+    12.0,
+    24.0,
+    24.0
+   ],
+   "content_rect_2x": [
+    24,
+    24,
+    48,
+    48
+   ],
+   "family": "icon_button",
+   "fill": "fixed",
+   "id": "ibtn_close_md_normal",
+   "lite_family": "ibtn_close_md",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    48.0,
+    48.0
+   ],
+   "min_host_2x": [
+    96,
+    96
+   ],
+   "path": "icon_button/ibtn_close_md_normal.png",
+   "resize_axes": "none",
+   "size_1x": [
+    48,
+    48
+   ],
+   "size_2x": [
+    96,
+    96
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "window close, copper boss with ink x; fixed native 96x96 at2x / 48x48 at1x; reject other sizes; code-built ink x included; content_rect bounds visible nontransparent ink"
+  },
+  {
+   "category": "icon_button",
+   "content_rect_1x": [
+    12.0,
+    12.0,
+    24.0,
+    24.0
+   ],
+   "content_rect_2x": [
+    24,
+    24,
+    48,
+    48
+   ],
+   "family": "icon_button",
+   "fill": "fixed",
+   "id": "ibtn_close_md_hover",
+   "lite_family": "ibtn_close_md",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    48.0,
+    48.0
+   ],
+   "min_host_2x": [
+    96,
+    96
+   ],
+   "path": "icon_button/ibtn_close_md_hover.png",
+   "resize_axes": "none",
+   "size_1x": [
+    48,
+    48
+   ],
+   "size_2x": [
+    96,
+    96
+   ],
+   "sliced": false,
+   "state": "hover",
+   "use_when": "window close, copper boss with ink x; fixed native 96x96 at2x / 48x48 at1x; reject other sizes; code-built ink x included; content_rect bounds visible nontransparent ink"
+  },
+  {
+   "category": "icon_button",
+   "content_rect_1x": [
+    12.0,
+    12.0,
+    24.0,
+    24.0
+   ],
+   "content_rect_2x": [
+    24,
+    24,
+    48,
+    48
+   ],
+   "family": "icon_button",
+   "fill": "fixed",
+   "id": "ibtn_close_md_pressed",
+   "lite_family": "ibtn_close_md",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    48.0,
+    48.0
+   ],
+   "min_host_2x": [
+    96,
+    96
+   ],
+   "path": "icon_button/ibtn_close_md_pressed.png",
+   "resize_axes": "none",
+   "size_1x": [
+    48,
+    48
+   ],
+   "size_2x": [
+    96,
+    96
+   ],
+   "sliced": false,
+   "state": "pressed",
+   "use_when": "window close, copper boss with ink x; fixed native 96x96 at2x / 48x48 at1x; reject other sizes; code-built ink x included; content_rect bounds visible nontransparent ink"
+  },
+  {
+   "category": "icon_button",
+   "content_rect_1x": [
+    12.0,
+    12.0,
+    24.0,
+    24.0
+   ],
+   "content_rect_2x": [
+    24,
+    24,
+    48,
+    48
+   ],
+   "family": "icon_button",
+   "fill": "fixed",
+   "id": "ibtn_close_md_focus",
+   "lite_family": "ibtn_close_md",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    48.0,
+    48.0
+   ],
+   "min_host_2x": [
+    96,
+    96
+   ],
+   "path": "icon_button/ibtn_close_md_focus.png",
+   "resize_axes": "none",
+   "size_1x": [
+    48,
+    48
+   ],
+   "size_2x": [
+    96,
+    96
+   ],
+   "sliced": false,
+   "state": "focus",
+   "use_when": "window close, copper boss with ink x; fixed native 96x96 at2x / 48x48 at1x; reject other sizes; code-built ink x included; content_rect bounds visible nontransparent ink"
+  },
+  {
+   "category": "icon_button",
+   "content_rect_1x": [
+    12.0,
+    12.0,
+    24.0,
+    24.0
+   ],
+   "content_rect_2x": [
+    24,
+    24,
+    48,
+    48
+   ],
+   "family": "icon_button",
+   "fill": "fixed",
+   "id": "ibtn_close_md_disabled",
+   "lite_family": "ibtn_close_md",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    48.0,
+    48.0
+   ],
+   "min_host_2x": [
+    96,
+    96
+   ],
+   "path": "icon_button/ibtn_close_md_disabled.png",
+   "resize_axes": "none",
+   "size_1x": [
+    48,
+    48
+   ],
+   "size_2x": [
+    96,
+    96
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "window close, copper boss with ink x; fixed native 96x96 at2x / 48x48 at1x; reject other sizes; code-built ink x included; content_rect bounds visible nontransparent ink"
+  },
+  {
+   "category": "icon_button",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    32.0,
+    32.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    64,
+    64
+   ],
+   "family": "icon_button",
+   "fill": "fixed",
+   "id": "ibtn_square_md_normal",
+   "lite_family": "ibtn_square_md",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    48.0,
+    48.0
+   ],
+   "min_host_2x": [
+    96,
+    96
+   ],
+   "path": "icon_button/ibtn_square_md_normal.png",
+   "resize_axes": "none",
+   "size_1x": [
+    48,
+    48
+   ],
+   "size_2x": [
+    96,
+    96
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "oak square, 2x 96, parchment face; icon at ~3:4; fixed native control 96x96 at 2x / 48x48 at 1x; reject other sizes; center a fixed icon canvas 72x72 at 2x / 36x36 at 1x, ratio 3:4 to the full control; for icon-button hosts, content_rect constrains visible nontransparent ink, not the canvas; transparent canvas padding may extend beyond content_rect; keep all alpha>0 ink inside the well in every state, including the 2px/1px downward pressed offset"
+  },
+  {
+   "category": "icon_button",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    32.0,
+    32.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    64,
+    64
+   ],
+   "family": "icon_button",
+   "fill": "fixed",
+   "id": "ibtn_square_md_hover",
+   "lite_family": "ibtn_square_md",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    48.0,
+    48.0
+   ],
+   "min_host_2x": [
+    96,
+    96
+   ],
+   "path": "icon_button/ibtn_square_md_hover.png",
+   "resize_axes": "none",
+   "size_1x": [
+    48,
+    48
+   ],
+   "size_2x": [
+    96,
+    96
+   ],
+   "sliced": false,
+   "state": "hover",
+   "use_when": "oak square, 2x 96, parchment face; icon at ~3:4; fixed native control 96x96 at 2x / 48x48 at 1x; reject other sizes; center a fixed icon canvas 72x72 at 2x / 36x36 at 1x, ratio 3:4 to the full control; for icon-button hosts, content_rect constrains visible nontransparent ink, not the canvas; transparent canvas padding may extend beyond content_rect; keep all alpha>0 ink inside the well in every state, including the 2px/1px downward pressed offset"
+  },
+  {
+   "category": "icon_button",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    32.0,
+    32.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    64,
+    64
+   ],
+   "family": "icon_button",
+   "fill": "fixed",
+   "id": "ibtn_square_md_pressed",
+   "lite_family": "ibtn_square_md",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    48.0,
+    48.0
+   ],
+   "min_host_2x": [
+    96,
+    96
+   ],
+   "path": "icon_button/ibtn_square_md_pressed.png",
+   "resize_axes": "none",
+   "size_1x": [
+    48,
+    48
+   ],
+   "size_2x": [
+    96,
+    96
+   ],
+   "sliced": false,
+   "state": "pressed",
+   "use_when": "oak square, 2x 96, parchment face; icon at ~3:4; fixed native control 96x96 at 2x / 48x48 at 1x; reject other sizes; center a fixed icon canvas 72x72 at 2x / 36x36 at 1x, ratio 3:4 to the full control; for icon-button hosts, content_rect constrains visible nontransparent ink, not the canvas; transparent canvas padding may extend beyond content_rect; keep all alpha>0 ink inside the well in every state, including the 2px/1px downward pressed offset"
+  },
+  {
+   "category": "icon_button",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    32.0,
+    32.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    64,
+    64
+   ],
+   "family": "icon_button",
+   "fill": "fixed",
+   "id": "ibtn_square_md_selected",
+   "lite_family": "ibtn_square_md",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    48.0,
+    48.0
+   ],
+   "min_host_2x": [
+    96,
+    96
+   ],
+   "path": "icon_button/ibtn_square_md_selected.png",
+   "resize_axes": "none",
+   "size_1x": [
+    48,
+    48
+   ],
+   "size_2x": [
+    96,
+    96
+   ],
+   "sliced": false,
+   "state": "selected",
+   "use_when": "oak square, 2x 96, parchment face; icon at ~3:4; fixed native control 96x96 at 2x / 48x48 at 1x; reject other sizes; center a fixed icon canvas 72x72 at 2x / 36x36 at 1x, ratio 3:4 to the full control; for icon-button hosts, content_rect constrains visible nontransparent ink, not the canvas; transparent canvas padding may extend beyond content_rect; keep all alpha>0 ink inside the well in every state, including the 2px/1px downward pressed offset"
+  },
+  {
+   "category": "icon_button",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    32.0,
+    32.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    64,
+    64
+   ],
+   "family": "icon_button",
+   "fill": "fixed",
+   "id": "ibtn_square_md_focus",
+   "lite_family": "ibtn_square_md",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    48.0,
+    48.0
+   ],
+   "min_host_2x": [
+    96,
+    96
+   ],
+   "path": "icon_button/ibtn_square_md_focus.png",
+   "resize_axes": "none",
+   "size_1x": [
+    48,
+    48
+   ],
+   "size_2x": [
+    96,
+    96
+   ],
+   "sliced": false,
+   "state": "focus",
+   "use_when": "oak square, 2x 96, parchment face; icon at ~3:4; fixed native control 96x96 at 2x / 48x48 at 1x; reject other sizes; center a fixed icon canvas 72x72 at 2x / 36x36 at 1x, ratio 3:4 to the full control; for icon-button hosts, content_rect constrains visible nontransparent ink, not the canvas; transparent canvas padding may extend beyond content_rect; keep all alpha>0 ink inside the well in every state, including the 2px/1px downward pressed offset"
+  },
+  {
+   "category": "icon_button",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    32.0,
+    32.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    64,
+    64
+   ],
+   "family": "icon_button",
+   "fill": "fixed",
+   "id": "ibtn_square_md_disabled",
+   "lite_family": "ibtn_square_md",
+   "lite_group": "Buttons",
+   "min_host_1x": [
+    48.0,
+    48.0
+   ],
+   "min_host_2x": [
+    96,
+    96
+   ],
+   "path": "icon_button/ibtn_square_md_disabled.png",
+   "resize_axes": "none",
+   "size_1x": [
+    48,
+    48
+   ],
+   "size_2x": [
+    96,
+    96
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "oak square, 2x 96, parchment face; icon at ~3:4; fixed native control 96x96 at 2x / 48x48 at 1x; reject other sizes; center a fixed icon canvas 72x72 at 2x / 36x36 at 1x, ratio 3:4 to the full control; for icon-button hosts, content_rect constrains visible nontransparent ink, not the canvas; transparent canvas padding may extend beyond content_rect; keep all alpha>0 ink inside the well in every state, including the 2px/1px downward pressed offset"
+  },
+  {
+   "alpha_bounds_2x": [
+    8,
+    8,
+    56,
+    56
+   ],
+   "category": "toggle",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    16.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    32,
+    32
+   ],
+   "family": "toggles",
+   "fill": "fixed",
+   "group": "toggle",
+   "id": "toggle_checkbox_off_normal",
+   "lite_family": "toggle_checkbox_off",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    32.0,
+    32.0
+   ],
+   "min_host_2x": [
+    64,
+    64
+   ],
+   "path": "toggle/toggle_checkbox_off_normal.png",
+   "pressed_offset_2x": [
+    0,
+    0
+   ],
+   "resize_axes": "none",
+   "size_1x": [
+    32,
+    32
+   ],
+   "size_2x": [
+    64,
+    64
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "checkbox_off normal; fixed native size; minimum 64x64 at 2x; 1x exactly half; no baked text",
+   "variant": "checkbox_off"
+  },
+  {
+   "alpha_bounds_2x": [
+    8,
+    8,
+    56,
+    56
+   ],
+   "category": "toggle",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    16.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    32,
+    32
+   ],
+   "family": "toggles",
+   "fill": "fixed",
+   "group": "toggle",
+   "id": "toggle_checkbox_off_hover",
+   "lite_family": "toggle_checkbox_off",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    32.0,
+    32.0
+   ],
+   "min_host_2x": [
+    64,
+    64
+   ],
+   "path": "toggle/toggle_checkbox_off_hover.png",
+   "pressed_offset_2x": [
+    0,
+    0
+   ],
+   "resize_axes": "none",
+   "size_1x": [
+    32,
+    32
+   ],
+   "size_2x": [
+    64,
+    64
+   ],
+   "sliced": false,
+   "state": "hover",
+   "use_when": "checkbox_off hover; fixed native size; minimum 64x64 at 2x; 1x exactly half; no baked text",
+   "variant": "checkbox_off"
+  },
+  {
+   "alpha_bounds_2x": [
+    8,
+    10,
+    56,
+    58
+   ],
+   "category": "toggle",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    16.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    32,
+    32
+   ],
+   "family": "toggles",
+   "fill": "fixed",
+   "group": "toggle",
+   "id": "toggle_checkbox_off_pressed",
+   "lite_family": "toggle_checkbox_off",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    32.0,
+    32.0
+   ],
+   "min_host_2x": [
+    64,
+    64
+   ],
+   "path": "toggle/toggle_checkbox_off_pressed.png",
+   "pressed_offset_2x": [
+    0,
+    2
+   ],
+   "resize_axes": "none",
+   "size_1x": [
+    32,
+    32
+   ],
+   "size_2x": [
+    64,
+    64
+   ],
+   "sliced": false,
+   "state": "pressed",
+   "use_when": "checkbox_off pressed; fixed native size; minimum 64x64 at 2x; 1x exactly half; no baked text",
+   "variant": "checkbox_off"
+  },
+  {
+   "alpha_bounds_2x": [
+    4,
+    4,
+    60,
+    60
+   ],
+   "category": "toggle",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    16.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    32,
+    32
+   ],
+   "family": "toggles",
+   "fill": "fixed",
+   "group": "toggle",
+   "id": "toggle_checkbox_off_focus",
+   "lite_family": "toggle_checkbox_off",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    32.0,
+    32.0
+   ],
+   "min_host_2x": [
+    64,
+    64
+   ],
+   "path": "toggle/toggle_checkbox_off_focus.png",
+   "pressed_offset_2x": [
+    0,
+    0
+   ],
+   "resize_axes": "none",
+   "size_1x": [
+    32,
+    32
+   ],
+   "size_2x": [
+    64,
+    64
+   ],
+   "sliced": false,
+   "state": "focus",
+   "use_when": "checkbox_off focus; fixed native size; minimum 64x64 at 2x; 1x exactly half; no baked text",
+   "variant": "checkbox_off"
+  },
+  {
+   "alpha_bounds_2x": [
+    8,
+    8,
+    56,
+    56
+   ],
+   "category": "toggle",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    16.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    32,
+    32
+   ],
+   "family": "toggles",
+   "fill": "fixed",
+   "group": "toggle",
+   "id": "toggle_checkbox_off_disabled",
+   "lite_family": "toggle_checkbox_off",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    32.0,
+    32.0
+   ],
+   "min_host_2x": [
+    64,
+    64
+   ],
+   "path": "toggle/toggle_checkbox_off_disabled.png",
+   "pressed_offset_2x": [
+    0,
+    0
+   ],
+   "resize_axes": "none",
+   "size_1x": [
+    32,
+    32
+   ],
+   "size_2x": [
+    64,
+    64
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "checkbox_off disabled; fixed native size; minimum 64x64 at 2x; 1x exactly half; no baked text",
+   "variant": "checkbox_off"
+  },
+  {
+   "alpha_bounds_2x": [
+    8,
+    8,
+    56,
+    56
+   ],
+   "category": "toggle",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    16.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    32,
+    32
+   ],
+   "family": "toggles",
+   "fill": "fixed",
+   "group": "toggle",
+   "id": "toggle_checkbox_on_normal",
+   "lite_family": "toggle_checkbox_on",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    32.0,
+    32.0
+   ],
+   "min_host_2x": [
+    64,
+    64
+   ],
+   "path": "toggle/toggle_checkbox_on_normal.png",
+   "pressed_offset_2x": [
+    0,
+    0
+   ],
+   "resize_axes": "none",
+   "size_1x": [
+    32,
+    32
+   ],
+   "size_2x": [
+    64,
+    64
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "checkbox_on normal; fixed native size; minimum 64x64 at 2x; 1x exactly half; no baked text",
+   "variant": "checkbox_on"
+  },
+  {
+   "alpha_bounds_2x": [
+    8,
+    8,
+    56,
+    56
+   ],
+   "category": "toggle",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    16.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    32,
+    32
+   ],
+   "family": "toggles",
+   "fill": "fixed",
+   "group": "toggle",
+   "id": "toggle_checkbox_on_hover",
+   "lite_family": "toggle_checkbox_on",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    32.0,
+    32.0
+   ],
+   "min_host_2x": [
+    64,
+    64
+   ],
+   "path": "toggle/toggle_checkbox_on_hover.png",
+   "pressed_offset_2x": [
+    0,
+    0
+   ],
+   "resize_axes": "none",
+   "size_1x": [
+    32,
+    32
+   ],
+   "size_2x": [
+    64,
+    64
+   ],
+   "sliced": false,
+   "state": "hover",
+   "use_when": "checkbox_on hover; fixed native size; minimum 64x64 at 2x; 1x exactly half; no baked text",
+   "variant": "checkbox_on"
+  },
+  {
+   "alpha_bounds_2x": [
+    8,
+    10,
+    56,
+    58
+   ],
+   "category": "toggle",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    16.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    32,
+    32
+   ],
+   "family": "toggles",
+   "fill": "fixed",
+   "group": "toggle",
+   "id": "toggle_checkbox_on_pressed",
+   "lite_family": "toggle_checkbox_on",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    32.0,
+    32.0
+   ],
+   "min_host_2x": [
+    64,
+    64
+   ],
+   "path": "toggle/toggle_checkbox_on_pressed.png",
+   "pressed_offset_2x": [
+    0,
+    2
+   ],
+   "resize_axes": "none",
+   "size_1x": [
+    32,
+    32
+   ],
+   "size_2x": [
+    64,
+    64
+   ],
+   "sliced": false,
+   "state": "pressed",
+   "use_when": "checkbox_on pressed; fixed native size; minimum 64x64 at 2x; 1x exactly half; no baked text",
+   "variant": "checkbox_on"
+  },
+  {
+   "alpha_bounds_2x": [
+    4,
+    4,
+    60,
+    60
+   ],
+   "category": "toggle",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    16.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    32,
+    32
+   ],
+   "family": "toggles",
+   "fill": "fixed",
+   "group": "toggle",
+   "id": "toggle_checkbox_on_focus",
+   "lite_family": "toggle_checkbox_on",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    32.0,
+    32.0
+   ],
+   "min_host_2x": [
+    64,
+    64
+   ],
+   "path": "toggle/toggle_checkbox_on_focus.png",
+   "pressed_offset_2x": [
+    0,
+    0
+   ],
+   "resize_axes": "none",
+   "size_1x": [
+    32,
+    32
+   ],
+   "size_2x": [
+    64,
+    64
+   ],
+   "sliced": false,
+   "state": "focus",
+   "use_when": "checkbox_on focus; fixed native size; minimum 64x64 at 2x; 1x exactly half; no baked text",
+   "variant": "checkbox_on"
+  },
+  {
+   "alpha_bounds_2x": [
+    8,
+    8,
+    56,
+    56
+   ],
+   "category": "toggle",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    16.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    32,
+    32
+   ],
+   "family": "toggles",
+   "fill": "fixed",
+   "group": "toggle",
+   "id": "toggle_checkbox_on_disabled",
+   "lite_family": "toggle_checkbox_on",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    32.0,
+    32.0
+   ],
+   "min_host_2x": [
+    64,
+    64
+   ],
+   "path": "toggle/toggle_checkbox_on_disabled.png",
+   "pressed_offset_2x": [
+    0,
+    0
+   ],
+   "resize_axes": "none",
+   "size_1x": [
+    32,
+    32
+   ],
+   "size_2x": [
+    64,
+    64
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "checkbox_on disabled; fixed native size; minimum 64x64 at 2x; 1x exactly half; no baked text",
+   "variant": "checkbox_on"
+  },
+  {
+   "category": "toggle",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    48.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    96,
+    32
+   ],
+   "family": "toggles",
+   "fill": "fixed",
+   "id": "toggle_switch_off_normal",
+   "knob_centers_2x": {
+    "off": [
+     32,
+     32
+    ],
+    "on": [
+     96,
+     32
+    ]
+   },
+   "lite_family": "toggle_switch_off",
+   "lite_group": "Controls",
+   "path": "toggle/toggle_switch_off_normal.png",
+   "resize_axes": "none",
+   "size_1x": [
+    64,
+    32
+   ],
+   "size_2x": [
+    128,
+    64
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "switch_off normal: settings on/off switch, off (oak track, copper knob on the left); swap with toggle_switch_on_normal when toggled; fixed native size 128x64 at 2x; 1x exactly half; label beside it in your font; no baked text"
+  },
+  {
+   "category": "toggle",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    48.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    96,
+    32
+   ],
+   "family": "toggles",
+   "fill": "fixed",
+   "id": "toggle_switch_off_hover",
+   "knob_centers_2x": {
+    "off": [
+     32,
+     32
+    ],
+    "on": [
+     96,
+     32
+    ]
+   },
+   "lite_family": "toggle_switch_off",
+   "lite_group": "Controls",
+   "path": "toggle/toggle_switch_off_hover.png",
+   "resize_axes": "none",
+   "size_1x": [
+    64,
+    32
+   ],
+   "size_2x": [
+    128,
+    64
+   ],
+   "sliced": false,
+   "state": "hover",
+   "use_when": "switch_off hover: settings on/off switch, off (oak track, copper knob on the left); swap with toggle_switch_on_hover when toggled; fixed native size 128x64 at 2x; 1x exactly half; label beside it in your font; no baked text"
+  },
+  {
+   "category": "toggle",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    48.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    96,
+    32
+   ],
+   "family": "toggles",
+   "fill": "fixed",
+   "id": "toggle_switch_off_focus",
+   "knob_centers_2x": {
+    "off": [
+     32,
+     32
+    ],
+    "on": [
+     96,
+     32
+    ]
+   },
+   "lite_family": "toggle_switch_off",
+   "lite_group": "Controls",
+   "path": "toggle/toggle_switch_off_focus.png",
+   "resize_axes": "none",
+   "size_1x": [
+    64,
+    32
+   ],
+   "size_2x": [
+    128,
+    64
+   ],
+   "sliced": false,
+   "state": "focus",
+   "use_when": "switch_off focus: settings on/off switch, off (oak track, copper knob on the left); swap with toggle_switch_on_focus when toggled; fixed native size 128x64 at 2x; 1x exactly half; label beside it in your font; no baked text"
+  },
+  {
+   "category": "toggle",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    48.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    96,
+    32
+   ],
+   "family": "toggles",
+   "fill": "fixed",
+   "id": "toggle_switch_off_disabled",
+   "knob_centers_2x": {
+    "off": [
+     32,
+     32
+    ],
+    "on": [
+     96,
+     32
+    ]
+   },
+   "lite_family": "toggle_switch_off",
+   "lite_group": "Controls",
+   "path": "toggle/toggle_switch_off_disabled.png",
+   "resize_axes": "none",
+   "size_1x": [
+    64,
+    32
+   ],
+   "size_2x": [
+    128,
+    64
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "switch_off disabled: settings on/off switch, off (oak track, copper knob on the left); swap with toggle_switch_on_disabled when toggled; fixed native size 128x64 at 2x; 1x exactly half; label beside it in your font; no baked text"
+  },
+  {
+   "category": "toggle",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    48.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    96,
+    32
+   ],
+   "family": "toggles",
+   "fill": "fixed",
+   "id": "toggle_switch_on_normal",
+   "knob_centers_2x": {
+    "off": [
+     32,
+     32
+    ],
+    "on": [
+     96,
+     32
+    ]
+   },
+   "lite_family": "toggle_switch_on",
+   "lite_group": "Controls",
+   "path": "toggle/toggle_switch_on_normal.png",
+   "resize_axes": "none",
+   "size_1x": [
+    64,
+    32
+   ],
+   "size_2x": [
+    128,
+    64
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "switch_on normal: settings on/off switch, on (sage track, copper knob on the right); swap with toggle_switch_off_normal when toggled; fixed native size 128x64 at 2x; 1x exactly half; label beside it in your font; no baked text"
+  },
+  {
+   "category": "toggle",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    48.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    96,
+    32
+   ],
+   "family": "toggles",
+   "fill": "fixed",
+   "id": "toggle_switch_on_hover",
+   "knob_centers_2x": {
+    "off": [
+     32,
+     32
+    ],
+    "on": [
+     96,
+     32
+    ]
+   },
+   "lite_family": "toggle_switch_on",
+   "lite_group": "Controls",
+   "path": "toggle/toggle_switch_on_hover.png",
+   "resize_axes": "none",
+   "size_1x": [
+    64,
+    32
+   ],
+   "size_2x": [
+    128,
+    64
+   ],
+   "sliced": false,
+   "state": "hover",
+   "use_when": "switch_on hover: settings on/off switch, on (sage track, copper knob on the right); swap with toggle_switch_off_hover when toggled; fixed native size 128x64 at 2x; 1x exactly half; label beside it in your font; no baked text"
+  },
+  {
+   "category": "toggle",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    48.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    96,
+    32
+   ],
+   "family": "toggles",
+   "fill": "fixed",
+   "id": "toggle_switch_on_focus",
+   "knob_centers_2x": {
+    "off": [
+     32,
+     32
+    ],
+    "on": [
+     96,
+     32
+    ]
+   },
+   "lite_family": "toggle_switch_on",
+   "lite_group": "Controls",
+   "path": "toggle/toggle_switch_on_focus.png",
+   "resize_axes": "none",
+   "size_1x": [
+    64,
+    32
+   ],
+   "size_2x": [
+    128,
+    64
+   ],
+   "sliced": false,
+   "state": "focus",
+   "use_when": "switch_on focus: settings on/off switch, on (sage track, copper knob on the right); swap with toggle_switch_off_focus when toggled; fixed native size 128x64 at 2x; 1x exactly half; label beside it in your font; no baked text"
+  },
+  {
+   "category": "toggle",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    48.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    96,
+    32
+   ],
+   "family": "toggles",
+   "fill": "fixed",
+   "id": "toggle_switch_on_disabled",
+   "knob_centers_2x": {
+    "off": [
+     32,
+     32
+    ],
+    "on": [
+     96,
+     32
+    ]
+   },
+   "lite_family": "toggle_switch_on",
+   "lite_group": "Controls",
+   "path": "toggle/toggle_switch_on_disabled.png",
+   "resize_axes": "none",
+   "size_1x": [
+    64,
+    32
+   ],
+   "size_2x": [
+    128,
+    64
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "switch_on disabled: settings on/off switch, on (sage track, copper knob on the right); swap with toggle_switch_off_disabled when toggled; fixed native size 128x64 at 2x; 1x exactly half; label beside it in your font; no baked text"
+  },
+  {
+   "alpha_bounds_2x": [
+    4,
+    4,
+    380,
+    28
+   ],
+   "category": "slider",
+   "content_rect_1x": [
+    16.0,
+    6.0,
+    160.0,
+    4.0
+   ],
+   "content_rect_2x": [
+    32,
+    12,
+    320,
+    8
+   ],
+   "family": "sliders",
+   "fill": "tile_x",
+   "fill_rect_1x": [
+    11.0,
+    6.0,
+    170.0,
+    4.0
+   ],
+   "fill_rect_2x": [
+    22,
+    12,
+    340,
+    8
+   ],
+   "fill_rule": "content_rect is the handle-centre travel; fill_rect is the trough floor, inner edge to inner edge. Render the fill across fill_rect, then clip it at the handle centre (content_rect x + value * content_rect width)",
+   "group": "slider",
+   "id": "slider_track_h_9s",
+   "lite_family": "slider_track_h_9s",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    96.0,
+    16.0
+   ],
+   "min_host_2x": [
+    192,
+    32
+   ],
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 12,
+    "r": 12,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 24,
+    "r": 24,
+    "t": 0
+   },
+   "path": "slider/slider_track_h_9s.png",
+   "pressed_offset_2x": [
+    0,
+    0
+   ],
+   "resize_axes": "x",
+   "size_1x": [
+    192,
+    16
+   ],
+   "size_2x": [
+    384,
+    32
+   ],
+   "sliced": true,
+   "state": "normal",
+   "use_when": "track_h_9s normal; horizontal resize only; immutable full-height textured caps; repeat uniform rail profile; minimum 192x32 at 2x; 1x exactly half; no baked text",
+   "variant": "track_h_9s"
+  },
+  {
+   "category": "slider",
+   "family": "sliders",
+   "fill": "tile_x",
+   "id": "slider_fill_h_sage",
+   "lite_family": "slider_fill_h_sage",
+   "lite_group": "Controls",
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 0,
+    "r": 0,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 0,
+    "r": 0,
+    "t": 0
+   },
+   "path": "slider/slider_fill_h_sage.png",
+   "resize_axes": "x",
+   "size_1x": [
+    32,
+    4
+   ],
+   "size_2x": [
+    64,
+    8
+   ],
+   "sliced": true,
+   "state": "normal",
+   "use_when": "horizontal slider value (0..1): render fill across slider_track_h_9s fill_rect at native height using tile_x, then clip it at the handle centre (content_rect x + value * content_rect width); 0 hides fill"
+  },
+  {
+   "alpha_bounds_2x": [
+    8,
+    8,
+    56,
+    56
+   ],
+   "category": "slider",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    16.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    32,
+    32
+   ],
+   "family": "sliders",
+   "fill": "fixed",
+   "group": "slider",
+   "id": "slider_handle_normal",
+   "lite_family": "slider_handle",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    32.0,
+    32.0
+   ],
+   "min_host_2x": [
+    64,
+    64
+   ],
+   "path": "slider/slider_handle_normal.png",
+   "pressed_offset_2x": [
+    0,
+    0
+   ],
+   "resize_axes": "none",
+   "size_1x": [
+    32,
+    32
+   ],
+   "size_2x": [
+    64,
+    64
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "handle normal; fixed native size; minimum 64x64 at 2x; 1x exactly half; no baked text",
+   "variant": "handle"
+  },
+  {
+   "alpha_bounds_2x": [
+    8,
+    8,
+    56,
+    56
+   ],
+   "category": "slider",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    16.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    32,
+    32
+   ],
+   "family": "sliders",
+   "fill": "fixed",
+   "group": "slider",
+   "id": "slider_handle_hover",
+   "lite_family": "slider_handle",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    32.0,
+    32.0
+   ],
+   "min_host_2x": [
+    64,
+    64
+   ],
+   "path": "slider/slider_handle_hover.png",
+   "pressed_offset_2x": [
+    0,
+    0
+   ],
+   "resize_axes": "none",
+   "size_1x": [
+    32,
+    32
+   ],
+   "size_2x": [
+    64,
+    64
+   ],
+   "sliced": false,
+   "state": "hover",
+   "use_when": "handle hover; fixed native size; minimum 64x64 at 2x; 1x exactly half; no baked text",
+   "variant": "handle"
+  },
+  {
+   "alpha_bounds_2x": [
+    8,
+    10,
+    56,
+    58
+   ],
+   "category": "slider",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    16.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    32,
+    32
+   ],
+   "family": "sliders",
+   "fill": "fixed",
+   "group": "slider",
+   "id": "slider_handle_pressed",
+   "lite_family": "slider_handle",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    32.0,
+    32.0
+   ],
+   "min_host_2x": [
+    64,
+    64
+   ],
+   "path": "slider/slider_handle_pressed.png",
+   "pressed_offset_2x": [
+    0,
+    2
+   ],
+   "resize_axes": "none",
+   "size_1x": [
+    32,
+    32
+   ],
+   "size_2x": [
+    64,
+    64
+   ],
+   "sliced": false,
+   "state": "pressed",
+   "use_when": "handle pressed; fixed native size; minimum 64x64 at 2x; 1x exactly half; no baked text",
+   "variant": "handle"
+  },
+  {
+   "alpha_bounds_2x": [
+    4,
+    4,
+    60,
+    60
+   ],
+   "category": "slider",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    16.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    32,
+    32
+   ],
+   "family": "sliders",
+   "fill": "fixed",
+   "group": "slider",
+   "id": "slider_handle_focus",
+   "lite_family": "slider_handle",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    32.0,
+    32.0
+   ],
+   "min_host_2x": [
+    64,
+    64
+   ],
+   "path": "slider/slider_handle_focus.png",
+   "pressed_offset_2x": [
+    0,
+    0
+   ],
+   "resize_axes": "none",
+   "size_1x": [
+    32,
+    32
+   ],
+   "size_2x": [
+    64,
+    64
+   ],
+   "sliced": false,
+   "state": "focus",
+   "use_when": "handle focus; fixed native size; minimum 64x64 at 2x; 1x exactly half; no baked text",
+   "variant": "handle"
+  },
+  {
+   "alpha_bounds_2x": [
+    8,
+    8,
+    56,
+    56
+   ],
+   "category": "slider",
+   "content_rect_1x": [
+    8.0,
+    8.0,
+    16.0,
+    16.0
+   ],
+   "content_rect_2x": [
+    16,
+    16,
+    32,
+    32
+   ],
+   "family": "sliders",
+   "fill": "fixed",
+   "group": "slider",
+   "id": "slider_handle_disabled",
+   "lite_family": "slider_handle",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    32.0,
+    32.0
+   ],
+   "min_host_2x": [
+    64,
+    64
+   ],
+   "path": "slider/slider_handle_disabled.png",
+   "pressed_offset_2x": [
+    0,
+    0
+   ],
+   "resize_axes": "none",
+   "size_1x": [
+    32,
+    32
+   ],
+   "size_2x": [
+    64,
+    64
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "handle disabled; fixed native size; minimum 64x64 at 2x; 1x exactly half; no baked text",
+   "variant": "handle"
+  },
+  {
+   "alpha_bounds_2x": [
+    8,
+    8,
+    184,
+    64
+   ],
+   "body_attachment": {
+    "anchor": "tab canvas top, independent of button hit bounds",
+    "canvas_top_in_hit_css": 0,
+    "instruction": "Folder body starts at canvas top + join y. The hit target may extend behind the body. Focus ring may overlap the join; do not attach to alpha bounds or hit bounds.",
+    "minimum_hit_height_css": 44,
+    "painted_join_y_1x": 32,
+    "painted_join_y_2x": 64,
+    "painted_join_y_css": {
+     "1x": 32,
+     "2x": 64
+    }
+   },
+   "category": "tab",
+   "content_rect_1x": [
+    20.0,
+    7.0,
+    56.0,
+    21.0
+   ],
+   "content_rect_2x": [
+    40,
+    14,
+    112,
+    42
+   ],
+   "family": "tabs",
+   "fill": "tile_x",
+   "group": "tab",
+   "id": "tab_top_normal",
+   "lite_family": "tab_top",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    80.0,
+    36.0
+   ],
+   "min_host_2x": [
+    160,
+    72
+   ],
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 24,
+    "r": 24,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 48,
+    "r": 48,
+    "t": 0
+   },
+   "path": "tab/tab_top_normal.png",
+   "pressed_offset_2x": [
+    0,
+    0
+   ],
+   "resize_axes": "x",
+   "size_1x": [
+    96,
+    36
+   ],
+   "size_2x": [
+    192,
+    72
+   ],
+   "sliced": true,
+   "state": "normal",
+   "use_when": "top normal; horizontal resize only; immutable full-height textured caps; repeat uniform rail profile; minimum 160x72 at 2x; 1x exactly half; no baked text",
+   "variant": "top"
+  },
+  {
+   "alpha_bounds_2x": [
+    8,
+    8,
+    184,
+    64
+   ],
+   "body_attachment": {
+    "anchor": "tab canvas top, independent of button hit bounds",
+    "canvas_top_in_hit_css": 0,
+    "instruction": "Folder body starts at canvas top + join y. The hit target may extend behind the body. Focus ring may overlap the join; do not attach to alpha bounds or hit bounds.",
+    "minimum_hit_height_css": 44,
+    "painted_join_y_1x": 32,
+    "painted_join_y_2x": 64,
+    "painted_join_y_css": {
+     "1x": 32,
+     "2x": 64
+    }
+   },
+   "category": "tab",
+   "content_rect_1x": [
+    20.0,
+    7.0,
+    56.0,
+    21.0
+   ],
+   "content_rect_2x": [
+    40,
+    14,
+    112,
+    42
+   ],
+   "family": "tabs",
+   "fill": "tile_x",
+   "group": "tab",
+   "id": "tab_top_hover",
+   "lite_family": "tab_top",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    80.0,
+    36.0
+   ],
+   "min_host_2x": [
+    160,
+    72
+   ],
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 24,
+    "r": 24,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 48,
+    "r": 48,
+    "t": 0
+   },
+   "path": "tab/tab_top_hover.png",
+   "pressed_offset_2x": [
+    0,
+    0
+   ],
+   "resize_axes": "x",
+   "size_1x": [
+    96,
+    36
+   ],
+   "size_2x": [
+    192,
+    72
+   ],
+   "sliced": true,
+   "state": "hover",
+   "use_when": "top hover; horizontal resize only; immutable full-height textured caps; repeat uniform rail profile; minimum 160x72 at 2x; 1x exactly half; no baked text",
+   "variant": "top"
+  },
+  {
+   "alpha_bounds_2x": [
+    8,
+    8,
+    184,
+    64
+   ],
+   "body_attachment": {
+    "anchor": "tab canvas top, independent of button hit bounds",
+    "canvas_top_in_hit_css": 0,
+    "instruction": "Folder body starts at canvas top + join y. The hit target may extend behind the body. Focus ring may overlap the join; do not attach to alpha bounds or hit bounds.",
+    "minimum_hit_height_css": 44,
+    "painted_join_y_1x": 32,
+    "painted_join_y_2x": 64,
+    "painted_join_y_css": {
+     "1x": 32,
+     "2x": 64
+    }
+   },
+   "category": "tab",
+   "content_rect_1x": [
+    20.0,
+    7.0,
+    56.0,
+    21.0
+   ],
+   "content_rect_2x": [
+    40,
+    14,
+    112,
+    42
+   ],
+   "family": "tabs",
+   "fill": "tile_x",
+   "group": "tab",
+   "id": "tab_top_selected",
+   "lite_family": "tab_top",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    80.0,
+    36.0
+   ],
+   "min_host_2x": [
+    160,
+    72
+   ],
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 24,
+    "r": 24,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 48,
+    "r": 48,
+    "t": 0
+   },
+   "path": "tab/tab_top_selected.png",
+   "pressed_offset_2x": [
+    0,
+    0
+   ],
+   "resize_axes": "x",
+   "size_1x": [
+    96,
+    36
+   ],
+   "size_2x": [
+    192,
+    72
+   ],
+   "sliced": true,
+   "state": "selected",
+   "use_when": "top selected; horizontal resize only; immutable full-height textured caps; repeat uniform rail profile; minimum 160x72 at 2x; 1x exactly half; no baked text",
+   "variant": "top"
+  },
+  {
+   "alpha_bounds_2x": [
+    4,
+    4,
+    188,
+    68
+   ],
+   "body_attachment": {
+    "anchor": "tab canvas top, independent of button hit bounds",
+    "canvas_top_in_hit_css": 0,
+    "instruction": "Folder body starts at canvas top + join y. The hit target may extend behind the body. Focus ring may overlap the join; do not attach to alpha bounds or hit bounds.",
+    "minimum_hit_height_css": 44,
+    "painted_join_y_1x": 32,
+    "painted_join_y_2x": 64,
+    "painted_join_y_css": {
+     "1x": 32,
+     "2x": 64
+    }
+   },
+   "category": "tab",
+   "content_rect_1x": [
+    20.0,
+    7.0,
+    56.0,
+    21.0
+   ],
+   "content_rect_2x": [
+    40,
+    14,
+    112,
+    42
+   ],
+   "family": "tabs",
+   "fill": "tile_x",
+   "group": "tab",
+   "id": "tab_top_focus",
+   "lite_family": "tab_top",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    80.0,
+    36.0
+   ],
+   "min_host_2x": [
+    160,
+    72
+   ],
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 24,
+    "r": 24,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 48,
+    "r": 48,
+    "t": 0
+   },
+   "path": "tab/tab_top_focus.png",
+   "pressed_offset_2x": [
+    0,
+    0
+   ],
+   "resize_axes": "x",
+   "size_1x": [
+    96,
+    36
+   ],
+   "size_2x": [
+    192,
+    72
+   ],
+   "sliced": true,
+   "state": "focus",
+   "use_when": "top focus; horizontal resize only; immutable full-height textured caps; repeat uniform rail profile; minimum 160x72 at 2x; 1x exactly half; no baked text",
+   "variant": "top"
+  },
+  {
+   "alpha_bounds_2x": [
+    8,
+    8,
+    184,
+    64
+   ],
+   "body_attachment": {
+    "anchor": "tab canvas top, independent of button hit bounds",
+    "canvas_top_in_hit_css": 0,
+    "instruction": "Folder body starts at canvas top + join y. The hit target may extend behind the body. Focus ring may overlap the join; do not attach to alpha bounds or hit bounds.",
+    "minimum_hit_height_css": 44,
+    "painted_join_y_1x": 32,
+    "painted_join_y_2x": 64,
+    "painted_join_y_css": {
+     "1x": 32,
+     "2x": 64
+    }
+   },
+   "category": "tab",
+   "content_rect_1x": [
+    20.0,
+    7.0,
+    56.0,
+    21.0
+   ],
+   "content_rect_2x": [
+    40,
+    14,
+    112,
+    42
+   ],
+   "family": "tabs",
+   "fill": "tile_x",
+   "group": "tab",
+   "id": "tab_top_disabled",
+   "lite_family": "tab_top",
+   "lite_group": "Controls",
+   "min_host_1x": [
+    80.0,
+    36.0
+   ],
+   "min_host_2x": [
+    160,
+    72
+   ],
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 24,
+    "r": 24,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 48,
+    "r": 48,
+    "t": 0
+   },
+   "path": "tab/tab_top_disabled.png",
+   "pressed_offset_2x": [
+    0,
+    0
+   ],
+   "resize_axes": "x",
+   "size_1x": [
+    96,
+    36
+   ],
+   "size_2x": [
+    192,
+    72
+   ],
+   "sliced": true,
+   "state": "disabled",
+   "use_when": "top disabled; horizontal resize only; immutable full-height textured caps; repeat uniform rail profile; minimum 160x72 at 2x; 1x exactly half; no baked text",
+   "variant": "top"
+  },
+  {
+   "category": "bar",
+   "family": "bars",
+   "fill": "stretch",
+   "fill_rect_1x": [
+    9.0,
+    5.0,
+    222.0,
+    13.0
+   ],
+   "fill_rect_2x": [
+    18,
+    10,
+    444,
+    26
+   ],
+   "fill_rule": "Fill sprites are 36 px tall at 2x (18 at 1x), larger than fill_rect (26 / 13): draw the fill at its native height, centred on fill_rect across the bar (round half up), and clip it to fill_rect; never squash it. Along the bar: full fill_rect length, then clip to the value",
+   "id": "bar_frame_md_9s",
+   "lite_family": "bar_frame_md_9s",
+   "lite_group": "Bars, slots and HUD",
+   "min_host_1x": [
+    80.0,
+    24.0
+   ],
+   "min_host_2x": [
+    160,
+    48
+   ],
+   "nine_slice_1x": {
+    "b": 9,
+    "l": 19,
+    "r": 19,
+    "t": 9
+   },
+   "nine_slice_2x": {
+    "b": 18,
+    "l": 38,
+    "r": 38,
+    "t": 18
+   },
+   "path": "bar/bar_frame_md_9s.png",
+   "resize_axes": "xy",
+   "size_1x": [
+    240,
+    24
+   ],
+   "size_2x": [
+    480,
+    48
+   ],
+   "sliced": true,
+   "state": "normal",
+   "use_when": "health / mana / stamina bar frame; fills draw inside fill_rect"
+  },
+  {
+   "category": "bar",
+   "family": "bars",
+   "fill": "tile_x",
+   "id": "bar_fill_health",
+   "lite_family": "bar_fill_health",
+   "lite_group": "Bars, slots and HUD",
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 9,
+    "r": 9,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 18,
+    "r": 18,
+    "t": 0
+   },
+   "path": "bar/bar_fill_health.png",
+   "resize_axes": "x",
+   "size_1x": [
+    48,
+    18
+   ],
+   "size_2x": [
+    96,
+    36
+   ],
+   "sliced": true,
+   "state": "normal",
+   "use_when": "health percent (0..100): render fill at full fill_rect width using tile_x; clip visible width to round(fill_rect width * clamp(percent, 0, 100) / 100); 0 hides fill; no minimum visible width"
+  },
+  {
+   "category": "bar",
+   "family": "bars",
+   "fill": "tile_x",
+   "id": "bar_fill_mana",
+   "lite_family": "bar_fill_mana",
+   "lite_group": "Bars, slots and HUD",
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 9,
+    "r": 9,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 18,
+    "r": 18,
+    "t": 0
+   },
+   "path": "bar/bar_fill_mana.png",
+   "resize_axes": "x",
+   "size_1x": [
+    48,
+    18
+   ],
+   "size_2x": [
+    96,
+    36
+   ],
+   "sliced": true,
+   "state": "normal",
+   "use_when": "mana percent (0..100): render fill at full fill_rect width using tile_x; clip visible width to round(fill_rect width * clamp(percent, 0, 100) / 100); 0 hides fill; no minimum visible width"
+  },
+  {
+   "category": "bar",
+   "family": "bars",
+   "fill": "tile_x",
+   "id": "bar_fill_stamina",
+   "lite_family": "bar_fill_stamina",
+   "lite_group": "Bars, slots and HUD",
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 9,
+    "r": 9,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 18,
+    "r": 18,
+    "t": 0
+   },
+   "path": "bar/bar_fill_stamina.png",
+   "resize_axes": "x",
+   "size_1x": [
+    48,
+    18
+   ],
+   "size_2x": [
+    96,
+    36
+   ],
+   "sliced": true,
+   "state": "normal",
+   "use_when": "stamina percent (0..100): render fill at full fill_rect width using tile_x; clip visible width to round(fill_rect width * clamp(percent, 0, 100) / 100); 0 hides fill; no minimum visible width"
+  },
+  {
+   "category": "slot",
+   "content_rect_1x": [
+    11.5,
+    12.0,
+    41.0,
+    40.5
+   ],
+   "content_rect_2x": [
+    23,
+    24,
+    82,
+    81
+   ],
+   "family": "slots",
+   "fill": "stretch",
+   "id": "slot_square_md_normal",
+   "lite_family": "slot_square_md",
+   "lite_group": "Bars, slots and HUD",
+   "nine_slice_1x": {
+    "b": 18,
+    "l": 18,
+    "r": 18,
+    "t": 18
+   },
+   "nine_slice_2x": {
+    "b": 36,
+    "l": 36,
+    "r": 36,
+    "t": 36
+   },
+   "path": "slot/slot_square_md_normal.png",
+   "resize_axes": "xy",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": true,
+   "state": "normal",
+   "use_when": "inventory / ingredient slot; icon centred in content_rect"
+  },
+  {
+   "category": "slot",
+   "content_rect_1x": [
+    11.5,
+    12.0,
+    41.0,
+    40.5
+   ],
+   "content_rect_2x": [
+    23,
+    24,
+    82,
+    81
+   ],
+   "family": "slots",
+   "fill": "stretch",
+   "id": "slot_square_md_hover",
+   "lite_family": "slot_square_md",
+   "lite_group": "Bars, slots and HUD",
+   "nine_slice_1x": {
+    "b": 18,
+    "l": 18,
+    "r": 18,
+    "t": 18
+   },
+   "nine_slice_2x": {
+    "b": 36,
+    "l": 36,
+    "r": 36,
+    "t": 36
+   },
+   "path": "slot/slot_square_md_hover.png",
+   "resize_axes": "xy",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": true,
+   "state": "hover",
+   "use_when": "inventory / ingredient slot; icon centred in content_rect"
+  },
+  {
+   "category": "slot",
+   "content_rect_1x": [
+    11.5,
+    12.0,
+    41.0,
+    40.5
+   ],
+   "content_rect_2x": [
+    23,
+    24,
+    82,
+    81
+   ],
+   "family": "slots",
+   "fill": "stretch",
+   "id": "slot_square_md_selected",
+   "lite_family": "slot_square_md",
+   "lite_group": "Bars, slots and HUD",
+   "nine_slice_1x": {
+    "b": 18,
+    "l": 18,
+    "r": 18,
+    "t": 18
+   },
+   "nine_slice_2x": {
+    "b": 36,
+    "l": 36,
+    "r": 36,
+    "t": 36
+   },
+   "path": "slot/slot_square_md_selected.png",
+   "resize_axes": "xy",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": true,
+   "state": "selected",
+   "use_when": "inventory / ingredient slot; icon centred in content_rect"
+  },
+  {
+   "category": "slot",
+   "content_rect_1x": [
+    11.5,
+    12.0,
+    41.0,
+    40.5
+   ],
+   "content_rect_2x": [
+    23,
+    24,
+    82,
+    81
+   ],
+   "family": "slots",
+   "fill": "stretch",
+   "id": "slot_square_md_focus",
+   "lite_family": "slot_square_md",
+   "lite_group": "Bars, slots and HUD",
+   "nine_slice_1x": {
+    "b": 18,
+    "l": 18,
+    "r": 18,
+    "t": 18
+   },
+   "nine_slice_2x": {
+    "b": 36,
+    "l": 36,
+    "r": 36,
+    "t": 36
+   },
+   "path": "slot/slot_square_md_focus.png",
+   "resize_axes": "xy",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": true,
+   "state": "focus",
+   "use_when": "inventory / ingredient slot; icon centred in content_rect"
+  },
+  {
+   "category": "slot",
+   "content_rect_1x": [
+    11.5,
+    12.0,
+    41.0,
+    40.5
+   ],
+   "content_rect_2x": [
+    23,
+    24,
+    82,
+    81
+   ],
+   "family": "slots",
+   "fill": "stretch",
+   "id": "slot_square_md_disabled",
+   "lite_family": "slot_square_md",
+   "lite_group": "Bars, slots and HUD",
+   "nine_slice_1x": {
+    "b": 18,
+    "l": 18,
+    "r": 18,
+    "t": 18
+   },
+   "nine_slice_2x": {
+    "b": 36,
+    "l": 36,
+    "r": 36,
+    "t": 36
+   },
+   "path": "slot/slot_square_md_disabled.png",
+   "resize_axes": "xy",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": true,
+   "state": "disabled",
+   "use_when": "inventory / ingredient slot; icon centred in content_rect"
+  },
+  {
+   "category": "slot",
+   "content_rect_1x": [
+    11.5,
+    12.0,
+    41.0,
+    40.5
+   ],
+   "content_rect_2x": [
+    23,
+    24,
+    82,
+    81
+   ],
+   "family": "slots",
+   "fill": "stretch",
+   "id": "slot_square_md_empty",
+   "lite_family": "slot_square_md",
+   "lite_group": "Bars, slots and HUD",
+   "nine_slice_1x": {
+    "b": 18,
+    "l": 18,
+    "r": 18,
+    "t": 18
+   },
+   "nine_slice_2x": {
+    "b": 36,
+    "l": 36,
+    "r": 36,
+    "t": 36
+   },
+   "path": "slot/slot_square_md_empty.png",
+   "resize_axes": "xy",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": true,
+   "state": "empty",
+   "use_when": "inventory / ingredient slot; icon centred in content_rect"
+  },
+  {
+   "category": "slot",
+   "content_rect_1x": [
+    11.5,
+    12.0,
+    41.0,
+    40.5
+   ],
+   "content_rect_2x": [
+    23,
+    24,
+    82,
+    81
+   ],
+   "family": "slots",
+   "fill": "stretch",
+   "id": "slot_square_md_drag_over",
+   "lite_family": "slot_square_md",
+   "lite_group": "Bars, slots and HUD",
+   "nine_slice_1x": {
+    "b": 18,
+    "l": 18,
+    "r": 18,
+    "t": 18
+   },
+   "nine_slice_2x": {
+    "b": 36,
+    "l": 36,
+    "r": 36,
+    "t": 36
+   },
+   "path": "slot/slot_square_md_drag_over.png",
+   "resize_axes": "xy",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": true,
+   "state": "drag_over",
+   "use_when": "inventory / ingredient slot; icon centred in content_rect"
+  },
+  {
+   "attachments": [
+    {
+     "anchor": "center",
+     "file": "slot/slot_lock_overlay.png",
+     "offset_1x": [
+      0.0,
+      0.0
+     ],
+     "offset_2x": [
+      0,
+      0
+     ],
+     "rect_1x": [
+      20.0,
+      17.0,
+      24.0,
+      30.0
+     ],
+     "rect_2x": [
+      40.0,
+      34.0,
+      48,
+      60
+     ],
+     "scale_with_host": false,
+     "size_1x": [
+      24,
+      30
+     ],
+     "size_2x": [
+      48,
+      60
+     ]
+    }
+   ],
+   "category": "slot",
+   "content_rect_1x": [
+    11.5,
+    12.0,
+    41.0,
+    40.5
+   ],
+   "content_rect_2x": [
+    23,
+    24,
+    82,
+    81
+   ],
+   "family": "slots",
+   "fill": "stretch",
+   "id": "slot_square_md_locked",
+   "lite_family": "slot_square_md",
+   "lite_group": "Bars, slots and HUD",
+   "min_host_1x": [
+    64.0,
+    64.0
+   ],
+   "min_host_2x": [
+    128,
+    128
+   ],
+   "nine_slice_1x": {
+    "b": 18,
+    "l": 18,
+    "r": 18,
+    "t": 18
+   },
+   "nine_slice_2x": {
+    "b": 36,
+    "l": 36,
+    "r": 36,
+    "t": 36
+   },
+   "path": "slot/slot_square_md_locked.png",
+   "resize_axes": "xy",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": true,
+   "state": "locked",
+   "use_when": "locked slot: minimum host 128x128 at 2x / 64x64 at 1x; reject smaller hosts; stretch frame, then center fixed 48x60 / 24x30 lock overlay"
+  },
+  {
+   "category": "slot",
+   "family": "slot_overlay",
+   "fill": "fixed",
+   "id": "slot_lock_overlay",
+   "lite_family": "slot_lock_overlay",
+   "lite_group": "Bars, slots and HUD",
+   "path": "slot/slot_lock_overlay.png",
+   "resize_axes": "none",
+   "size_1x": [
+    24,
+    30
+   ],
+   "size_2x": [
+    48,
+    60
+   ],
+   "sliced": false,
+   "state": "locked",
+   "use_when": "fixed-size lock companion: own control 48x60 at 2x / 24x30 at 1x; never stretch; center over containing locked frame whose minimum host is 128x128 at 2x / 64x64 at 1x; frame rejects smaller hosts"
+  },
+  {
+   "category": "slot",
+   "content_rect_1x": [
+    20.0,
+    11.0,
+    24.0,
+    14.0
+   ],
+   "content_rect_2x": [
+    40,
+    22,
+    48,
+    28
+   ],
+   "family": "slots",
+   "fill": "tile_x",
+   "id": "slot_qty_badge_9s",
+   "lite_family": "slot_qty_badge_9s",
+   "lite_group": "Bars, slots and HUD",
+   "min_host_1x": [
+    64.0,
+    36.0
+   ],
+   "min_host_2x": [
+    128,
+    72
+   ],
+   "nine_slice_1x": {
+    "b": 0,
+    "l": 20,
+    "r": 20,
+    "t": 0
+   },
+   "nine_slice_2x": {
+    "b": 0,
+    "l": 40,
+    "r": 40,
+    "t": 0
+   },
+   "path": "slot/slot_qty_badge_9s.png",
+   "resize_axes": "x",
+   "size_1x": [
+    64,
+    36
+   ],
+   "size_2x": [
+    128,
+    72
+   ],
+   "sliced": true,
+   "state": "normal",
+   "use_when": "stack count plate; resize_axes x, reject hosts below minimum or differing on fixed axes; native(128, 72) at2x /(64, 36) at1x; real host text/icon alpha inside content_rect; no baked text; tile quiet rails at native brush scale, full textured corners/caps fixed",
+   "variant": "qty_badge_9s"
+  },
+  {
+   "alpha_bounds_2x": [
+    2,
+    2,
+    190,
+    70
+   ],
+   "category": "hud",
+   "family": "hud",
+   "fill": "stretch",
+   "fill_rect_1x": [
+    39.0,
+    6.0,
+    47.0,
+    24.0
+   ],
+   "fill_rect_2x": [
+    78,
+    12,
+    94,
+    48
+   ],
+   "id": "hud_coin_purse_plate_9s",
+   "lite_family": "hud_coin_purse_plate_9s",
+   "lite_group": "Bars, slots and HUD",
+   "min_host_1x": [
+    70.0,
+    36.0
+   ],
+   "min_host_2x": [
+    140,
+    72
+   ],
+   "nine_slice_1x": {
+    "b": 6,
+    "l": 39,
+    "r": 10,
+    "t": 6
+   },
+   "nine_slice_2x": {
+    "b": 12,
+    "l": 78,
+    "r": 20,
+    "t": 12
+   },
+   "notes": "Built from approved clock plate pixels, 72 px high. Left cluster (78 px, fixed): plate end, icon well from the plate's own parchment rows, the plate's right-end lip, one oak divider cycled from the left rail's joint-free lower plank (no copy of the rail's joint tick), then the left-end shadow of the amount well. Min host 140 px at 2x (cluster 78 + end 20 + about 42 px of amount well). Rails and centre are x-invariant.",
+   "path": "hud/hud_coin_purse_plate_9s.png",
+   "regions_1x": {
+    "amount_well": {
+     "note": "stretches in x; amount text left aligned",
+     "rect": [
+      39,
+      6,
+      47,
+      24
+     ],
+     "shape": "rect"
+    },
+    "icon_well": {
+     "note": "square parchment well, 48 px (24 at 1x); icon 20-24 px at 1x (40-48 px at 2x), centred",
+     "rect": [
+      6,
+      6,
+      24,
+      24
+     ],
+     "shape": "rect"
+    }
+   },
+   "regions_2x": {
+    "amount_well": {
+     "note": "stretches in x; amount text left aligned",
+     "rect": [
+      78,
+      12,
+      94,
+      48
+     ],
+     "shape": "rect"
+    },
+    "icon_well": {
+     "note": "square parchment well, 48 px (24 at 1x); icon 20-24 px at 1x (40-48 px at 2x), centred",
+     "rect": [
+      12,
+      12,
+      48,
+      48
+     ],
+     "shape": "rect"
+    }
+   },
+   "resize_axes": "x",
+   "size_1x": [
+    96,
+    36
+   ],
+   "size_2x": [
+    192,
+    72
+   ],
+   "sliced": true,
+   "state": "normal",
+   "use_when": "HUD coin purse: coin icon (20-24 px at 1x) in the left well, amount in the right well",
+   "variant": "coin_purse_plate_9s"
+  },
+  {
+   "alpha_bounds_2x": [
+    6,
+    8,
+    39,
+    52
+   ],
+   "category": "cursors",
+   "family": "cursors",
+   "fill": "fixed",
+   "hotspot_1x": [
+    4,
+    4
+   ],
+   "hotspot_2x": [
+    8,
+    8
+   ],
+   "id": "cursor_arrow",
+   "lite_family": "cursor_arrow",
+   "lite_group": "Cursors",
+   "notes": "Hotspot is the ink tip pixel (first opaque pixel on the up-left diagonal).",
+   "path": "cursors/cursor_arrow.png",
+   "resize_axes": "none",
+   "size_1x": [
+    32,
+    32
+   ],
+   "size_2x": [
+    64,
+    64
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "arrow cursor; the hotspot is the ink tip",
+   "variant": "arrow"
+  },
+  {
+   "alpha_bounds_2x": [
+    17,
+    6,
+    47,
+    58
+   ],
+   "category": "cursors",
+   "family": "cursors",
+   "fill": "fixed",
+   "hotspot_1x": [
+    11,
+    3
+   ],
+   "hotspot_2x": [
+    22,
+    6
+   ],
+   "id": "cursor_hand_point",
+   "lite_family": "cursor_hand_point",
+   "lite_group": "Cursors",
+   "notes": "Generated base (gen-c1), keyed and fitted to the 64x64 cursor canvas; outline reinforced inward only. Hotspot is the fingertip: the first visible row of the tip at 2x (22,6); 1x (11,3) is the 1x pixel that holds it, floor(2x / 2), as every cursor.",
+   "path": "cursors/cursor_hand_point.png",
+   "resize_axes": "none",
+   "size_1x": [
+    32,
+    32
+   ],
+   "size_2x": [
+    64,
+    64
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "link / clickable: pointing hand, the hotspot is the fingertip",
+   "variant": "hand_point"
+  },
+  {
+   "category": "icons",
+   "family": "shop_economy",
+   "fill": "fixed",
+   "icon": "shop_coin_gold",
+   "id": "shop_coin_gold",
+   "lite_family": "shop_coin_gold",
+   "lite_group": "Icons",
+   "path": "icons/shop_economy/shop_coin_gold.png",
+   "resize_axes": "none",
+   "set": "shop_economy",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Currency or trade icon: coin gold."
+  },
+  {
+   "category": "icons",
+   "family": "shop_economy",
+   "fill": "fixed",
+   "icon": "shop_coin_gold",
+   "id": "shop_coin_gold_disabled",
+   "lite_family": "shop_coin_gold",
+   "lite_group": "Icons",
+   "path": "icons/shop_economy/shop_coin_gold_disabled.png",
+   "resize_axes": "none",
+   "set": "shop_economy",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Currency or trade icon: coin gold. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "status",
+   "fill": "fixed",
+   "icon": "status_vital_health",
+   "id": "status_vital_health",
+   "lite_family": "status_vital_health",
+   "lite_group": "Icons",
+   "path": "icons/status/status_vital_health.png",
+   "resize_axes": "none",
+   "set": "status",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Status indicator: vital health."
+  },
+  {
+   "category": "icons",
+   "family": "status",
+   "fill": "fixed",
+   "icon": "status_vital_health",
+   "id": "status_vital_health_disabled",
+   "lite_family": "status_vital_health",
+   "lite_group": "Icons",
+   "path": "icons/status/status_vital_health_disabled.png",
+   "resize_axes": "none",
+   "set": "status",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Status indicator: vital health. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "potions_bottles",
+   "fill": "fixed",
+   "icon": "potion_health_small",
+   "id": "potion_health_small",
+   "lite_family": "potion_health_small",
+   "lite_group": "Icons",
+   "path": "icons/potions_bottles/potion_health_small.png",
+   "resize_axes": "none",
+   "set": "potions_bottles",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Potion or bottle icon: potion health small."
+  },
+  {
+   "category": "icons",
+   "family": "potions_bottles",
+   "fill": "fixed",
+   "icon": "potion_health_small",
+   "id": "potion_health_small_disabled",
+   "lite_family": "potion_health_small",
+   "lite_group": "Icons",
+   "path": "icons/potions_bottles/potion_health_small_disabled.png",
+   "resize_axes": "none",
+   "set": "potions_bottles",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Potion or bottle icon: potion health small. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "potions_bottles",
+   "fill": "fixed",
+   "icon": "potion_mana_small",
+   "id": "potion_mana_small",
+   "lite_family": "potion_mana_small",
+   "lite_group": "Icons",
+   "path": "icons/potions_bottles/potion_mana_small.png",
+   "resize_axes": "none",
+   "set": "potions_bottles",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Potion or bottle icon: potion mana small."
+  },
+  {
+   "category": "icons",
+   "family": "potions_bottles",
+   "fill": "fixed",
+   "icon": "potion_mana_small",
+   "id": "potion_mana_small_disabled",
+   "lite_family": "potion_mana_small",
+   "lite_group": "Icons",
+   "path": "icons/potions_bottles/potion_mana_small_disabled.png",
+   "resize_axes": "none",
+   "set": "potions_bottles",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Potion or bottle icon: potion mana small. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "herbs_flowers",
+   "fill": "fixed",
+   "icon": "herb_sage_leaf",
+   "id": "herb_sage_leaf",
+   "lite_family": "herb_sage_leaf",
+   "lite_group": "Icons",
+   "path": "icons/herbs_flowers/herb_sage_leaf.png",
+   "resize_axes": "none",
+   "set": "herbs_flowers",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Herb or flower icon: sage leaf."
+  },
+  {
+   "category": "icons",
+   "family": "herbs_flowers",
+   "fill": "fixed",
+   "icon": "herb_sage_leaf",
+   "id": "herb_sage_leaf_disabled",
+   "lite_family": "herb_sage_leaf",
+   "lite_group": "Icons",
+   "path": "icons/herbs_flowers/herb_sage_leaf_disabled.png",
+   "resize_axes": "none",
+   "set": "herbs_flowers",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Herb or flower icon: sage leaf. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "shop_economy",
+   "fill": "fixed",
+   "icon": "shop_key",
+   "id": "shop_key",
+   "lite_family": "shop_key",
+   "lite_group": "Icons",
+   "path": "icons/shop_economy/shop_key.png",
+   "resize_axes": "none",
+   "set": "shop_economy",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Currency or trade icon: shop key."
+  },
+  {
+   "category": "icons",
+   "family": "shop_economy",
+   "fill": "fixed",
+   "icon": "shop_key",
+   "id": "shop_key_disabled",
+   "lite_family": "shop_key",
+   "lite_group": "Icons",
+   "path": "icons/shop_economy/shop_key_disabled.png",
+   "resize_axes": "none",
+   "set": "shop_economy",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Currency or trade icon: shop key. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "shop_economy",
+   "fill": "fixed",
+   "icon": "shop_chest_small",
+   "id": "shop_chest_small",
+   "lite_family": "shop_chest_small",
+   "lite_group": "Icons",
+   "path": "icons/shop_economy/shop_chest_small.png",
+   "resize_axes": "none",
+   "set": "shop_economy",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Currency or trade icon: chest small."
+  },
+  {
+   "category": "icons",
+   "family": "shop_economy",
+   "fill": "fixed",
+   "icon": "shop_chest_small",
+   "id": "shop_chest_small_disabled",
+   "lite_family": "shop_chest_small",
+   "lite_group": "Icons",
+   "path": "icons/shop_economy/shop_chest_small_disabled.png",
+   "resize_axes": "none",
+   "set": "shop_economy",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Currency or trade icon: chest small. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "shop_economy",
+   "fill": "fixed",
+   "icon": "shop_reputation_star",
+   "id": "shop_reputation_star",
+   "lite_family": "shop_reputation_star",
+   "lite_group": "Icons",
+   "path": "icons/shop_economy/shop_reputation_star.png",
+   "resize_axes": "none",
+   "set": "shop_economy",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Currency or trade icon: reputation star."
+  },
+  {
+   "category": "icons",
+   "family": "shop_economy",
+   "fill": "fixed",
+   "icon": "shop_reputation_star",
+   "id": "shop_reputation_star_disabled",
+   "lite_family": "shop_reputation_star",
+   "lite_group": "Icons",
+   "path": "icons/shop_economy/shop_reputation_star_disabled.png",
+   "resize_axes": "none",
+   "set": "shop_economy",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Currency or trade icon: reputation star. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "tools_crafting",
+   "fill": "fixed",
+   "icon": "tool_cauldron",
+   "id": "tool_cauldron",
+   "lite_family": "tool_cauldron",
+   "lite_group": "Icons",
+   "path": "icons/tools_crafting/tool_cauldron.png",
+   "resize_axes": "none",
+   "set": "tools_crafting",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Crafting tool icon: cauldron."
+  },
+  {
+   "category": "icons",
+   "family": "tools_crafting",
+   "fill": "fixed",
+   "icon": "tool_cauldron",
+   "id": "tool_cauldron_disabled",
+   "lite_family": "tool_cauldron",
+   "lite_group": "Icons",
+   "path": "icons/tools_crafting/tool_cauldron_disabled.png",
+   "resize_axes": "none",
+   "set": "tools_crafting",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Crafting tool icon: cauldron. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "tools_crafting",
+   "fill": "fixed",
+   "icon": "tool_mortar_pestle",
+   "id": "tool_mortar_pestle",
+   "lite_family": "tool_mortar_pestle",
+   "lite_group": "Icons",
+   "path": "icons/tools_crafting/tool_mortar_pestle.png",
+   "resize_axes": "none",
+   "set": "tools_crafting",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Crafting tool icon: mortar pestle."
+  },
+  {
+   "category": "icons",
+   "family": "tools_crafting",
+   "fill": "fixed",
+   "icon": "tool_mortar_pestle",
+   "id": "tool_mortar_pestle_disabled",
+   "lite_family": "tool_mortar_pestle",
+   "lite_group": "Icons",
+   "path": "icons/tools_crafting/tool_mortar_pestle_disabled.png",
+   "resize_axes": "none",
+   "set": "tools_crafting",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Crafting tool icon: mortar pestle. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_inventory_bag",
+   "id": "ui_inventory_bag",
+   "lite_family": "ui_inventory_bag",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_inventory_bag.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Interface action icon: inventory bag."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_inventory_bag",
+   "id": "ui_inventory_bag_disabled",
+   "lite_family": "ui_inventory_bag",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_inventory_bag_disabled.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Interface action icon: inventory bag. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "quests_social",
+   "fill": "fixed",
+   "icon": "quest_scroll",
+   "id": "quest_scroll",
+   "lite_family": "quest_scroll",
+   "lite_group": "Icons",
+   "path": "icons/quests_social/quest_scroll.png",
+   "resize_axes": "none",
+   "set": "quests_social",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Quest or social icon: quest scroll."
+  },
+  {
+   "category": "icons",
+   "family": "quests_social",
+   "fill": "fixed",
+   "icon": "quest_scroll",
+   "id": "quest_scroll_disabled",
+   "lite_family": "quest_scroll",
+   "lite_group": "Icons",
+   "path": "icons/quests_social/quest_scroll_disabled.png",
+   "resize_axes": "none",
+   "set": "quests_social",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Quest or social icon: quest scroll. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_map",
+   "id": "ui_map",
+   "lite_family": "ui_map",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_map.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Interface action icon: map."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_map",
+   "id": "ui_map_disabled",
+   "lite_family": "ui_map",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_map_disabled.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Interface action icon: map. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_settings",
+   "id": "ui_settings",
+   "lite_family": "ui_settings",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_settings.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Interface action icon: settings."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_settings",
+   "id": "ui_settings_disabled",
+   "lite_family": "ui_settings",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_settings_disabled.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Interface action icon: settings. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_volume_on",
+   "id": "ui_volume_on",
+   "lite_family": "ui_volume_on",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_volume_on.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Interface action icon: volume on."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_volume_on",
+   "id": "ui_volume_on_disabled",
+   "lite_family": "ui_volume_on",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_volume_on_disabled.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Interface action icon: volume on. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_volume_off",
+   "id": "ui_volume_off",
+   "lite_family": "ui_volume_off",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_volume_off.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Interface action icon: volume off."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_volume_off",
+   "id": "ui_volume_off_disabled",
+   "lite_family": "ui_volume_off",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_volume_off_disabled.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Interface action icon: volume off. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_play",
+   "id": "ui_play",
+   "lite_family": "ui_play",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_play.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Interface action icon: play."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_play",
+   "id": "ui_play_disabled",
+   "lite_family": "ui_play",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_play_disabled.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Interface action icon: play. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_pause",
+   "id": "ui_pause",
+   "lite_family": "ui_pause",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_pause.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Interface action icon: pause."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_pause",
+   "id": "ui_pause_disabled",
+   "lite_family": "ui_pause",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_pause_disabled.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Interface action icon: pause. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "navigation",
+   "fill": "fixed",
+   "icon": "nav_arrow_left",
+   "id": "nav_arrow_left",
+   "lite_family": "nav_arrow_left",
+   "lite_group": "Icons",
+   "path": "icons/navigation/nav_arrow_left.png",
+   "resize_axes": "none",
+   "set": "navigation",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Navigation or travel item icon: arrow left."
+  },
+  {
+   "category": "icons",
+   "family": "navigation",
+   "fill": "fixed",
+   "icon": "nav_arrow_left",
+   "id": "nav_arrow_left_disabled",
+   "lite_family": "nav_arrow_left",
+   "lite_group": "Icons",
+   "path": "icons/navigation/nav_arrow_left_disabled.png",
+   "resize_axes": "none",
+   "set": "navigation",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Navigation or travel item icon: arrow left. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "navigation",
+   "fill": "fixed",
+   "icon": "nav_arrow_right",
+   "id": "nav_arrow_right",
+   "lite_family": "nav_arrow_right",
+   "lite_group": "Icons",
+   "path": "icons/navigation/nav_arrow_right.png",
+   "resize_axes": "none",
+   "set": "navigation",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Navigation or travel item icon: arrow right."
+  },
+  {
+   "category": "icons",
+   "family": "navigation",
+   "fill": "fixed",
+   "icon": "nav_arrow_right",
+   "id": "nav_arrow_right_disabled",
+   "lite_family": "nav_arrow_right",
+   "lite_group": "Icons",
+   "path": "icons/navigation/nav_arrow_right_disabled.png",
+   "resize_axes": "none",
+   "set": "navigation",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Navigation or travel item icon: arrow right. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_info",
+   "id": "ui_info",
+   "lite_family": "ui_info",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_info.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Interface action icon: info."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_info",
+   "id": "ui_info_disabled",
+   "lite_family": "ui_info",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_info_disabled.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Interface action icon: info. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_close",
+   "id": "ui_close",
+   "lite_family": "ui_close",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_close.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Interface action icon: close."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_close",
+   "id": "ui_close_disabled",
+   "lite_family": "ui_close",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_close_disabled.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Interface action icon: close. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_check",
+   "id": "ui_check",
+   "lite_family": "ui_check",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_check.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Interface action icon: check."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_check",
+   "id": "ui_check_disabled",
+   "lite_family": "ui_check",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_check_disabled.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Interface action icon: check. Disabled/unavailable."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_menu",
+   "id": "ui_menu",
+   "lite_family": "ui_menu",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_menu.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "normal",
+   "use_when": "Interface action icon: menu."
+  },
+  {
+   "category": "icons",
+   "family": "ui_system",
+   "fill": "fixed",
+   "icon": "ui_menu",
+   "id": "ui_menu_disabled",
+   "lite_family": "ui_menu",
+   "lite_group": "Icons",
+   "path": "icons/ui_system/ui_menu_disabled.png",
+   "resize_axes": "none",
+   "set": "ui_system",
+   "size_1x": [
+    64,
+    64
+   ],
+   "size_2x": [
+    128,
+    128
+   ],
+   "sliced": false,
+   "state": "disabled",
+   "use_when": "Interface action icon: menu. Disabled/unavailable."
+  }
+ ],
+ "tier": "lite",
+ "version": "1.0"
+}

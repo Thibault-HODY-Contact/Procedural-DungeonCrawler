@@ -12,23 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20d8d9fa6981e1d41985950cb39ff455, type: 3}
   m_Name: RoomStyle
   m_EditorClassIdentifier: Assembly-CSharp::RoomStyleSO
-  styleId: Normal
-  gizmoColor: {r: 1, g: 1, b: 1, a: 1}
-  minX: 0
-  minY: 0
-  maxX: 0
-  maxY: 0
-  center: {x: 0, y: 0}
-  Weight: 10
-  AllowAsStartRoom: 1
-  AllowAsEndRoom: 1
-  roomFloorPrefab: {fileID: 6487248804287716864, guid: ef6c04e74edae4b4d8aee417ecd5f671, type: 3}
-  WallsPrefabsList:
+  weight: 10
+  canBeStartRoom: 0
+  canBeEndRoom: 0
+  floorPrefab: {fileID: 6487248804287716864, guid: ef6c04e74edae4b4d8aee417ecd5f671, type: 3}
+  roofPrefab: {fileID: 6487248804287716864, guid: e089e45d7a0c10c43969f2405ad4decc, type: 3}
+  floorHatchPrefab: {fileID: 0}
+  roofHatchPrefab: {fileID: 0}
+  wallPieces:
   - {fileID: 11400000, guid: 8477a2befe331b544bd9f8b1df496d78, type: 2}
   - {fileID: 11400000, guid: 39ff545e7e836e54d9a60401c136536b, type: 2}
   - {fileID: 11400000, guid: b2d4004db4f34c8409c8123dc26ac1fa, type: 2}
-  CorridorFloorPrefab: {fileID: 6487248804287716864, guid: 0943bcadc36d32242a7e38f9241bf085, type: 3}
-  CorridorPrefab: {fileID: 3125119747023335, guid: 83068f57a2449a34a97620ec855e5c50, type: 3}
-  CorridorCornerRightPrefab: {fileID: 3125119747023335, guid: 10184769c7287ee47952dbb0bfcf5b96, type: 3}
-  CorridorCornerLeftPrefab: {fileID: 3125119747023335, guid: 96abcfa357162cf48b8b78e260897a29, type: 3}
-  FloorProps: []
+  propRules:
+  - {fileID: 11400000, guid: 9f90cfa9d800c6a449f0918db8537381, type: 2}
+  - {fileID: 11400000, guid: 46acea39dc262cd42983157e600f1837, type: 2}
+  - {fileID: 11400000, guid: 6ef478e2a9bcd5540b5e7858c74f9d28, type: 2}
+  floorProps: []
+  corridorPrefab: {fileID: 3125119747023335, guid: 83068f57a2449a34a97620ec855e5c50, type: 3}
+  corridorCornerPrefab: {fileID: 3125119747023335, guid: 10184769c7287ee47952dbb0bfcf5b96, type: 3}
+  corridorFloorPrefab: {fileID: 6487248804287716864, guid: 0943bcadc36d32242a7e38f9241bf085, type: 3}
+  corridorEntrancePrefab: {fileID: 0}

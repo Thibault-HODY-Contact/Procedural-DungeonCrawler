@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3af87329375d54eacb406bf7e28ab4, type: 3}
+  m_Name: ScatterRule
+  m_EditorClassIdentifier: Assembly-CSharp::ScatterRuleSO
+  prefabs:
+  - {fileID: 1802838254802682464, guid: d56deb40ef98bff44b8061fd22bf9ea0, type: 3}
+  - {fileID: 6127032908632826178, guid: 54f6773401a90464f9c6d843200623cf, type: 3}
+  randomRotation: 1
+  sinkIntoGround: 0
+  minScale: 0.8
+  maxScale: 1.1
+  gridStep: 10
+  noiseFrequency: 0.09
+  jitter: 0.3
+  onlyAlongWalls: 0
+  wallBandWidth: 1.5
+  wallMargin: 0.1
+  spacing: -0.2
+  passageClearance: 2
+  minCount: 1
+  maxCount: 3
+  minRoomArea: 0
